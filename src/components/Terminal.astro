@@ -17,7 +17,7 @@
   <div class="terminal-body" id="terminal-body">
     <!-- Lines injected by JS -->
   </div>
-  <div class="terminal-input-row" id="terminal-input-row" style="display:none;">
+  <div class="terminal-input-row" id="terminal-input-row" style="visibility:hidden;">
     <span class="t-prompt">$ </span>
     <input
       type="text"
@@ -164,8 +164,7 @@
   // ── Startup animation script ──
   const STARTUP_SCRIPT: Array<{ type: 'prompt' | 'output'; text: string; delay?: number }> = [
     { type: 'prompt', text: 'whoami' },
-    { type: 'output', text: '<span class="t-highlight">Austin Larsen</span> — Principal Threat Analyst' },
-    { type: 'output', text: '<span class="t-output">Google Threat Intelligence Group</span>' },
+    { type: 'output', text: '<span class="t-highlight">Austin Larsen</span> — Principal Threat Analyst @ Google Threat Intelligence Group' },
     { type: 'output', text: '' },
   ];
 
@@ -343,7 +342,7 @@
     scrollToBottom();
 
     // Show the interactive input row
-    inputRow.style.display = 'flex';
+    inputRow.style.visibility = 'visible';
     input.focus();
   }
 
@@ -397,7 +396,7 @@
 
   // Click anywhere on terminal to focus input
   document.getElementById('terminal')!.addEventListener('click', () => {
-    if (inputRow.style.display !== 'none') {
+    if (inputRow.style.visibility !== 'hidden') {
       input.focus();
     }
   });
