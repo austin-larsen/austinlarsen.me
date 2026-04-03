@@ -148,9 +148,14 @@ const recentBlog = blogPosts.slice(0, 3);
         <ul class="media-list">
           {listMedia.map((item) => (
             <li class="media-list-item">
-              <a href={item.data.url} target="_blank" rel="noopener" class="media-list-link">
+              <a href={item.data.url} target="_blank" rel="noopener" class:list={['media-list-link', { 'has-quote': !!item.data.quote }]}>
                 <span class="media-list-outlet">{item.data.outlet}</span>
-                <span class="media-list-title">{item.data.title}</span>
+                <div class="media-list-center">
+                  <span class="media-list-title">{item.data.title}</span>
+                  {item.data.quote && (
+                    <span class="media-list-quote">{item.data.quote}</span>
+                  )}
+                </div>
                 <time class="media-list-date">{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
               </a>
             </li>
@@ -486,6 +491,7 @@ const recentBlog = blogPosts.slice(0, 3);
     color: inherit;
     text-decoration: none;
     transition: background 0.15s;
+    min-height: 52px;
   }
   .media-list-link:hover {
     background: var(--bg-surface);
@@ -500,12 +506,39 @@ const recentBlog = blogPosts.slice(0, 3);
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /* Center column: title + quote flip */
+  .media-list-center {
+    position: relative;
+    overflow: hidden;
+  }
   .media-list-title {
     font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.4;
+    display: block;
+    transition: opacity 0.22s ease, transform 0.22s ease;
   }
-  .media-list-link:hover .media-list-title {
+  .media-list-quote {
+    font-size: 0.82rem;
+    color: var(--accent);
+    line-height: 1.45;
+    font-style: italic;
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  .has-quote:hover .media-list-title {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  .has-quote:hover .media-list-quote {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .has-quote:hover .media-list-outlet {
     color: var(--text-primary);
   }
   .media-list-date {

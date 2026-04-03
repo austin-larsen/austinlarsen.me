@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a12"/>
+  <!-- Subtle radial glow -->
+  <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+    <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#0a0a12" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- Border -->
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="#1e2030" stroke-width="2"/>
+  <!-- Left accent line -->
+  <rect x="80" y="180" width="4" height="160" rx="2" fill="#00c8ff"/>
+  <!-- Prompt $ -->
+  <text x="80" y="140" font-family="monospace, Courier New" font-size="28" fill="#00ff88" font-weight="bold">$ whoami</text>
+  <!-- Name -->
+  <text x="108" y="240" font-family="'Segoe UI', Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Austin Larsen</text>
+  <!-- Title line 1 -->
+  <text x="108" y="300" font-family="monospace, Courier New" font-size="28" fill="#00c8ff" font-weight="500">Principal Threat Analyst</text>
+  <!-- Title line 2 -->
+  <text x="108" y="338" font-family="monospace, Courier New" font-size="28" fill="#8892a4">Google Threat Intelligence Group</text>
+  <!-- Divider -->
+  <rect x="80" y="380" width="600" height="1" fill="#1e2030"/>
+  <!-- URL -->
+  <text x="80" y="420" font-family="monospace, Courier New" font-size="22" fill="#4a5568">austinlarsen.me</text>
+  <!-- Tag line -->
+  <text x="80" y="480" font-family="'Segoe UI', Arial, sans-serif" font-size="20" fill="#8892a4">Nation-state threats · Zero-days · Incident response</text>
+  <!-- Decorative terminal lines (right side) -->
+  <text x="820" y="220" font-family="monospace" font-size="14" fill="#1e2030">// threat intelligence</text>
+  <text x="820" y="260" font-family="monospace" font-size="14" fill="#1e2030">// incident response</text>
+  <text x="820" y="300" font-family="monospace" font-size="14" fill="#1e2030">// attribution</text>
+  <text x="820" y="340" font-family="monospace" font-size="14" fill="#1e2030">// zero-day research</text>
+</svg>
