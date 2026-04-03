@@ -50,6 +50,7 @@ const media = defineCollection({
     image: z.string().optional(),
     featured: z.boolean().default(false),
     type: z.enum(['quote', 'feature', 'award', 'interview']).default('quote'),
+    quote: z.string().optional(),
   }),
 });
 

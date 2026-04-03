@@ -75,8 +75,7 @@
 
   .terminal-body {
     padding: 20px 24px 8px;
-    min-height: 200px;
-    max-height: 400px;
+    height: 400px;
     overflow-y: auto;
   }
 
@@ -155,7 +154,7 @@
 
   @media (max-width: 768px) {
     .terminal { font-size: 0.75rem; }
-    .terminal-body { padding: 16px 16px 4px; min-height: 160px; }
+    .terminal-body { padding: 16px 16px 4px; height: 320px; }
     .terminal-input-row { padding: 4px 16px 12px; }
     .terminal-input { font-size: 0.75rem; }
   }
@@ -229,7 +228,7 @@
     '/github': {
       description: 'Open GitHub profile',
       action: () => {
-        window.open('https://github.com/austinlarsen', '_blank');
+        window.open('https://github.com/austin-larsen', '_blank');
         return ['<span class="t-success">Opening GitHub...</span>'];
       },
     },
