@@ -1,0 +1,7 @@
+---
+title: "How the FBI and Mandiant caught a serial hacker who tried to fake his own death"
+outlet: "TechCrunch"
+date: 2024-10-01
+url: "https://techcrunch.com/2024/10/01/how-the-fbi-and-mandiant-caught-a-serial-hacker-who-tried-to-fake-his-own-death/"
+type: "feature"
+---

@@ -1,0 +1,398 @@
+---
+import Base from '../layouts/Base.astro';
+import Terminal from '../components/Terminal.astro';
+import { getCollection } from 'astro:content';
+
+const research = (await getCollection('research')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const talks = (await getCollection('talks')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const mediaItems = (await getCollection('media')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const recentBlog = blogPosts.slice(0, 3);
+
+// Brand colors for media outlets
+const outletColors: Record<string, string> = {
+  'Reuters': '#ff8000',
+  'TechCrunch': '#0a9e01',
+  '404 Media': '#e040fb',
+  'Fortune': '#0033cc',
+  'CyberScoop': '#c62828',
+  'TechTarget': '#0078d4',
+  'SC Magazine': '#1a237e',
+  'The Record': '#455a64',
+  'BleepingComputer': '#2979ff',
+};
+---
+
+<Base title="Austin Larsen — Threat Intelligence">
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-name">Austin Larsen</h1>
+        <p class="hero-title">Principal Threat Analyst</p>
+        <p class="hero-org">Google Threat Intelligence Group</p>
+        <p class="hero-bio">
+          Leading rapid response and investigations into major global cyber events.
+          Previously Mandiant incident response. Nation-state threats, zero-days, and data extortion campaigns.
+        </p>
+        <div class="hero-cta">
+          <a href="#research" class="btn btn-primary">Research</a>
+          <a href="/blog" class="btn btn-ghost">Blog</a>
+        </div>
+      </div>
+      <div class="hero-terminal">
+        <Terminal />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RECENT BLOG ══ -->
+  {recentBlog.length > 0 && (
+    <section class="section" id="blog-preview">
+      <div class="container">
+        <p class="section-label">// latest</p>
+        <h2 class="section-title">Recent Posts</h2>
+        <div class="grid-2">
+          {recentBlog.map((post) => (
+            <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card">
+              <time class="blog-date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+              <h3 class="blog-card-title">{post.data.title}</h3>
+              {post.data.description && <p class="blog-card-desc">{post.data.description}</p>}
+              {post.data.tags.length > 0 && (
+                <div class="blog-tags">
+                  {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══ RESEARCH ══ -->
+  <section class="section" id="research">
+    <div class="container">
+      <p class="section-label">// publications</p>
+      <h2 class="section-title">Research &amp; Publications</h2>
+      <div class="research-list">
+        {research.map((item) => (
+          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card">
+            <div class="research-meta">
+              <span class="badge">{item.data.publisher}</span>
+              <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
+            </div>
+            <h3 class="research-title">{item.data.title}</h3>
+            {item.data.tags.length > 0 && (
+              <div class="research-tags">
+                {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TALKS ══ -->
+  <section class="section" id="talks">
+    <div class="container">
+      <p class="section-label">// conferences</p>
+      <h2 class="section-title">Talks &amp; Presentations</h2>
+      <div class="grid-3 talks-grid">
+        {talks.map((talk) => (
+          <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card">
+            {talk.data.image && (
+              <div class="talk-img-wrap">
+                <img src={talk.data.image} alt={talk.data.conference} loading="lazy" />
+              </div>
+            )}
+            <div class="talk-info">
+              <h3 class="talk-name">{talk.data.conference}</h3>
+              <time class="talk-date">{talk.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MEDIA ══ -->
+  <section class="section" id="media">
+    <div class="container">
+      <p class="section-label">// press &amp; coverage</p>
+      <h2 class="section-title">Media</h2>
+      <div class="grid-2 media-grid">
+        {mediaItems.map((item) => {
+          const brandColor = outletColors[item.data.outlet] || 'var(--accent)';
+          return (
+            <a href={item.data.url} target="_blank" rel="noopener" class="card media-card" style={`--brand-color: ${brandColor}`}>
+              <div class="media-accent"></div>
+              <div class="media-content">
+                <div class="media-meta">
+                  <span class="media-outlet" style={`color: ${brandColor}`}>{item.data.outlet}</span>
+                  <span class="badge">{item.data.type}</span>
+                </div>
+                <h3 class="media-title">{item.data.title}</h3>
+                <time class="media-date">{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    padding-top: calc(var(--nav-height) + 60px);
+    padding-bottom: 60px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 200, 255, 0.06) 0%, transparent 70%),
+      var(--bg-deep);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-name {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .hero-org {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+  .hero-bio {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+  }
+  .hero-terminal {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-deep);
+  }
+  .btn-primary:hover {
+    background: #33d4ff;
+    color: var(--bg-deep);
+    box-shadow: 0 0 24px rgba(0, 200, 255, 0.3);
+  }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .btn-ghost:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+  }
+
+  /* ── Blog cards ── */
+  .blog-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .blog-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+  .blog-card-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .blog-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .blog-card {
+    display: block;
+    color: inherit;
+  }
+  .blog-card:hover { color: inherit; }
+
+  /* ── Research ── */
+  .research-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .research-card {
+    display: block;
+    color: inherit;
+  }
+  .research-card:hover { color: inherit; }
+  .research-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .research-meta time {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .research-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .research-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Talks ── */
+  .talk-card {
+    display: block;
+    color: inherit;
+    padding: 0;
+    overflow: hidden;
+  }
+  .talk-card:hover { color: inherit; }
+  .talk-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-surface);
+  }
+  .talk-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .talk-card:hover .talk-img-wrap img {
+    transform: scale(1.05);
+  }
+  .talk-info {
+    padding: 16px;
+  }
+  .talk-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .talk-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Media ── */
+  .media-card {
+    display: flex;
+    color: inherit;
+    padding: 0;
+    overflow: hidden;
+  }
+  .media-card:hover { color: inherit; }
+  .media-accent {
+    width: 4px;
+    flex-shrink: 0;
+    background: var(--brand-color);
+    border-radius: 12px 0 0 12px;
+  }
+  .media-content {
+    padding: 20px 24px;
+    flex: 1;
+  }
+  .media-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .media-outlet {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .media-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .media-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+  .media-card:hover .media-accent {
+    width: 6px;
+    box-shadow: 0 0 12px var(--brand-color);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-bio { margin: 0 auto 28px; }
+    .hero-cta { justify-content: center; }
+    .hero-terminal { justify-content: center; }
+    .hero-name { font-size: 2.2rem; }
+  }
+  @media (max-width: 768px) {
+    .talks-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .talks-grid { grid-template-columns: 1fr; }
+  }
+</style>

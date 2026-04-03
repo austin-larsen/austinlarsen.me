@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects
+# Preserve any old paths if needed
+# /old-path /new-path 301
