@@ -24,13 +24,15 @@ const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
         <p class="section-label">// blog</p>
         <h1 class="section-title">Writing</h1>
         <p class="blog-subtitle">Thoughts on threat intelligence, incident response, and cybersecurity.</p>
-        <a href="/rss.xml" class="rss-link" target="_blank" rel="noopener" aria-label="RSS Feed">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
-          RSS Feed
-        </a>
-        <a href="https://austinlarsen.beehiiv.com/" class="rss-link" target="_blank" rel="noopener">
-          Newsletter
-        </a>
+        <div class="blog-links">
+          <a href="/rss.xml" class="rss-link" target="_blank" rel="noopener" aria-label="RSS Feed">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+            RSS Feed
+          </a>
+          <a href="https://austinlarsen.beehiiv.com/" class="rss-link" target="_blank" rel="noopener">
+            Newsletter
+          </a>
+        </div>
       </div>
 
       <!-- Tag filter -->
@@ -113,6 +115,12 @@ const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
   .rss-link:hover {
     color: #f97316;
     border-color: #f97316;
+  }
+
+  .blog-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   /* Tag filter */
