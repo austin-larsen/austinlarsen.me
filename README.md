@@ -1,7 +1,5 @@
 # austinlarsen.me
 
-Personal website of Austin Larsen — Principal Threat Analyst at Google Threat Intelligence Group.
-
 Built with [Astro](https://astro.build) and deployed on [Cloudflare Pages](https://pages.cloudflare.com).
 
 ## Stack
