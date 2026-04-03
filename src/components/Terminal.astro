@@ -262,7 +262,7 @@
         '  <span class="t-command">/tips</span>       — Submit a tip',
         '  <span class="t-command">/clear</span>      — Clear terminal',
         '',
-        '  <span class="t-error">/[REDACTED]</span>  — classified',
+        '  <span class="t-error">/[REDACTED]</span>  — <span class="t-error">TLP:RED</span>',
       ],
     },
     '/threats': {
@@ -334,18 +334,46 @@
       },
     },
     '/secret': {
-      description: 'classified',
+      description: 'TLP:RED',
       action: () => {
         const seq: [number, () => void][] = [
-          [500,  () => { addOutput('<span class="t-error">ERROR: Unauthorized command signature detected</span>'); scrollToBottom(); }],
-          [1000, () => { addOutput('<span class="t-error">Tracing origin... ██.███.██.█ → REDACTED</span>'); scrollToBottom(); }],
-          [1600, () => { addOutput('<span class="t-label">WARNING: Deploying countermeasure payload...</span>'); scrollToBottom(); }],
-          [2200, () => { addOutput('<span class="t-label">████████████████████ 100%</span>'); scrollToBottom(); }],
-          [2800, () => { addOutput('<span class="t-success">ACCESS GRANTED — Welcome back, Austin.</span>'); scrollToBottom(); }],
-          [3200, () => { triggerSecretMode(); }],
+          [200,  () => { addOutput('<span class="t-output">ssh root@185.220.101.47 -p 22</span>'); scrollToBottom(); }],
+          [700,  () => { addOutput('<span class="t-output">The authenticity of host \'185.220.101.47\' can\'t be established.</span>'); scrollToBottom(); }],
+          [900,  () => { addOutput('<span class="t-output">ED25519 key fingerprint is SHA256:kT3/Rq9mXzPl0vN8Yw2uBcJhF4iKdLsOeAmGn1QpXr=</span>'); scrollToBottom(); }],
+          [1100, () => { addOutput('<span class="t-output">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>'); scrollToBottom(); }],
+          [1400, () => { addOutput('<span class="t-output">Warning: Permanently added \'185.220.101.47\' (ED25519) to the list of known hosts.</span>'); scrollToBottom(); }],
+          [1700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
+          [2400, () => { addOutput('<span class="t-error">Permission denied, please try again.</span>'); scrollToBottom(); }],
+          [2700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
+          [3400, () => { addOutput('<span class="t-error">Permission denied, please try again.</span>'); scrollToBottom(); }],
+          [3700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
+          [4600, () => { addOutput('<span class="t-success">Access granted.</span>'); scrollToBottom(); }],
+          [4900, () => { addOutput(''); scrollToBottom(); }],
+          [5000, () => { addOutput('<span class="t-label">Last login: Sat Mar 29 03:14:07 2025 from 91.108.4.0</span>'); scrollToBottom(); }],
+          [5100, () => { addOutput(''); scrollToBottom(); }],
+          [5150, () => { addOutput('<span class="t-error">╔══════════════════════════════════════════════════════════╗</span>'); scrollToBottom(); }],
+          [5200, () => { addOutput('<span class="t-error">║         *** UNAUTHORIZED ACCESS PROHIBITED ***           ║</span>'); scrollToBottom(); }],
+          [5250, () => { addOutput('<span class="t-error">║                                                          ║</span>'); scrollToBottom(); }],
+          [5300, () => { addOutput('<span class="t-error">║  This system is for authorized users only. All activity  ║</span>'); scrollToBottom(); }],
+          [5350, () => { addOutput('<span class="t-error">║  is monitored, logged, and subject to audit. Disconnect  ║</span>'); scrollToBottom(); }],
+          [5400, () => { addOutput('<span class="t-error">║  immediately if you are not an authorized user.          ║</span>'); scrollToBottom(); }],
+          [5450, () => { addOutput('<span class="t-error">║                                                          ║</span>'); scrollToBottom(); }],
+          [5500, () => { addOutput('<span class="t-error">║  Violations may be prosecuted under 18 U.S.C § 1030     ║</span>'); scrollToBottom(); }],
+          [5550, () => { addOutput('<span class="t-error">╚══════════════════════════════════════════════════════════╝</span>'); scrollToBottom(); }],
+          [5700, () => { addOutput(''); scrollToBottom(); }],
+          [5800, () => { addOutput('<span class="t-label">Initializing session audit log... done</span>'); scrollToBottom(); }],
+          [6000, () => { addOutput('<span class="t-label">Loading environment... done</span>'); scrollToBottom(); }],
+          [6200, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# whoami</span>'); scrollToBottom(); }],
+          [6600, () => { addOutput('<span class="t-error">root</span>'); scrollToBottom(); }],
+          [6900, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# uname -a</span>'); scrollToBottom(); }],
+          [7300, () => { addOutput('<span class="t-output">Linux c2-node-03 5.15.0-91-generic #101-Ubuntu SMP x86_64 GNU/Linux</span>'); scrollToBottom(); }],
+          [7600, () => { addOutput('<span class="t-output">root@threat-actor-C2:~# cat /etc/passwd | grep -v nologin | cut -d: -f1</span>'); scrollToBottom(); }],
+          [8000, () => { addOutput('<span class="t-success">root</span>'); scrollToBottom(); }],
+          [8200, () => { addOutput('<span class="t-output">root@threat-actor-C2:~#</span>'); scrollToBottom(); }],
+          [8500, () => { triggerSecretMode(); }],
         ];
         seq.forEach(([delay, fn]) => setTimeout(fn, delay));
-        return ['<span class="t-error">initiating...</span>'];
+        return ['<span class="t-output">Connecting to 185.220.101.47...</span>'];
       },
     },
     '/restore': {
@@ -575,9 +603,9 @@
     const banner = document.createElement('div');
     banner.id = 'secret-banner';
     banner.innerHTML = `
-      <div class="sb-label">// UNAUTHORIZED ACCESS DETECTED</div>
+      <div class="sb-label">// root@threat-actor-C2 · SESSION ACTIVE · TLP:RED</div>
       <div class="sb-title">SYSTEM<br>COMPROMISED</div>
-      <div class="sb-sub">Press <kbd>ESC</kbd> or type <span>/restore</span> to contain</div>
+      <div class="sb-sub">18 U.S.C § 1030 · All activity logged · <kbd>ESC</kbd> or <span>/restore</span> to disconnect</div>
     `;
     document.body.appendChild(banner);
     document.body.classList.add('secret-mode');
