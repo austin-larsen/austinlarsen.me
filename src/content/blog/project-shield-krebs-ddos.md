@@ -3,7 +3,7 @@ title: "How Project Shield Stopped a 6.3 Tbps DDoS Attack Against KrebsOnSecurit
 date: 2025-06-03
 description: "When KrebsOnSecurity was hit with one of the largest DDoS attacks ever recorded, Google's Project Shield kept it online without interruption."
 tags: ["ddos", "google", "project-shield", "infrastructure"]
-image: "/images/blog/krebs-ddos-chart.png"
+image: "/images/blog/krebs-ddos-chart.jpg"
 externalUrl: "https://cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how"
 source: "linkedin"
 ---
