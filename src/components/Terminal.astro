@@ -8,9 +8,9 @@
 <div class="terminal" id="terminal">
   <div class="terminal-chrome">
     <div class="terminal-dots">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
+      <span class="dot red" id="dot-red" title="Close"></span>
+      <span class="dot yellow" id="dot-yellow" title="Minimize"></span>
+      <span class="dot green" id="dot-green" title="Maximize"></span>
     </div>
     <span class="terminal-title">austin@threat-intel ~ %</span>
   </div>
@@ -234,6 +234,69 @@
     padding: 1px 6px;
     font-size: 0.9em;
   }
+
+  /* ── Window button states ── */
+  .dot { cursor: pointer; transition: filter 0.15s; }
+  .dot:hover { filter: brightness(1.3); }
+
+  /* Closed */
+  .terminal.is-closed {
+    display: none;
+  }
+
+  /* Maximized */
+  .terminal.is-maximized {
+    position: fixed;
+    inset: 0;
+    max-width: none;
+    width: 100%;
+    border-radius: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+  .terminal.is-maximized .terminal-body {
+    flex: 1;
+    height: auto;
+  }
+
+  /* Minimized dock */
+  :global(#terminal-dock) {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: #111119;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    z-index: 1000;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: background 0.15s;
+  }
+  :global(#terminal-dock:hover) {
+    background: #1a1a26;
+  }
+  :global(#terminal-dock .dock-dots) {
+    display: flex;
+    gap: 5px;
+  }
+  :global(#terminal-dock .dock-dot) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  :global(#terminal-dock .dock-dot.red)    { background: #ff5f57; }
+  :global(#terminal-dock .dock-dot.yellow) { background: #febc2e; }
+  :global(#terminal-dock .dock-dot.green)  { background: #28c840; }
 </style>
 
 <script>
@@ -541,6 +604,44 @@
     if (inputRow.style.visibility !== 'hidden') {
       input.focus();
     }
+  });
+
+  // ── Window buttons ──
+  const terminal = document.getElementById('terminal')!;
+
+  // Red: close
+  document.getElementById('dot-red')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    terminal.classList.add('is-closed');
+  });
+
+  // Yellow: minimize to dock
+  document.getElementById('dot-yellow')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (terminal.classList.contains('is-closed')) return;
+    terminal.classList.add('is-closed');
+    const dock = document.createElement('div');
+    dock.id = 'terminal-dock';
+    dock.innerHTML = `
+      <div class="dock-dots">
+        <span class="dock-dot red"></span>
+        <span class="dock-dot yellow"></span>
+        <span class="dock-dot green"></span>
+      </div>
+      <span>austin@threat-intel ~ %</span>
+      <span style="opacity:0.4;">click to expand</span>
+    `;
+    dock.addEventListener('click', () => {
+      terminal.classList.remove('is-closed');
+      dock.remove();
+    });
+    document.body.appendChild(dock);
+  });
+
+  // Green: toggle maximize
+  document.getElementById('dot-green')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    terminal.classList.toggle('is-maximized');
   });
 
   // ── Secret mode ──
