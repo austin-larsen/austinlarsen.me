@@ -6,5 +6,5 @@ url: "https://www.ddaily.co.kr/page/view/2025091516575547202"
 image: "/images/media/ddaily-interview-austin.jpg"
 featured: true
 type: "interview"
-quote: "Austin sat down with Korea's Digital Daily to warn that North Korean cyber actors are leveraging AI to conduct IT employment fraud, intelligence gathering, and post-compromise operations at scale — including using deepfakes, LLMs, and custom malware enhancements."
+quote: "Austin warned that North Korean actors are now using AI — deepfakes, LLMs, custom malware — to scale IT fraud and post-compromise operations."
 ---
