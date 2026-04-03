@@ -123,6 +123,11 @@ const recentBlog = blogPosts.slice(0, 3);
                   <div class="media-feature-img">
                     <img src={item.data.image} alt={item.data.title} loading="lazy" />
                     <div class="media-feature-overlay"></div>
+                    {item.data.quote && (
+                      <div class="media-feature-quote-overlay">
+                        <p class="media-feature-quote">{item.data.quote}</p>
+                      </div>
+                    )}
                   </div>
                 )}
                 <div class="media-feature-info">
@@ -396,6 +401,33 @@ const recentBlog = blogPosts.slice(0, 3);
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(10,12,18,0.6) 0%, transparent 60%);
+    transition: opacity 0.3s;
+  }
+  .media-feature-card:hover .media-feature-overlay {
+    opacity: 0;
+  }
+  .media-feature-quote-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 18, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .media-feature-card:hover .media-feature-quote-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .media-feature-quote {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
   }
   .media-feature-info {
     padding: 16px;
