@@ -4,8 +4,6 @@ date: 2025-06-03
 description: "When KrebsOnSecurity was hit with one of the largest DDoS attacks ever recorded, Google's Project Shield kept it online without interruption."
 tags: ["ddos", "google", "project-shield", "infrastructure"]
 image: "/images/blog/krebs-ddos-chart.jpg"
-externalUrl: "https://cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how"
-source: "linkedin"
 ---
 
 When investigative journalist Brian Krebs was targeted by one of the largest DDoS attacks to date at a staggering 6.3 Tbps, his site, KrebsOnSecurity, remained online without interruption.
@@ -19,3 +17,5 @@ Project Shield is designed to help protect at-risk organizations like journalist
 Read the full story to learn more about the attack and how Google's infrastructure provides automated defense against some of the largest threats on the internet.
 
 Eligible organizations can apply for Project Shield here: [projectshield.google/landing](https://projectshield.google/landing)
+
+Full write-up on how Project Shield handled the attack: [cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how](https://cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how)

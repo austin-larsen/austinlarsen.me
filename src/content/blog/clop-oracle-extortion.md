@@ -3,7 +3,6 @@ title: "Tracking a High-Volume Extortion Campaign Linked to CLOP"
 date: 2025-10-03
 description: "GTIG is tracking a new extortion campaign from an actor claiming affiliation with CLOP, targeting executives with claims of Oracle E-Business Suite breaches."
 tags: ["extortion", "fin11", "clop", "oracle", "threat-intelligence"]
-source: "linkedin"
 ---
 
 Google Threat Intelligence Group (GTIG) is tracking a new, high-volume extortion campaign from an actor claiming affiliation with the notorious CLOP group.

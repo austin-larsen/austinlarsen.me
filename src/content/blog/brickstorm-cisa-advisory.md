@@ -3,8 +3,6 @@ title: "CISA Confirms BRICKSTORM: PRC Actors Targeting VMware Environments"
 date: 2026-01-03
 description: "CISA, NSA, and the Canadian Centre for Cyber Security released a joint Malware Analysis Report on BRICKSTORM, aligning with our earlier GTIG findings on this PRC-linked backdoor."
 tags: ["china", "apt", "brickstorm", "vmware", "cisa", "threat-intelligence"]
-externalUrl: "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign"
-source: "linkedin"
 ---
 
 Back in September, our team at Google Threat Intelligence Group (GTIG) published research on #BRICKSTORM. We detailed how suspected PRC state-sponsored actors were utilizing this sophisticated backdoor to maintain long-term, stealthy access to VMware vCenter and ESXi environments.
