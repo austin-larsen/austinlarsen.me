@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f5f0e8"/>
+  <!-- Top decorative border -->
+  <rect x="0" y="0" width="800" height="8" fill="#8b1a1a"/>
+  <rect x="0" y="442" width="800" height="8" fill="#8b1a1a"/>
+
+  <!-- Seal circle background -->
+  <circle cx="400" cy="165" r="88" fill="none" stroke="#1a1a2e" stroke-width="2.5"/>
+  <circle cx="400" cy="165" r="82" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+
+  <!-- Seal text arc (top) -->
+  <path id="topArc" d="M 322,130 A 78,78 0 0,1 478,130" fill="none"/>
+  <text font-family="serif" font-size="10" fill="#1a1a2e" letter-spacing="2">
+    <textPath href="#topArc" startOffset="8%">UNITED STATES – CHINA</textPath>
+  </text>
+
+  <!-- Seal text arc (bottom) -->
+  <path id="botArc" d="M 318,200 A 82,82 0 0,0 482,200" fill="none"/>
+  <text font-family="serif" font-size="9" fill="#1a1a2e" letter-spacing="1.5">
+    <textPath href="#botArc" startOffset="2%">ECONOMIC AND SECURITY REVIEW COMMISSION</textPath>
+  </text>
+
+  <!-- Eagle body simplified -->
+  <ellipse cx="400" cy="162" rx="28" ry="24" fill="#1a1a2e" opacity="0.85"/>
+  <!-- Eagle wings -->
+  <path d="M 372,155 C 348,145 335,158 342,168 C 352,162 365,160 372,160" fill="#1a1a2e" opacity="0.85"/>
+  <path d="M 428,155 C 452,145 465,158 458,168 C 448,162 435,160 428,160" fill="#1a1a2e" opacity="0.85"/>
+  <!-- Eagle head -->
+  <circle cx="400" cy="142" r="11" fill="#f5f0e8"/>
+  <circle cx="400" cy="142" r="9" fill="#1a1a2e" opacity="0.85"/>
+  <!-- Shield on eagle -->
+  <rect x="392" y="155" width="16" height="18" rx="2" fill="#8b1a1a" opacity="0.7"/>
+  <!-- Stars above -->
+  <text x="390" y="130" font-size="10" fill="#1a1a2e" opacity="0.6">★ ★ ★</text>
+
+  <!-- Report year -->
+  <text x="400" y="282" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">2023</text>
+
+  <!-- Title -->
+  <text x="400" y="314" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">REPORT TO CONGRESS</text>
+  <text x="400" y="334" font-family="Georgia, serif" font-size="13" font-style="italic" fill="#3a3a3a" text-anchor="middle">of the</text>
+
+  <!-- Commission name -->
+  <text x="400" y="356" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">U.S.-CHINA ECONOMIC AND</text>
+  <text x="400" y="372" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">SECURITY REVIEW COMMISSION</text>
+
+  <!-- Bottom line -->
+  <text x="400" y="404" font-family="Georgia, serif" font-size="10" fill="#666" text-anchor="middle">NOVEMBER 2023 · 118TH CONGRESS</text>
+</svg>
