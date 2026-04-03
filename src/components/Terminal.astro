@@ -158,6 +158,82 @@
     .terminal-input-row { padding: 4px 16px 12px; }
     .terminal-input { font-size: 0.75rem; }
   }
+
+  /* ── Secret mode global styles ── */
+  :global(body.secret-mode) {
+    animation: secret-shake 0.1s infinite;
+  }
+  @keyframes secret-shake {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-1px, 0); }
+    75% { transform: translate(1px, 0); }
+  }
+
+  :global(#secret-scanlines) {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px, transparent 2px,
+      rgba(0, 255, 136, 0.035) 2px, rgba(0, 255, 136, 0.035) 4px
+    );
+    animation: scanroll 0.08s linear infinite;
+  }
+  @keyframes scanroll {
+    to { background-position: 0 4px; }
+  }
+
+  :global(#secret-banner) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    text-align: center;
+    pointer-events: none;
+    font-family: monospace;
+  }
+  :global(#secret-banner .sb-label) {
+    font-size: 0.8rem;
+    color: #00ff88;
+    letter-spacing: 0.18em;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+  :global(#secret-banner .sb-title) {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    color: #ff2233;
+    text-shadow:
+      0 0 30px rgba(255, 34, 51, 0.95),
+      0 0 60px rgba(255, 34, 51, 0.5),
+      5px 0 0 rgba(0, 200, 255, 0.55),
+      -5px 0 0 rgba(0, 255, 136, 0.35);
+    animation: banner-glitch 0.18s infinite;
+  }
+  @keyframes banner-glitch {
+    0%, 100% { transform: none; }
+    30% { transform: translate(-3px, 1px) skewX(-1deg); }
+    60% { transform: translate(3px, -1px) skewX(1deg); }
+  }
+  :global(#secret-banner .sb-sub) {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: rgba(136, 146, 164, 0.75);
+    letter-spacing: 0.08em;
+  }
+  :global(#secret-banner .sb-sub kbd),
+  :global(#secret-banner .sb-sub span) {
+    font-family: monospace;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-size: 0.9em;
+  }
 </style>
 
 <script>
@@ -185,6 +261,8 @@
         '  <span class="t-command">/github</span>     — Open GitHub profile',
         '  <span class="t-command">/tips</span>       — Submit a tip',
         '  <span class="t-command">/clear</span>      — Clear terminal',
+        '',
+        '  <span class="t-error">/[REDACTED]</span>  — classified',
       ],
     },
     '/threats': {
@@ -253,6 +331,28 @@
       action: () => {
         window.location.href = '/blog';
         return ['<span class="t-success">Navigating to blog...</span>'];
+      },
+    },
+    '/secret': {
+      description: 'classified',
+      action: () => {
+        const seq: [number, () => void][] = [
+          [500,  () => { addOutput('<span class="t-error">ERROR: Unauthorized command signature detected</span>'); scrollToBottom(); }],
+          [1000, () => { addOutput('<span class="t-error">Tracing origin... ██.███.██.█ → REDACTED</span>'); scrollToBottom(); }],
+          [1600, () => { addOutput('<span class="t-label">WARNING: Deploying countermeasure payload...</span>'); scrollToBottom(); }],
+          [2200, () => { addOutput('<span class="t-label">████████████████████ 100%</span>'); scrollToBottom(); }],
+          [2800, () => { addOutput('<span class="t-success">ACCESS GRANTED — Welcome back, Austin.</span>'); scrollToBottom(); }],
+          [3200, () => { triggerSecretMode(); }],
+        ];
+        seq.forEach(([delay, fn]) => setTimeout(fn, delay));
+        return ['<span class="t-error">initiating...</span>'];
+      },
+    },
+    '/restore': {
+      description: 'Restore normal operation',
+      action: () => {
+        document.dispatchEvent(new CustomEvent('secret-restore'));
+        return ['<span class="t-success">Systems nominal. Chaos contained.</span>'];
       },
     },
     '/clear': {
@@ -400,6 +500,106 @@
       input.focus();
     }
   });
+
+  // ── Secret mode ──
+  function triggerSecretMode() {
+    // Matrix rain canvas
+    const canvas = document.createElement('canvas');
+    canvas.id = 'secret-canvas';
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9997;opacity:0;transition:opacity 0.6s;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d')!;
+    const setSize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    setSize();
+    window.addEventListener('resize', setSize);
+    setTimeout(() => { canvas.style.opacity = '0.22'; }, 50);
+
+    const matrixChars = 'アイウエオカキクケコサシスセソ0123456789ABCDEF<>/\\[]{}=+*#%@!?▓▒░';
+    const fontSize = 13;
+    let drops: number[] = [];
+    const initDrops = () => { drops = Array(Math.floor(canvas.width / fontSize)).fill(0).map(() => Math.random() * -60); };
+    initDrops();
+
+    const matrixInterval = setInterval(() => {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const cols = Math.floor(canvas.width / fontSize);
+      while (drops.length < cols) drops.push(0);
+      for (let i = 0; i < cols; i++) {
+        const ch = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        ctx.fillStyle = '#00ff88';
+        ctx.font = `bold ${fontSize}px monospace`;
+        ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+        if (drops[i] > 1) {
+          ctx.fillStyle = 'rgba(0,255,136,0.4)';
+          ctx.fillText(matrixChars[Math.floor(Math.random() * matrixChars.length)], i * fontSize, (drops[i] - 1) * fontSize);
+        }
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i] += 0.6;
+      }
+    }, 40);
+
+    // Scanline overlay
+    const scanlines = document.createElement('div');
+    scanlines.id = 'secret-scanlines';
+    document.body.appendChild(scanlines);
+
+    // Text scramble
+    const GLITCH = '!<>-_\\/[]{}=+*^?#$@%~|;:░▒▓█アカサタナ01';
+    const els: Element[] = [];
+    const origText = new Map<Element, string>();
+    document.querySelectorAll('h1,h2,h3,p,a,span,li,time').forEach(el => {
+      if (el.closest('#terminal') || el.closest('#secret-banner') || el.closest('#secret-scanlines')) return;
+      if (el.children.length === 0 && el.textContent?.trim()) {
+        els.push(el); origText.set(el, el.textContent!);
+      }
+    });
+    const glitchInterval = setInterval(() => {
+      els.forEach(el => {
+        const orig = origText.get(el)!;
+        if (Math.random() > 0.55) {
+          const arr = orig.split('');
+          const n = Math.ceil(Math.random() * arr.length * 0.45);
+          for (let i = 0; i < n; i++) {
+            const idx = Math.floor(Math.random() * arr.length);
+            if (arr[idx] !== ' ') arr[idx] = GLITCH[Math.floor(Math.random() * GLITCH.length)];
+          }
+          el.textContent = arr.join('');
+        } else {
+          el.textContent = orig;
+        }
+      });
+    }, 55);
+
+    // Banner
+    const banner = document.createElement('div');
+    banner.id = 'secret-banner';
+    banner.innerHTML = `
+      <div class="sb-label">// UNAUTHORIZED ACCESS DETECTED</div>
+      <div class="sb-title">SYSTEM<br>COMPROMISED</div>
+      <div class="sb-sub">Press <kbd>ESC</kbd> or type <span>/restore</span> to contain</div>
+    `;
+    document.body.appendChild(banner);
+    document.body.classList.add('secret-mode');
+
+    function cleanup() {
+      clearInterval(matrixInterval);
+      clearInterval(glitchInterval);
+      window.removeEventListener('resize', setSize);
+      origText.forEach((orig, el) => { el.textContent = orig; });
+      canvas.style.opacity = '0';
+      setTimeout(() => canvas.remove(), 600);
+      scanlines.remove();
+      banner.remove();
+      document.body.classList.remove('secret-mode');
+      document.removeEventListener('keydown', onEsc);
+      document.removeEventListener('secret-restore', cleanup);
+    }
+    const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') cleanup(); };
+    document.addEventListener('keydown', onEsc);
+    document.addEventListener('secret-restore', cleanup);
+    setTimeout(cleanup, 14000);
+  }
 
   runStartup();
 </script>
