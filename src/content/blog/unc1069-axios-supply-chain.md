@@ -3,8 +3,6 @@ title: "UNC1069 and the Axios Supply Chain Attack"
 date: 2026-04-01
 description: "Our team at GTIG is releasing more details on the recent supply chain campaign targeting the popular NPM package axios, now attributed to North Korea-nexus UNC1069."
 tags: ["supply-chain", "north-korea", "unc1069", "npm", "threat-intelligence"]
-externalUrl: "https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package"
-source: "linkedin"
 ---
 
 Our team at Google Threat Intelligence Group is releasing more details on the recent supply chain campaign targeting the popular NPM package #axios.
@@ -17,4 +15,4 @@ The impact of this attack is broad and has significant ripple effects, as countl
 
 Defenders should pay close attention to these campaigns, and enterprises should initiate dedicated efforts to assess the existing impact, remediate compromised systems, and harden environments against future attacks.
 
-Read our full analysis for indicators of compromise (IOCs) and remediation guidance.
+Full analysis, indicators of compromise (IOCs), and remediation guidance: [cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package](https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package)
