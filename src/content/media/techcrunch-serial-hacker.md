@@ -6,5 +6,5 @@ url: "https://techcrunch.com/2024/10/01/how-the-fbi-and-mandiant-caught-a-serial
 type: "feature"
 image: "/images/media/techcrunch-serial-hacker.jpg"
 featured: true
-quote: "Featured for Mandiant's role in tracking a serial hacker who faked his own death to evade law enforcement."
+quote: "Austin's work at Mandiant was central to tracking a serial hacker who faked his own death to evade law enforcement."
 ---

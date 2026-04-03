@@ -6,5 +6,5 @@ url: "https://fortune.com/2023/06/16/china-hacking-claims-spying-google-mandiant
 type: "quote"
 image: "/images/media/fortune-china-hacking.jpg"
 featured: true
-quote: "Google and Mandiant pushed back on China's claims, calling the hacking accusations far-fetched and unprofessional."
+quote: "Austin spoke on behalf of Google and Mandiant, pushing back on China's hacking claims as far-fetched and unprofessional."
 ---
