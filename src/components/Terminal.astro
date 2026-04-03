@@ -165,24 +165,8 @@
   const STARTUP_SCRIPT: Array<{ type: 'prompt' | 'output'; text: string; delay?: number }> = [
     { type: 'prompt', text: 'whoami' },
     { type: 'output', text: '<span class="t-highlight">Austin Larsen</span> — Principal Threat Analyst' },
+    { type: 'output', text: '<span class="t-output">Google Threat Intelligence Group</span>' },
     { type: 'output', text: '' },
-    { type: 'prompt', text: 'cat /var/log/recent.log', delay: 400 },
-    { type: 'output', text: '<span class="t-label">[research]</span> Tracking ShinyHunters SaaS Data Theft' },
-    { type: 'output', text: '<span class="t-label">[research]</span> Oracle E-Business Suite Zero-Day Campaign', delay: 30 },
-    { type: 'output', text: '<span class="t-label">[research]</span> UNC5537 Snowflake Data Theft & Extortion', delay: 30 },
-    { type: 'output', text: '<span class="t-label">[research]</span> Barracuda ESG Zero-Day — UNC4841', delay: 30 },
-    { type: 'output', text: '' },
-    { type: 'prompt', text: 'ls ~/talks/2025/', delay: 400 },
-    { type: 'output', text: 'CyberSummitKorea  CDS25  RooCon25' },
-    { type: 'output', text: '' },
-    { type: 'prompt', text: 'grep -r "quoted" ~/media/', delay: 400 },
-    { type: 'output', text: '<span class="t-label">Reuters</span> · <span class="t-label">TechCrunch</span> · <span class="t-label">Fortune</span> · <span class="t-label">404 Media</span>' },
-    { type: 'output', text: '' },
-    { type: 'prompt', text: 'cat ~/tracked_threat_groups.list', delay: 400 },
-    { type: 'output', text: '<span class="t-unc">UNC5537</span>  Snowflake data theft & extortion' },
-    { type: 'output', text: '<span class="t-unc">UNC4841</span>  Barracuda ESG zero-day exploitation', delay: 30 },
-    { type: 'output', text: '<span class="t-unc">UNC4899</span>  DPRK supply chain (JumpCloud)', delay: 30 },
-    { type: 'output', text: '<span class="t-unc">ShinyHunters</span>  SaaS platform data theft', delay: 30 },
   ];
 
   // ── Interactive commands ──
@@ -192,16 +176,27 @@
       action: () => [
         '<span class="t-highlight">Available commands:</span>',
         '',
-        '  <span class="t-command">/help</span>       — Show this help message',
+        '  <span class="t-command">/threats</span>    — List tracked threat groups',
+        '  <span class="t-command">/research</span>   — Jump to research section',
+        '  <span class="t-command">/talks</span>      — Jump to talks section',
+        '  <span class="t-command">/blog</span>       — Go to blog',
         '  <span class="t-command">/signal</span>     — Open Signal contact',
         '  <span class="t-command">/linkedin</span>   — Open LinkedIn profile',
         '  <span class="t-command">/twitter</span>    — Open Twitter / X profile',
         '  <span class="t-command">/github</span>     — Open GitHub profile',
-        '  <span class="t-command">/tips</span>       — Open security tips document',
-        '  <span class="t-command">/research</span>   — Jump to research section',
-        '  <span class="t-command">/talks</span>      — Jump to talks section',
-        '  <span class="t-command">/blog</span>       — Go to blog',
+        '  <span class="t-command">/tips</span>       — Submit a tip',
         '  <span class="t-command">/clear</span>      — Clear terminal',
+      ],
+    },
+    '/threats': {
+      description: 'List tracked threat groups',
+      action: () => [
+        '<span class="t-highlight">Tracked threat groups:</span>',
+        '',
+        '  <span class="t-unc">UNC5537</span>      Snowflake customer data theft & extortion',
+        '  <span class="t-unc">UNC4841</span>      Barracuda ESG zero-day exploitation',
+        '  <span class="t-unc">UNC4899</span>      DPRK supply chain compromise (JumpCloud)',
+        '  <span class="t-unc">ShinyHunters</span> SaaS platform data theft campaigns',
       ],
     },
     '/signal': {
@@ -344,7 +339,6 @@
     }
 
     // Add blank line then show interactive input
-    addOutput('');
     addOutput('<span class="t-highlight">Type /help for available commands</span>');
     scrollToBottom();
 
