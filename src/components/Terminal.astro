@@ -1,0 +1,413 @@
+---
+/**
+ * Animated terminal hero — types out commands on load,
+ * then becomes interactive with a set of slash commands.
+ */
+---
+
+<div class="terminal" id="terminal">
+  <div class="terminal-chrome">
+    <div class="terminal-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="terminal-title">austin@threat-intel ~ %</span>
+  </div>
+  <div class="terminal-body" id="terminal-body">
+    <!-- Lines injected by JS -->
+  </div>
+  <div class="terminal-input-row" id="terminal-input-row" style="display:none;">
+    <span class="t-prompt">$ </span>
+    <input
+      type="text"
+      class="terminal-input"
+      id="terminal-input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder="type /help for commands"
+    />
+  </div>
+</div>
+
+<style>
+  .terminal {
+    background: #0c0c14;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    max-width: 720px;
+    width: 100%;
+    box-shadow:
+      0 0 80px rgba(0, 200, 255, 0.06),
+      0 24px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .terminal-chrome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #111119;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot.red { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green { background: #28c840; }
+  .terminal-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .terminal-body {
+    padding: 20px 24px 8px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  /* Input row */
+  .terminal-input-row {
+    display: flex;
+    align-items: center;
+    padding: 4px 24px 16px;
+    gap: 0;
+  }
+  .terminal-input-row .t-prompt {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .terminal-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    caret-color: var(--green);
+    line-height: 1.7;
+  }
+  .terminal-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  /* Line types */
+  .terminal-body :global(.t-line) {
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 1.7em;
+  }
+  .terminal-body :global(.t-prompt) {
+    color: var(--green);
+  }
+  .terminal-body :global(.t-command) {
+    color: var(--text-primary);
+  }
+  .terminal-body :global(.t-output) {
+    color: var(--text-secondary);
+  }
+  .terminal-body :global(.t-highlight) {
+    color: var(--accent);
+  }
+  .terminal-body :global(.t-label) {
+    color: var(--yellow);
+  }
+  .terminal-body :global(.t-unc) {
+    color: var(--pink);
+    font-weight: 500;
+  }
+  .terminal-body :global(.t-success) {
+    color: var(--green);
+  }
+  .terminal-body :global(.t-error) {
+    color: #ff5f57;
+  }
+  .terminal-body :global(.t-cursor) {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .terminal { font-size: 0.75rem; }
+    .terminal-body { padding: 16px 16px 4px; min-height: 160px; }
+    .terminal-input-row { padding: 4px 16px 12px; }
+    .terminal-input { font-size: 0.75rem; }
+  }
+</style>
+
+<script>
+  // ── Startup animation script ──
+  const STARTUP_SCRIPT: Array<{ type: 'prompt' | 'output'; text: string; delay?: number }> = [
+    { type: 'prompt', text: 'whoami' },
+    { type: 'output', text: '<span class="t-highlight">Austin Larsen</span> — Principal Threat Analyst' },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'cat /var/log/recent.log', delay: 400 },
+    { type: 'output', text: '<span class="t-label">[research]</span> Tracking ShinyHunters SaaS Data Theft' },
+    { type: 'output', text: '<span class="t-label">[research]</span> Oracle E-Business Suite Zero-Day Campaign', delay: 30 },
+    { type: 'output', text: '<span class="t-label">[research]</span> UNC5537 Snowflake Data Theft & Extortion', delay: 30 },
+    { type: 'output', text: '<span class="t-label">[research]</span> Barracuda ESG Zero-Day — UNC4841', delay: 30 },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'ls ~/talks/2025/', delay: 400 },
+    { type: 'output', text: 'CyberSummitKorea  CDS25  RooCon25' },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'grep -r "quoted" ~/media/', delay: 400 },
+    { type: 'output', text: '<span class="t-label">Reuters</span> · <span class="t-label">TechCrunch</span> · <span class="t-label">Fortune</span> · <span class="t-label">404 Media</span>' },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'cat ~/tracked_threat_groups.list', delay: 400 },
+    { type: 'output', text: '<span class="t-unc">UNC5537</span>  Snowflake data theft & extortion' },
+    { type: 'output', text: '<span class="t-unc">UNC4841</span>  Barracuda ESG zero-day exploitation', delay: 30 },
+    { type: 'output', text: '<span class="t-unc">UNC4899</span>  DPRK supply chain (JumpCloud)', delay: 30 },
+    { type: 'output', text: '<span class="t-unc">ShinyHunters</span>  SaaS platform data theft', delay: 30 },
+  ];
+
+  // ── Interactive commands ──
+  const COMMANDS: Record<string, { description: string; action: () => string[] | null }> = {
+    '/help': {
+      description: 'List available commands',
+      action: () => [
+        '<span class="t-highlight">Available commands:</span>',
+        '',
+        '  <span class="t-command">/help</span>       — Show this help message',
+        '  <span class="t-command">/signal</span>     — Open Signal contact',
+        '  <span class="t-command">/linkedin</span>   — Open LinkedIn profile',
+        '  <span class="t-command">/twitter</span>    — Open Twitter / X profile',
+        '  <span class="t-command">/github</span>     — Open GitHub profile',
+        '  <span class="t-command">/tips</span>       — Open security tips document',
+        '  <span class="t-command">/research</span>   — Jump to research section',
+        '  <span class="t-command">/talks</span>      — Jump to talks section',
+        '  <span class="t-command">/blog</span>       — Go to blog',
+        '  <span class="t-command">/clear</span>      — Clear terminal',
+      ],
+    },
+    '/signal': {
+      description: 'Open Signal contact',
+      action: () => {
+        window.open('https://signal.me/#eu/B9Xfu0Xy5yiT_bunPy9GMuz8XqT0B-zcyd8pJtYuROPE8CpyVaJNZq78ckSNXUNV', '_blank');
+        return ['<span class="t-success">Opening Signal...</span>'];
+      },
+    },
+    '/linkedin': {
+      description: 'Open LinkedIn profile',
+      action: () => {
+        window.open('https://www.linkedin.com/in/austin-larsen/', '_blank');
+        return ['<span class="t-success">Opening LinkedIn...</span>'];
+      },
+    },
+    '/twitter': {
+      description: 'Open Twitter / X profile',
+      action: () => {
+        window.open('https://twitter.com/AustinLarsen_', '_blank');
+        return ['<span class="t-success">Opening Twitter / X...</span>'];
+      },
+    },
+    '/github': {
+      description: 'Open GitHub profile',
+      action: () => {
+        window.open('https://github.com/austinlarsen', '_blank');
+        return ['<span class="t-success">Opening GitHub...</span>'];
+      },
+    },
+    '/tips': {
+      description: 'Open security tips document',
+      action: () => {
+        window.open('https://forms.gle/kzG5ja6DSDQQxitGA', '_blank');
+        return ['<span class="t-success">Opening security tips...</span>'];
+      },
+    },
+    '/research': {
+      description: 'Jump to research section',
+      action: () => {
+        document.getElementById('research')?.scrollIntoView({ behavior: 'smooth' });
+        return ['<span class="t-success">Scrolling to research...</span>'];
+      },
+    },
+    '/talks': {
+      description: 'Jump to talks section',
+      action: () => {
+        document.getElementById('talks')?.scrollIntoView({ behavior: 'smooth' });
+        return ['<span class="t-success">Scrolling to talks...</span>'];
+      },
+    },
+    '/blog': {
+      description: 'Go to blog',
+      action: () => {
+        window.location.href = '/blog';
+        return ['<span class="t-success">Navigating to blog...</span>'];
+      },
+    },
+    '/clear': {
+      description: 'Clear terminal',
+      action: () => null, // handled specially
+    },
+  };
+
+  const body = document.getElementById('terminal-body')!;
+  const inputRow = document.getElementById('terminal-input-row')!;
+  const input = document.getElementById('terminal-input')! as HTMLInputElement;
+  const CHAR_DELAY = 28;
+  const LINE_DELAY = 50;
+  const PROMPT_PAUSE = 400;
+
+  function sleep(ms: number): Promise<void> {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  function createLine(): HTMLDivElement {
+    const line = document.createElement('div');
+    line.className = 't-line';
+    body.appendChild(line);
+    return line;
+  }
+
+  function addOutput(html: string) {
+    const line = createLine();
+    line.classList.add('t-output');
+    if (html === '') {
+      line.innerHTML = '&nbsp;';
+    } else {
+      line.innerHTML = html;
+    }
+  }
+
+  async function typeText(el: HTMLElement, text: string) {
+    for (let i = 0; i < text.length; i++) {
+      el.textContent += text[i];
+      await sleep(CHAR_DELAY);
+    }
+  }
+
+  function scrollToBottom() {
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // ── Startup animation ──
+  async function runStartup() {
+    // Wait until element is in view
+    await new Promise<void>(resolve => {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) { observer.disconnect(); resolve(); }
+      }, { threshold: 0.3 });
+      observer.observe(body);
+    });
+
+    for (const step of STARTUP_SCRIPT) {
+      await sleep(step.delay ?? LINE_DELAY);
+
+      if (step.type === 'prompt') {
+        await sleep(PROMPT_PAUSE);
+        const line = createLine();
+        const prompt = document.createElement('span');
+        prompt.className = 't-prompt';
+        prompt.textContent = '$ ';
+        line.appendChild(prompt);
+
+        const cmd = document.createElement('span');
+        cmd.className = 't-command';
+        line.appendChild(cmd);
+
+        const cursor = document.createElement('span');
+        cursor.className = 't-cursor';
+        line.appendChild(cursor);
+
+        await typeText(cmd, step.text);
+        cursor.remove();
+      } else {
+        addOutput(step.text);
+      }
+
+      scrollToBottom();
+    }
+
+    // Add blank line then show interactive input
+    addOutput('');
+    addOutput('<span class="t-highlight">Type /help for available commands</span>');
+    scrollToBottom();
+
+    // Show the interactive input row
+    inputRow.style.display = 'flex';
+    input.focus();
+  }
+
+  // ── Interactive command handler ──
+  function handleCommand(rawInput: string) {
+    const cmd = rawInput.trim().toLowerCase();
+
+    // Echo the command
+    const echoLine = createLine();
+    const prompt = document.createElement('span');
+    prompt.className = 't-prompt';
+    prompt.textContent = '$ ';
+    echoLine.appendChild(prompt);
+    const cmdSpan = document.createElement('span');
+    cmdSpan.className = 't-command';
+    cmdSpan.textContent = rawInput.trim();
+    echoLine.appendChild(cmdSpan);
+
+    if (cmd === '/clear') {
+      body.innerHTML = '';
+      addOutput('<span class="t-highlight">Type /help for available commands</span>');
+      scrollToBottom();
+      return;
+    }
+
+    if (cmd === '' ) {
+      scrollToBottom();
+      return;
+    }
+
+    const handler = COMMANDS[cmd];
+    if (handler) {
+      const output = handler.action();
+      if (output) {
+        output.forEach(line => addOutput(line));
+      }
+    } else {
+      addOutput(`<span class="t-error">command not found: ${cmd.replace(/</g, '&lt;')}</span>`);
+      addOutput('Type <span class="t-command">/help</span> for available commands');
+    }
+
+    scrollToBottom();
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      handleCommand(input.value);
+      input.value = '';
+    }
+  });
+
+  // Click anywhere on terminal to focus input
+  document.getElementById('terminal')!.addEventListener('click', () => {
+    if (inputRow.style.display !== 'none') {
+      input.focus();
+    }
+  });
+
+  runStartup();
+</script>

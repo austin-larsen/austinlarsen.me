@@ -1,0 +1,229 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Collect all unique tags
+const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
+
+// Group by year
+const postsByYear = posts.reduce<Record<number, typeof posts>>((acc, post) => {
+  const year = post.data.date.getFullYear();
+  (acc[year] ??= []).push(post);
+  return acc;
+}, {});
+const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
+---
+
+<Base title="Blog — Austin Larsen" description="Thoughts on threat intelligence, incident response, and cybersecurity.">
+  <section class="blog-page">
+    <div class="container">
+      <div class="blog-header">
+        <p class="section-label">// blog</p>
+        <h1 class="section-title">Writing</h1>
+        <p class="blog-subtitle">Thoughts on threat intelligence, incident response, and cybersecurity.</p>
+      </div>
+
+      <!-- Tag filter -->
+      {allTags.length > 0 && (
+        <div class="tag-filter" id="tag-filter">
+          <button class="tag-btn active" data-tag="all">All</button>
+          {allTags.map(tag => (
+            <button class="tag-btn" data-tag={tag}>#{tag}</button>
+          ))}
+        </div>
+      )}
+
+      <div id="posts-container">
+        {years.map(year => (
+          <div class="blog-year-group" data-year={year}>
+            <h2 class="blog-year">{year}</h2>
+            <div class="blog-list">
+              {postsByYear[year].map(post => (
+                <a
+                  href={post.data.externalUrl ?? `/blog/${post.id.replace(/\.md$/, '')}`}
+                  class="blog-entry"
+                  data-tags={post.data.tags.join(',')}
+                  target={post.data.externalUrl ? '_blank' : undefined}
+                  rel={post.data.externalUrl ? 'noopener' : undefined}
+                >
+                  <time class="blog-entry-date">
+                    {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </time>
+                  <div class="blog-entry-content">
+                    <h3 class="blog-entry-title">{post.data.title}</h3>
+                    {post.data.description && <p class="blog-entry-desc">{post.data.description}</p>}
+                    <div class="blog-entry-meta">
+                      {post.data.source && <span class="badge">{post.data.source}</span>}
+                      {post.data.tags.map(tag => <span class="tag">#{tag}</span>)}
+                      {post.data.externalUrl && <span class="external-indicator">&#8599;</span>}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="blog-empty" id="no-results" style="display:none;">No posts match that tag.</p>
+
+      {posts.length === 0 && (
+        <p class="blog-empty">No posts yet. Check back soon.</p>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog-page {
+    padding-top: calc(var(--nav-height) + 48px);
+    padding-bottom: 48px;
+  }
+  .blog-header {
+    margin-bottom: 32px;
+  }
+  .blog-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+  }
+
+  /* Tag filter */
+  .tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .tag-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tag-btn:hover {
+    border-color: var(--accent-dim);
+    color: var(--text-secondary);
+  }
+  .tag-btn.active {
+    background: var(--accent-glow);
+    border-color: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .blog-year-group {
+    margin-bottom: 40px;
+  }
+  .blog-year {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .blog-entry {
+    display: flex;
+    gap: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .blog-entry:hover {
+    background: var(--bg-card);
+    color: inherit;
+  }
+  .blog-entry.hidden {
+    display: none;
+  }
+  .blog-entry-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    min-width: 60px;
+    padding-top: 3px;
+  }
+  .blog-entry-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .blog-entry-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .blog-entry-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .external-indicator {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .blog-empty {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .blog-year-group.hidden {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    .blog-entry { flex-direction: column; gap: 4px; }
+    .blog-entry-date { min-width: unset; }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+  const entries = document.querySelectorAll<HTMLElement>('.blog-entry');
+  const yearGroups = document.querySelectorAll<HTMLElement>('.blog-year-group');
+  const noResults = document.getElementById('no-results')!;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag!;
+
+      // Update active state
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      let visibleCount = 0;
+
+      entries.forEach(entry => {
+        const entryTags = (entry.dataset.tags || '').split(',');
+        if (tag === 'all' || entryTags.includes(tag)) {
+          entry.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          entry.classList.add('hidden');
+        }
+      });
+
+      // Hide empty year groups
+      yearGroups.forEach(group => {
+        const visibleEntries = group.querySelectorAll('.blog-entry:not(.hidden)');
+        group.classList.toggle('hidden', visibleEntries.length === 0);
+      });
+
+      noResults.style.display = visibleCount === 0 ? '' : 'none';
+    });
+  });
+</script>
