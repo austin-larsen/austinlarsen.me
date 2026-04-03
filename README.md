@@ -27,6 +27,17 @@ All site content lives in `src/content/`:
 | `talks/` | Conference talks and presentations |
 | `media/` | Press mentions and media coverage |
 
+## Pages
+
+| Path | Description |
+|---|---|
+| `/` | Home — hero, recent posts, research, talks, media |
+| `/about` | Bio, headshot, focus areas, speaking info |
+| `/blog` | Blog index with tag filtering and RSS |
+| `/blog/[slug]` | Individual blog post |
+| `/rss.xml` | RSS feed |
+| `/sitemap-index.xml` | Sitemap |
+
 Each entry is a Markdown file with a YAML frontmatter header. Add a new file to the relevant directory and it will appear on the site automatically.
 
 ## Deployment
