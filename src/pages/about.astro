@@ -1,0 +1,320 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Austin Larsen"
+  description="Austin Larsen is a Principal Threat Analyst with the Google Threat Intelligence Group, leading rapid response and investigation coordination for major global cyber events."
+>
+
+  <section class="about-hero">
+    <div class="container about-inner">
+      <div class="about-photo-wrap">
+        <img
+          src="/images/austin-headshot.jpg"
+          alt="Austin Larsen"
+          class="about-photo"
+        />
+      </div>
+      <div class="about-text">
+        <p class="section-label">// about</p>
+        <h1 class="about-name">Austin Larsen</h1>
+        <p class="about-title">Principal Threat Analyst</p>
+        <p class="about-org">Google Threat Intelligence Group</p>
+        <div class="about-socials">
+          <a href="https://www.linkedin.com/in/austin-larsen/" target="_blank" rel="noopener" class="about-social-link">LinkedIn</a>
+          <a href="https://twitter.com/AustinLarsen_" target="_blank" rel="noopener" class="about-social-link">X / Twitter</a>
+          <a href="https://github.com/austin-larsen" target="_blank" rel="noopener" class="about-social-link">GitHub</a>
+          <a href="mailto:mail@austinlarsen.me" class="about-social-link">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-content">
+
+      <div class="about-bio">
+        <h2 class="about-section-title">Bio</h2>
+        <p>
+          Austin Larsen is a Principal Threat Analyst with the Google Threat Intelligence Group.
+          Austin leads rapid response and investigation coordination for major global cyber events,
+          driving threat research, communication strategies, and response to safeguard Google's
+          users and global customer base.
+        </p>
+        <p>
+          Previously, Austin spent time on Mandiant's Advanced Practices team clustering and
+          attributing advanced cyber threat activity. Austin was also a Senior Incident Response
+          Consultant at Mandiant where he specialized in helping hundreds of organizations respond
+          to attacks from nation-state actors and advanced threat groups.
+        </p>
+        <p>
+          Austin's research spans nation-state intrusion campaigns, zero-day exploitation, supply
+          chain compromises, and large-scale data extortion operations. His investigations have
+          directly led to criminal arrests, public attribution of state-sponsored threat actors,
+          and policy-level responses from foreign governments.
+        </p>
+      </div>
+
+      <div class="about-sidebar">
+
+        <div class="about-card">
+          <h3 class="about-card-title">Current Role</h3>
+          <div class="about-card-item">
+            <span class="about-card-label">Title</span>
+            <span>Principal Threat Analyst</span>
+          </div>
+          <div class="about-card-item">
+            <span class="about-card-label">Org</span>
+            <span>Google Threat Intelligence Group</span>
+          </div>
+          <div class="about-card-item">
+            <span class="about-card-label">Location</span>
+            <span>New York, NY</span>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h3 class="about-card-title">Focus Areas</h3>
+          <ul class="about-tags">
+            <li>Nation-state intrusions</li>
+            <li>Zero-day exploitation</li>
+            <li>Supply chain attacks</li>
+            <li>Incident response</li>
+            <li>Threat attribution</li>
+            <li>Data extortion campaigns</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3 class="about-card-title">Speaking</h3>
+          <p class="about-card-note">
+            Available for conferences, panels, and media inquiries on threat intelligence,
+            incident response, and nation-state cyber threats.
+          </p>
+          <a href="mailto:mail@austinlarsen.me" class="about-contact-btn">Get in Touch</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .about-hero {
+    padding-top: calc(var(--nav-height) + 60px);
+    padding-bottom: 60px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 200, 255, 0.06) 0%, transparent 70%),
+      var(--bg-deep);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .about-photo-wrap {
+    flex-shrink: 0;
+  }
+
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: block;
+  }
+
+  .about-name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .about-title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .about-org {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+  }
+
+  .about-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .about-social-link {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .about-social-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Content grid */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .about-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+  }
+
+  .about-bio p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* Sidebar cards */
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+  }
+
+  .about-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .about-card-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .about-card-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+  }
+
+  .about-card-item:last-child { margin-bottom: 0; }
+
+  .about-card-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .about-card-item span:last-child {
+    color: var(--text-secondary);
+  }
+
+  .about-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .about-tags li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .about-tags li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  .about-card-note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .about-contact-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background: var(--accent);
+    color: var(--bg-deep);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .about-contact-btn:hover {
+    background: #33d4ff;
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.25);
+    color: var(--bg-deep);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .about-photo-wrap {
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .about-text { text-align: center; }
+    .about-socials { justify-content: center; }
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+    .about-sidebar { position: static; }
+  }
+</style>
