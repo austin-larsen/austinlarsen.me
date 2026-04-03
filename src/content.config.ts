@@ -48,6 +48,7 @@ const media = defineCollection({
     date: z.coerce.date(),
     url: z.string().url(),
     image: z.string().optional(),
+    featured: z.boolean().default(false),
     type: z.enum(['quote', 'feature', 'award', 'interview']).default('quote'),
   }),
 });
