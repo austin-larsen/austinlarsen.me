@@ -4,7 +4,10 @@ import Terminal from '../components/Terminal.astro';
 import { getCollection } from 'astro:content';
 
 const research = (await getCollection('research')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const talks = (await getCollection('talks')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const allTalks = (await getCollection('talks')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const now = new Date();
+const upcomingTalks = allTalks.filter(t => t.data.date > now);
+const talks = allTalks.filter(t => t.data.date <= now);
 const allMedia = (await getCollection('media')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const featuredMedia = allMedia.filter(m => m.data.featured);
 const listMedia = allMedia.filter(m => !m.data.featured);
@@ -30,6 +33,16 @@ const recentBlog = blogPosts.slice(0, 4);
           <a href="/blog" class="btn btn-primary">Blog</a>
           <a href="#research" class="btn btn-ghost">Research</a>
         </div>
+        {upcomingTalks.length > 0 && (
+          <a href={upcomingTalks[0].data.url} target="_blank" rel="noopener" class="hero-upcoming">
+            <span class="hero-upcoming-dot" aria-hidden="true"></span>
+            <span class="hero-upcoming-text">
+              <span class="hero-upcoming-label">upcoming</span>
+              {upcomingTalks[0].data.conference} &mdash; {upcomingTalks[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </span>
+            <span class="hero-upcoming-register">Register →</span>
+          </a>
+        )}
       </div>
       <div class="hero-terminal">
         <Terminal />
@@ -90,6 +103,29 @@ const recentBlog = blogPosts.slice(0, 4);
     <div class="container">
       <p class="section-label">// conferences</p>
       <h2 class="section-title">Talks &amp; Presentations</h2>
+
+      {upcomingTalks.length > 0 && (
+        <div class="upcoming-wrap">
+          {upcomingTalks.map((talk) => (
+            <a href={talk.data.url} target="_blank" rel="noopener" class="upcoming-card">
+              {talk.data.image && (
+                <div class="upcoming-img">
+                  <img src={talk.data.image} alt={talk.data.conference} loading="lazy" />
+                </div>
+              )}
+              <div class="upcoming-body">
+                <span class="upcoming-label">// upcoming</span>
+                <h3 class="upcoming-title">{talk.data.conference}</h3>
+                <time class="upcoming-date">{talk.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              </div>
+              <div class="upcoming-cta">
+                <span class="upcoming-btn">Register →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+
       <div class="grid-3 talks-grid">
         {talks.map((talk) => (
           <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card">
@@ -213,6 +249,48 @@ const recentBlog = blogPosts.slice(0, 4);
     display: flex;
     gap: 12px;
   }
+  .hero-upcoming {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 8px 14px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: fit-content;
+  }
+  .hero-upcoming:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--text-secondary);
+  }
+  .hero-upcoming-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-upcoming-label {
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .hero-upcoming-register {
+    color: var(--accent);
+    margin-left: 4px;
+    white-space: nowrap;
+  }
   .hero-terminal {
     display: flex;
     justify-content: flex-end;
@@ -327,16 +405,16 @@ const recentBlog = blogPosts.slice(0, 4);
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: var(--bg-surface);
+    background: #fff;
   }
   .talk-img-wrap img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.3s;
   }
   .talk-card:hover .talk-img-wrap img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
   .talk-info {
     padding: 16px;
@@ -350,6 +428,78 @@ const recentBlog = blogPosts.slice(0, 4);
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-muted);
+  }
+
+  /* ── Upcoming talk callout ── */
+  .upcoming-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .upcoming-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    box-shadow: 0 0 16px var(--accent-glow);
+  }
+  .upcoming-card:hover {
+    box-shadow: 0 0 28px var(--accent-glow);
+    color: inherit;
+  }
+  .upcoming-img {
+    flex-shrink: 0;
+    width: 180px;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+  .upcoming-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .upcoming-body {
+    flex: 1;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .upcoming-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .upcoming-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+  .upcoming-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .upcoming-cta {
+    padding: 0 24px;
+    flex-shrink: 0;
+  }
+  .upcoming-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
   }
 
   /* ── Media featured carousel ── */
