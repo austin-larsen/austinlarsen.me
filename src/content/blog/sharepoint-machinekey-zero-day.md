@@ -17,6 +17,8 @@ There is no patch available yet. Here are the immediate actions for any organiza
 🔎 2. Hunt for Compromise: Actively search for webshells in SharePoint directories. The presence of a webshell is a definitive sign of compromise.
 🔑 3. Rotate Keys if Compromised: If you find evidence of compromise, you must isolate the server and rotate the SharePoint MachineKey. Simply removing the webshell is not enough. The attacker already has the keys, and rotating them is the only way to invalidate their access.
 
+Here is the link to Microsoft's official guidance on CVE-2025-53770 with detailed mitigation steps: https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/
+
 ---
 
 **Update (July 21):** We now assess that at least one of the actors responsible for early exploitation of the SharePoint zero-day vulnerability is a China-nexus threat actor.

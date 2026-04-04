@@ -19,3 +19,6 @@ Immediate defensive actions:
 🔄 If you find evidence of compromise, rotate the affected machine or user account credentials immediately.
 
 This project highlights how we are combining Mandiant's frontline expertise with Google Cloud's scale to help eliminate entire classes of attacks. Thanks to Nicholas Losby and the rest of the team for their work on this release.
+
+Read the full report for technical details and remediation steps: https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables
+Download the Net-NTLMv1 rainbow table dataset here: https://research.google/resources/datasets/?dataset_types=other&search=Net-NTLMv1

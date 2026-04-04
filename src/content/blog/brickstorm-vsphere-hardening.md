@@ -15,3 +15,6 @@ To help organizations mitigate these attack vectors and harden their infrastruct
 🔎 Bridge the logging gap by transforming the VCSA into a proactive security sensor using auditd for kernel-level system call tracking and AIDE for cryptographic file integrity monitoring.
 
 To directly support defenders, Mandiant has also released a vCenter hardening script and scanner tool. This tool changes default vCenter settings that are vulnerable to implement security configurations directly at the Photon Linux layer, enforcing a tamper-proof host-based firewall and a detailed audit trail.
+
+vSphere and BRICKSTORM Defender's Guide: https://cloud.google.com/blog/topics/threat-intelligence/vsphere-brickstorm-defender-guide
+Github Tool: https://github.com/mandiant/vcsa-hardening-tool
