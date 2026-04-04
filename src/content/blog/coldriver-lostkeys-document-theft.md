@@ -9,4 +9,4 @@ Our team at Google Threat Intelligence Group is sharing new findings on the evol
 
 We're sharing this information, including technical details, IOCs, and YARA rules, to help the security community protect against these threats. We've added identified malicious domains and files to Safe Browsing and alerted targeted Google users. We encourage at-risk individuals to use Google's Advanced Protection Program and enable Enhanced Safe Browsing.
 
-Read the full report here: https://lnkd.in/gNk39vSR
+Read the full report here: https://cloud.google.com/blog/topics/threat-intelligence/coldriver-steal-documents-western-targets-ngos

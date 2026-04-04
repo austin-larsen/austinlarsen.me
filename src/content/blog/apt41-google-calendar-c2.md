@@ -11,4 +11,4 @@ TOUGHPROGRESS utilizes Google Calendar to exfiltrate data and receive commands, 
 
 GTIG has taken action to disrupt this campaign by terminating attacker-controlled infrastructure, updating Safe Browsing, and providing detection signatures. Our report also discusses APT41's broader use of free web hosting tools for malware distribution.
 
-Full report available here: https://lnkd.in/gPv7bPQj
+Full report available here: https://cloud.google.com/blog/topics/threat-intelligence/apt41-innovative-tactics

@@ -14,11 +14,12 @@ By leveraging the compute power of Google Cloud, we've lowered the barrier for d
 This is a critical issue because attackers use Net-NTLMv1 for authentication coercion attacks against domain controllers. Recovering a DC machine account's password hash allows for DCSync privileges, which can lead to a full Active Directory compromise.
 
 Immediate defensive actions:
-🚫 Disable Net-NTLMv1 by configuring your GPO to Send NTLMv2 response only.
-🔎 Monitor Event ID 4624 for LM or NTLMv1 in the Authentication Package field.
-🔄 If you find evidence of compromise, rotate the affected machine or user account credentials immediately.
+
+- Disable Net-NTLMv1 by configuring your GPO to Send NTLMv2 response only.
+- Monitor Event ID 4624 for LM or NTLMv1 in the Authentication Package field.
+- If you find evidence of compromise, rotate the affected machine or user account credentials immediately.
 
 This project highlights how we are combining Mandiant's frontline expertise with Google Cloud's scale to help eliminate entire classes of attacks. Thanks to Nicholas Losby and the rest of the team for their work on this release.
 
-Read the full report for technical details and remediation steps: https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables
-Download the Net-NTLMv1 rainbow table dataset here: https://research.google/resources/datasets/?dataset_types=other&search=Net-NTLMv1
+- Read the full report: https://cloud.google.com/blog/topics/threat-intelligence/net-ntlmv1-deprecation-rainbow-tables
+- Download the Net-NTLMv1 rainbow table dataset: https://research.google/resources/datasets/?dataset_types=other&search=Net-NTLMv1

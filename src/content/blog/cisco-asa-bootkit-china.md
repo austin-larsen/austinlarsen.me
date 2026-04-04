@@ -14,8 +14,9 @@ The attack is particularly severe, utilizing a bootkit that manipulates device f
 This persistence mechanism can survive reboots and patching. A compromised device will remain compromised even after applying the latest updates. This makes forensic analysis essential to determine compromise.
 
 Here are the immediate actions for any organization running Cisco ASA or Firepower devices:
-🔎 Prioritize Forensics: Before patching, follow CISA's guidance to collect a core dump. The actor's anti-forensic measures could be triggered by patching first, destroying evidence and making it impossible to confirm a breach.
-🛡️ Apply Emergency Patches: After a thorough forensic review, apply the latest Cisco-provided software updates to all affected devices to prevent initial exploitation.
-🔒 Review Device Integrity: Given the nature of this attack, verify that Secure Boot is enabled on your devices. This feature is designed to detect and prevent the type of firmware manipulation used by this actor.
+
+- Prioritize Forensics: Before patching, follow CISA's guidance to collect a core dump. The actor's anti-forensic measures could be triggered by patching first, destroying evidence and making it impossible to confirm a breach.
+- Apply Emergency Patches: After a thorough forensic review, apply the latest Cisco-provided software updates to all affected devices to prevent initial exploitation.
+- Review Device Integrity: Given the nature of this attack, verify that Secure Boot is enabled on your devices. This feature is designed to detect and prevent the type of firmware manipulation used by this actor.
 
 For more details, the Cybersecurity and Infrastructure Security Agency issued an Emergency Directive: https://www.cisa.gov/news-events/directives/ed-25-03-identify-and-mitigate-potential-compromise-cisco-devices
