@@ -116,7 +116,7 @@ import Base from '../layouts/Base.astro';
     padding-top: calc(var(--nav-height) + 60px);
     padding-bottom: 60px;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 200, 255, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, var(--accent-glow) 0%, transparent 70%),
       var(--bg-deep);
     border-bottom: 1px solid var(--border);
   }
@@ -346,8 +346,8 @@ import Base from '../layouts/Base.astro';
   }
 
   .about-contact-btn:hover {
-    background: #33d4ff;
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.25);
+    background: var(--accent-dim);
+    box-shadow: 0 0 20px var(--accent-glow);
     color: var(--bg-deep);
   }
 
