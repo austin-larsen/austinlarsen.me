@@ -5,23 +5,23 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette */
-  --bg-deep: #0a0a12;
-  --bg-surface: #111119;
-  --bg-card: #1a1a24;
-  --bg-card-hover: #22222e;
-  --border: #2a2a3a;
-  --border-glow: #3a3a5a;
-  --text-primary: #e8e8f0;
-  --text-secondary: #8888a0;
-  --text-muted: #555568;
-  --accent: #00c8ff;
-  --accent-dim: #0088bb;
-  --accent-glow: rgba(0, 200, 255, 0.15);
-  --green: #00ff88;
-  --green-dim: rgba(0, 255, 136, 0.6);
-  --pink: #ff66b2;
-  --yellow: #ffc800;
+  /* Palette — SLSO8 (lospec.com/palette-list/slso8) + amber accent */
+  --bg-deep: #0d2b45;
+  --bg-surface: #203c56;
+  --bg-card: #2a4a63;
+  --bg-card-hover: #344f6a;
+  --border: #3d4f62;
+  --border-glow: #544e68;
+  --text-primary: #ffecd6;
+  --text-secondary: #ffd4a3;
+  --text-muted: #8d697a;
+  --accent: #ffaa5e;
+  --accent-dim: #d08159;
+  --accent-glow: rgba(255, 170, 94, 0.15);
+  --green: #ffaa5e;
+  --green-dim: rgba(255, 170, 94, 0.6);
+  --pink: #8d697a;
+  --yellow: #ffd4a3;
 
   /* Typography */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
