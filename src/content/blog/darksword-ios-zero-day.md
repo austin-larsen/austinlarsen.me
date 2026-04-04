@@ -14,3 +14,6 @@ The timeline below illustrates how quickly this exploit evolved. GTIG first obse
 Depending on the threat actor, a successful compromise deployed distinct malware families we track as GHOSTBLADE, GHOSTKNIFE, or GHOSTSABER. The proliferation of this single exploit chain across disparate threat actors closely mirrors the previously discovered Coruna iOS exploit kit.
 
 We reported these vulnerabilities to Apple late last year, and all were successfully patched with the release of iOS 26.3. We strongly urge all users to update to the latest iOS version or enable Lockdown Mode for enhanced security.
+
+Full Analysis: https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain
+Free GTI Collection: https://www.virustotal.com/gui/collection/bd631d6c4cec1759bc298b8da180d9ed1d7d89475376bc614176c3541460f40c/summary
