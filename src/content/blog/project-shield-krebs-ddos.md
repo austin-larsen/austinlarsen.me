@@ -16,6 +16,5 @@ Project Shield is designed to help protect at-risk organizations like journalist
 
 Read the full story to learn more about the attack and how Google's infrastructure provides automated defense against some of the largest threats on the internet.
 
-Eligible organizations can apply for Project Shield here: [projectshield.google/landing](https://projectshield.google/landing)
-
-Full write-up on how Project Shield handled the attack: [cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how](https://cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how)
+- Full write-up on how Project Shield handled the attack: [cloud.google.com/blog](https://cloud.google.com/blog/products/identity-security/project-shield-blocked-a-massive-recent-ddos-attack-heres-how)
+- Eligible organizations can apply for Project Shield here: [projectshield.google/landing](https://projectshield.google/landing)

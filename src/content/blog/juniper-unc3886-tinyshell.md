@@ -11,6 +11,5 @@ This activity marks an evolution in UNC3886's tactics, now focusing on internal 
 
 We recommend organizations upgrade their Juniper devices to the latest images released by Juniper and run the Juniper Malware Removal Tool (JMRT) Quick Scan and Integrity Check. The full blog post provides detailed instructions on this. We extend our sincere thanks to Juniper Networks for their partnership in investigating this threat.
 
-Read the full report here: https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-espionage-targets-juniper-routers
-
-Find Juniper's advisory here: https://supportportal.juniper.net/JSA95385
+- Read the full report here: https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-espionage-targets-juniper-routers
+- Juniper's advisory: https://supportportal.juniper.net/JSA95385

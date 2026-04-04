@@ -9,5 +9,5 @@ Mandiant is releasing AuraInspector, a new open-source tool designed to help def
 
 Our research details a technique using GraphQL to bypass standard record retrieval limits. While standard methods cap retrieval at 2,000 records, we found that attackers can leverage the GraphQL Aura controller to bypass this limit and systematically export large datasets. We have also observed Action Bulking, where threat actors can bundle multiple requests to optimize data theft. AuraInspector helps organizations detect these exposures and validate their security posture.
 
-Read the blog: https://cloud.google.com/blog/topics/threat-intelligence/auditing-salesforce-aura-data-exposure
-Download AuraInspector: https://github.com/google/aura-inspector
+- Read the blog: https://cloud.google.com/blog/topics/threat-intelligence/auditing-salesforce-aura-data-exposure
+- Download AuraInspector: https://github.com/google/aura-inspector

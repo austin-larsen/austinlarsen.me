@@ -15,5 +15,5 @@ Given the actor's high operational security and lack of IOC reuse, TTP-based hun
 
 To aid defenders, we're also releasing a new Mandiant (part of Google Cloud) scanner to help hunt for this activity. It's designed to detect BRICKSTORM on *nix-based appliances and systems, even without YARA installed.
 
-Read the full report for technical details and IOCs: https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign
-Find the new Mandiant scanner here: https://github.com/mandiant/brickstorm-scanner
+- Read the full report for technical details and IOCs: https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign
+- Mandiant scanner: https://github.com/mandiant/brickstorm-scanner
