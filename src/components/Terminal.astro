@@ -586,7 +586,13 @@
         output.forEach(line => addOutput(line));
       }
     } else {
-      addOutput(`<span class="t-error">command not found: ${cmd.replace(/</g, '&lt;')}<\/span>`);
+      addOutput(`<span class="t-error">command not found: ${cmd.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag))}<\/span>`);
       addOutput('Type <span class="t-command">/help<\/span> for available commands');
     }
 
