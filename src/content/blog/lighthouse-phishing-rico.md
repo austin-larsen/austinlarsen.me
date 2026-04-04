@@ -5,24 +5,15 @@ description: "Google filed litigation under RICO, the Lanham Act, and the CFAA t
 tags: ["phishing", "fraud", "legal-action", "criminal-infrastructure", "threat-intelligence"]
 ---
 
-Google is taking legal action to dismantle Lighthouse, a massive phishing-as-a-service operation responsible for a global wave of smishing attacks against more than one million victims across more than 120 countries.
+Google is taking legal action to dismantle Lighthouse, a massive Phishing-as-a-Service (PaaS) operation responsible for a global wave of smishing attacks.
 
-Our analysis of Lighthouse reveals the staggering scale of this criminal enterprise. In the United States alone, actors using this platform have stolen between 12.7 million and 115 million credit cards. We identified at least 107 website templates illegally using Google branding, each designed to trick victims into surrendering credentials or financial information.
+Our analysis reveals the staggering scale of this criminal enterprise and the threat it poses:
+🌎 Global Reach: Lighthouse has harmed over 1 million victims across more than 120 countries.
+💳 Financial Impact: In the U.S. alone, actors utilizing this kit have stolen between 12.7 million and 115 million credit cards.
+🔎 Infrastructure: We identified at least 107 website templates illegally utilizing Google branding designed to trick users into surrendering credentials.
 
-## How the Platform Works
+Disruption requires more than just technical remediation. We are filing litigation under RICO, the Lanham Act, and the Computer Fraud and Abuse Act to shut down the core infrastructure of this operation.
 
-Lighthouse is infrastructure that lowers the bar for criminal operators. It gives people with limited technical skills the tools to impersonate trusted organizations at scale. Operators do not need to build phishing kits, manage infrastructure, or handle the technical side. They subscribe, pick a target organization to impersonate, and run campaigns.
+Additionally, we are endorsing bipartisan legislation including the GUARD Act, the Foreign Robocall Elimination Act, and the SCAM Act to empower law enforcement and better protect vulnerable populations.
 
-This commoditization of phishing capability is a meaningful shift in the threat landscape. The actors executing the smishing campaigns against your users may have minimal technical sophistication. The platform they are operating on is sophisticated enough that it does not matter.
-
-## Why Litigation
-
-Takedowns of infrastructure are a standard defensive action. We do them regularly. The problem is that hosting providers, domain registrars, and infrastructure operators can be replaced quickly. Litigation creates a different kind of leverage.
-
-By filing under RICO, the Lanham Act, and the Computer Fraud and Abuse Act, Google gains legal standing to seize websites the group relies on. It creates ongoing legal exposure for the operators and allows for enforcement actions that go beyond what technical disruption alone can achieve. Disrupting operations at the infrastructure layer requires more than just network-level responses.
-
-## Legislative Support
-
-Beyond litigation, Google is endorsing bipartisan legislation designed to give law enforcement better tools to address this category of threat: the GUARD Act, the Foreign Robocall Elimination Act, and the SCAM Act. Protecting vulnerable populations from large-scale fraud requires both private-sector enforcement and updated legal frameworks.
-
-The full details on our strategy are available on the Google Security Blog.
+Read the full details on our strategy to fight scammers here: https://lnkd.in/gkjb8uP3

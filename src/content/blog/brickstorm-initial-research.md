@@ -5,24 +5,14 @@ description: "GTIG published research on BRICKSTORM, a backdoor used by PRC-link
 tags: ["china", "apt", "brickstorm", "vmware", "espionage", "threat-intelligence"]
 ---
 
-Our team at Google Threat Intelligence Group just published urgent research on an espionage campaign by China-nexus actors, including UNC5221 and closely related groups, leveraging a backdoor we call BRICKSTORM.
+Our team at Google Threat Intelligence Group (GTIG) just published urgent research on an espionage campaign by China-nexus actors, including UNC5221 and closely related groups, leveraging a backdoor we call BRICKSTORM.
 
-The numbers tell the story. This campaign is incredibly stealthy, with the actor remaining undetected in victim environments for an average of 393 days. More than a year of access. That long dwell time is achieved by deploying BRICKSTORM on network appliances and VMware infrastructure, systems that often lack traditional endpoint detection and response support and monitoring. There is no agent to alert on. No telemetry to review. The attacker lives in the gap.
+This campaign is incredibly stealthy, with the actor remaining undetected in victim environments for an average of 393 days. This long dwell time is often achieved by deploying BRICKSTORM on network appliances and VMware infrastructure, systems that often lack traditional EDR support and monitoring.
 
-## What BRICKSTORM Is Targeting
+Recent intrusion operations tied to BRICKSTORM likely represent an array of objectives ranging from geopolitical espionage and access operations to intellectual property (IP) theft. The targeting of the US legal space is primarily to gather information related to US national security and international trade, while the focus on technology companies is likely to enable future operations, including exploit development.
 
-Recent intrusion operations tied to BRICKSTORM reflect a range of objectives: geopolitical espionage, access operations, and intellectual property theft. The targeting of US legal firms is primarily focused on gathering information related to US national security and international trade. The focus on technology companies is likely to enable future operations, including exploit development.
+Given the actor's high operational security and lack of IOC reuse, TTP-based hunting is essential for detection.
 
-This is not opportunistic targeting. The actor is doing deliberate, patient reconnaissance work against organizations that hold specific intelligence value.
+To aid defenders, we're also releasing a new Mandiant (part of Google Cloud) scanner to help hunt for this activity. It's designed to detect BRICKSTORM on *nix-based appliances and systems, even without YARA installed.
 
-## Why Detection Is So Hard
-
-Traditional endpoint security does not run on vCenter appliances or ESXi hypervisors. When an attacker establishes persistence at the virtualization layer, they sit below the operating systems of every virtual machine in that environment. The management plane becomes their domain.
-
-Given the actor's high operational security and lack of indicator of compromise reuse, TTP-based hunting is essential. Looking for known bad hashes or domains will not surface this activity. You have to hunt based on behavior.
-
-## What We Released
-
-To aid defenders, we released a new Mandiant scanner to help hunt for BRICKSTORM activity on Linux-based appliances and systems. It is designed to detect the backdoor even without YARA installed, lowering the bar for organizations that do not have mature threat hunting capabilities.
-
-The full report contains technical details, indicators, and hunting recommendations. If your organization runs VMware vCenter or ESXi and has not reviewed exposure to this threat, now is the time.
+Read the full report for technical details and IOCs: https://lnkd.in/g4thYWKN
