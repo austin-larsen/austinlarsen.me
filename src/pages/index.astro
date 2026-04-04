@@ -10,7 +10,7 @@ const featuredMedia = allMedia.filter(m => m.data.featured);
 const listMedia = allMedia.filter(m => !m.data.featured);
 const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const recentBlog = blogPosts.slice(0, 3);
+const recentBlog = blogPosts.slice(0, 4);
 ---
 
 <Base title="Austin Larsen — Threat Intelligence">
