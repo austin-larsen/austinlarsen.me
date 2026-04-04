@@ -5,23 +5,23 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette */
-  --bg-deep: #0a0a12;
-  --bg-surface: #111119;
-  --bg-card: #1a1a24;
-  --bg-card-hover: #22222e;
-  --border: #2a2a3a;
-  --border-glow: #3a3a5a;
-  --text-primary: #e8e8f0;
-  --text-secondary: #8888a0;
-  --text-muted: #555568;
-  --accent: #00c8ff;
-  --accent-dim: #0088bb;
-  --accent-glow: rgba(0, 200, 255, 0.15);
-  --green: #00ff88;
-  --green-dim: rgba(0, 255, 136, 0.6);
-  --pink: #ff66b2;
-  --yellow: #ffc800;
+  /* Palette — Happy Hues #4 (happyhues.co/palettes/4) */
+  --bg-deep: #16161a;
+  --bg-surface: #1f1f23;
+  --bg-card: #242629;
+  --bg-card-hover: #2a2a2f;
+  --border: #2c2c32;
+  --border-glow: #3d3d47;
+  --text-primary: #fffffe;
+  --text-secondary: #94a1b2;
+  --text-muted: #72757e;
+  --accent: #7f5af0;
+  --accent-dim: #6b46e0;
+  --accent-glow: rgba(127, 90, 240, 0.15);
+  --green: #2cb67d;
+  --green-dim: rgba(44, 182, 125, 0.6);
+  --pink: #7f5af0;
+  --yellow: #94a1b2;
 
   /* Typography */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
