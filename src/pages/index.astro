@@ -173,7 +173,7 @@ const recentBlog = blogPosts.slice(0, 3);
     padding-top: calc(var(--nav-height) + 60px);
     padding-bottom: 60px;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 200, 255, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, var(--accent-glow) 0%, transparent 70%),
       var(--bg-deep);
   }
   .hero-inner {
@@ -235,9 +235,9 @@ const recentBlog = blogPosts.slice(0, 3);
     color: var(--bg-deep);
   }
   .btn-primary:hover {
-    background: #33d4ff;
+    background: var(--accent-dim);
     color: var(--bg-deep);
-    box-shadow: 0 0 24px rgba(0, 200, 255, 0.3);
+    box-shadow: 0 0 24px var(--accent-glow);
   }
   .btn-ghost {
     border: 1px solid var(--border);
@@ -382,7 +382,7 @@ const recentBlog = blogPosts.slice(0, 3);
   }
   .media-feature-card:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.08);
+    box-shadow: 0 0 20px var(--accent-glow);
     color: inherit;
   }
   .media-feature-img {
@@ -405,7 +405,7 @@ const recentBlog = blogPosts.slice(0, 3);
   .media-feature-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,12,18,0.6) 0%, transparent 60%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--bg-deep) 60%, transparent) 0%, transparent 60%);
     transition: opacity 0.3s;
   }
   .media-feature-card:hover .media-feature-overlay {
@@ -414,7 +414,7 @@ const recentBlog = blogPosts.slice(0, 3);
   .media-feature-quote-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 12, 18, 0.88);
+    background: color-mix(in srgb, var(--bg-deep) 88%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
