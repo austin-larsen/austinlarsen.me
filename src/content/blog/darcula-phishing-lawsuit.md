@@ -11,4 +11,4 @@ The group leveraged their Magic Cat software to allow scammers with limited tech
 
 The lawsuit is designed to give Google legal standing to seize websites the group uses, hampering their operations. We will continue to use every technical and legal tool available to protect our users and hold cybercriminal actors accountable.
 
-Read more: https://lnkd.in/eKqzBBMA
+Read more: https://blog.google/technology/safety-security/google-sues-cybercriminals-darcula-phishing/

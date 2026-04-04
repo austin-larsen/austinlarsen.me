@@ -13,9 +13,9 @@ The theft of the MachineKey is critical because it allows attackers persistent, 
 
 There is no patch available yet. Here are the immediate actions for any organization running on-premise SharePoint:
 
-🛡️ 1. Apply Mitigations: Microsoft's primary mitigation is to configure the AMSI integration with SharePoint and ensure Microsoft Defender AV is active. If you cannot, consider disconnecting SharePoint from the internet until a patch is available.
-🔎 2. Hunt for Compromise: Actively search for webshells in SharePoint directories. The presence of a webshell is a definitive sign of compromise.
-🔑 3. Rotate Keys if Compromised: If you find evidence of compromise, you must isolate the server and rotate the SharePoint MachineKey. Simply removing the webshell is not enough. The attacker already has the keys, and rotating them is the only way to invalidate their access.
+- Apply Mitigations: Microsoft's primary mitigation is to configure the AMSI integration with SharePoint and ensure Microsoft Defender AV is active. If you cannot, consider disconnecting SharePoint from the internet until a patch is available.
+- Hunt for Compromise: Actively search for webshells in SharePoint directories. The presence of a webshell is a definitive sign of compromise.
+- Rotate Keys if Compromised: If you find evidence of compromise, you must isolate the server and rotate the SharePoint MachineKey. Simply removing the webshell is not enough. The attacker already has the keys, and rotating them is the only way to invalidate their access.
 
 Here is the link to Microsoft's official guidance on CVE-2025-53770 with detailed mitigation steps: https://msrc.microsoft.com/blog/2025/07/customer-guidance-for-sharepoint-vulnerability-cve-2025-53770/
 
@@ -28,7 +28,8 @@ However, with public Proof-of-Concept (PoC) code now available, multiple, distin
 Microsoft has also now released security updates for all supported on-premise versions, including the newly available patch for SharePoint Server 2016.
 
 Here are the actions all organizations should take now:
-🩹 1. Patch Immediately: With updates now available for all supported versions, patching is the top priority to prevent new compromises.
-🔑 2. Hunt & Remediate: If you were running a vulnerable server, you should assume compromise. Hunt for indicators and rotate the MachineKey. Patching does not remove an attacker who has already stolen these cryptographic secrets.
+
+- Patch Immediately: With updates now available for all supported versions, patching is the top priority to prevent new compromises.
+- Hunt & Remediate: If you were running a vulnerable server, you should assume compromise. Hunt for indicators and rotate the MachineKey. Patching does not remove an attacker who has already stolen these cryptographic secrets.
 
 The window for action is now. Patch your systems and investigate for prior compromise.
