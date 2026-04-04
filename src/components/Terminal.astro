@@ -178,7 +178,7 @@
     background: repeating-linear-gradient(
       0deg,
       transparent 0px, transparent 2px,
-      rgba(0, 255, 136, 0.035) 2px, rgba(0, 255, 136, 0.035) 4px
+      rgba(127, 90, 240, 0.035) 2px, rgba(127, 90, 240, 0.035) 4px
     );
     animation: scanroll 0.08s linear infinite;
   }
@@ -198,7 +198,7 @@
   }
   :global(#secret-banner .sb-label) {
     font-size: 0.8rem;
-    color: #00ff88;
+    color: #a78bfa;
     letter-spacing: 0.18em;
     margin-bottom: 16px;
     opacity: 0.9;
@@ -212,7 +212,7 @@
       0 0 30px rgba(255, 34, 51, 0.95),
       0 0 60px rgba(255, 34, 51, 0.5),
       5px 0 0 rgba(0, 200, 255, 0.55),
-      -5px 0 0 rgba(0, 255, 136, 0.35);
+      -5px 0 0 rgba(127, 90, 240, 0.35);
     animation: banner-glitch 0.18s infinite;
   }
   @keyframes banner-glitch {
@@ -671,7 +671,7 @@
       while (drops.length < cols) drops.push(0);
       for (let i = 0; i < cols; i++) {
         const ch = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        ctx.fillStyle = '#00ff88';
+        ctx.fillStyle = '#a78bfa';
         ctx.font = `bold ${fontSize}px monospace`;
         ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
         if (drops[i] > 1) {
