@@ -55,7 +55,7 @@ const recentBlog = blogPosts.slice(0, 4);
     <section class="section" id="blog-preview">
       <div class="container">
         <p class="section-label">// latest</p>
-        <h2 class="section-title">Recent Posts</h2>
+        <h2 class="section-title">Blog</h2>
         <div class="grid-2">
           {recentBlog.map((post) => (
             <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card">
@@ -77,8 +77,8 @@ const recentBlog = blogPosts.slice(0, 4);
   <!-- ══ RESEARCH ══ -->
   <section class="section" id="research">
     <div class="container">
-      <p class="section-label">// publications</p>
-      <h2 class="section-title">Research &amp; Publications</h2>
+      <p class="section-label">// threat intelligence</p>
+      <h2 class="section-title">Research</h2>
       <div class="research-list">
         {research.map((item) => (
           <a href={item.data.url} target="_blank" rel="noopener" class="card research-card">
