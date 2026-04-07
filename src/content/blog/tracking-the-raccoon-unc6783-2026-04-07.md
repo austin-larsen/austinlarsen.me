@@ -16,7 +16,7 @@ The campaign relies on social engineering via live chat to direct employees to m
 
 We have also observed them using fake security software updates to trick victims into downloading remote access malware. Following data exfiltration, UNC6783 has been known to use Proton Mail accounts to deliver ransom notes for data theft extortion operations.
 
-To harden defenses against this threat, Mandiant (part of Google Cloud) recommends the following actions:
+To harden defenses against this threat, Mandiant recommends the following actions:
 
 - Implement Phishing-Resistant MFA: Deploy FIDO2 hardware security keys (e.g., Titan Security Keys) for all users, especially those in high-risk roles like support and helpdesk.
 - Monitor Live Chat: Educate employees on this specific campaign and monitor for anomalous or suspicious live chat interactions directing users to external links.
