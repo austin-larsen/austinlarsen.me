@@ -8,7 +8,7 @@ description: "GTIG is tracking UNC6783, a financially motivated threat cluster p
 
 Our team at Google Threat Intelligence Group (GTIG) is tracking UNC6783, a financially motivated threat cluster potentially tied to the "Raccoon" persona, conducting targeted social engineering and phishing campaigns. We are aware of several dozen high-value corporate entities targeted across multiple sectors.
 
-<iframe src="https://giphy.com/embed/3Pdfyh4d5ZSAE" width="480" height="269" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/food-stealing-racoon-3Pdfyh4d5ZSAE">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/3Pdfyh4d5ZSAE" width="480" height="269" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 The actor primarily focuses on compromising Business Process Outsourcers (BPOs) that work with these targeted companies. We have also seen them target the support and helpdesk staff of these organizations directly to gain trusted access and steal sensitive data for extortion operations.
 
