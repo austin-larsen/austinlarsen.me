@@ -3,6 +3,7 @@ title: "When Cybercrime Becomes a National Security Problem: The Wagenius Case"
 date: 2025-02-27
 description: "Newly released court documents in the Cameron Wagenius case reveal a 20-year-old US Army communications specialist's alleged involvement in Snowflake-related extortion, web searches for 'can hacking be treason,' and inquiries about defecting to Russia."
 tags: ["cybercrime", "national-security", "extortion", "snowflake", "telecom", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7300737966564331520"
 ---
 
 Fresh court documents are now publicly available in the case of Cameron Wagenius, known online as KiberPhant0m who we track as UNC5156. These records, related to the UNC5537 (Connor Moucka) case, reveal details regarding alleged extortion activities within the context of previously reported Snowflake-related intrusions. Wagenius, a 20-year-old U.S. Army communications specialist formerly stationed in South Korea, is implicated in the hacking incidents targeting Snowflake customers that began in early 2024.

@@ -3,6 +3,7 @@ title: "Google Sues Darcula: 900,000 Stolen Cards, 80% of Phishing Texts"
 date: 2025-12-18
 description: "Google filed civil litigation against Darcula, the phishing-as-a-service provider behind 80 percent of all phishing texts during peak activity, responsible for stealing nearly 900,000 credit card numbers globally including 40,000 from US victims."
 tags: ["phishing", "fraud", "legal-action", "criminal-infrastructure", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7407465051194019840"
 ---
 
 Google just filed civil litigation against the phishing as a service provider known as Darcula to disrupt their large-scale fraud operations. Our team at Google Threat Intelligence Group (GTIG) has been tracking this group, which was responsible for 80 percent of all phishing texts during a peak period earlier this year.

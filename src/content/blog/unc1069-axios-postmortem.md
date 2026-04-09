@@ -3,6 +3,7 @@ title: "The Axios Maintainer Post-Mortem Confirms UNC1069's Playbook"
 date: 2026-04-03
 description: "The axios maintainer's post-mortem confirms a compromise strikingly consistent with what we documented on UNC1069 months ago. The target has changed. The tradecraft hasn't."
 tags: ["supply-chain", "north-korea", "unc1069", "npm", "social-engineering"]
+linkedin: "https://www.linkedin.com/posts/austin-larsen_axios-unc1069-activity-7444879045084794880-TqZs?utm_source=share&utm_medium=member_desktop&rcm=ACoAABOnlVgBZGwD0G-YrNRC5PP_5kReht3Mghc"
 ---
 
 Back in February, our team at Google Threat Intelligence Group published research on #UNC1069, a financially motivated North Korean threat actor we've tracked since 2018, detailing how they had evolved their social engineering to incorporate AI-generated deepfakes, compromised accounts, and fake video calls to target cryptocurrency founders and developers. The goal was credential harvesting and financial theft, facilitated by multiple malware families including WAVESHAPER and SUGARLOADER.

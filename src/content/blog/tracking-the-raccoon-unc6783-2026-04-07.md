@@ -4,6 +4,7 @@ date: 2026-04-07
 draft: false
 tags: ["threat-intelligence", "social-engineering", "phishing", "mfa-bypass", "extortion", "bpo"]
 description: "GTIG is tracking UNC6783, a financially motivated threat cluster potentially tied to the 'Raccoon' persona, targeting BPOs and helpdesk staff via spoofed Okta login pages and fake software updates."
+linkedin: "https://www.linkedin.com/posts/austin-larsen_unc6783-activity-7447117799153360896-ToQY?utm_source=share&utm_medium=member_desktop&rcm=ACoAABOnlVgBZGwD0G-YrNRC5PP_5kReht3Mghc"
 ---
 
 Our team at Google Threat Intelligence Group (GTIG) is tracking UNC6783, a financially motivated threat cluster potentially tied to the "Raccoon" persona, conducting targeted social engineering and phishing campaigns. We are aware of several dozen high-value corporate entities targeted across multiple sectors.

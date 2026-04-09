@@ -3,6 +3,7 @@ title: "SharePoint Zero-Day: Why Patching Is Not Enough"
 date: 2025-07-20
 description: "GTIG tracked active exploitation of CVE-2025-53770, a critical SharePoint zero-day used to steal MachineKey secrets that grant persistent access surviving future patches. A subsequent update confirmed China-nexus attribution and public PoC availability driving expanded exploitation."
 tags: ["sharepoint", "zero-day", "china", "apt", "credentials", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7352536348282540032"
 ---
 
 Google Threat Intelligence Group is tracking active exploitation of a SharePoint Zero-Day vulnerability.

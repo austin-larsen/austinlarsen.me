@@ -3,6 +3,7 @@ title: "COLDRIVER Deploys LOSTKEYS to Steal Documents from Western Government Ad
 date: 2025-05-07
 description: "GTIG published new findings on COLDRIVER, a Russian government-backed group that evolved beyond credential phishing to deploy LOSTKEYS malware for direct document exfiltration from advisors to Western governments, military personnel, journalists, and NGOs."
 tags: ["russia", "apt", "coldriver", "malware", "espionage", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7325928351502598146"
 ---
 
 Our team at Google Threat Intelligence Group is sharing new findings on the evolving tactics of COLDRIVER. This Russian government-backed group, historically focused on credential phishing, is now deploying new malware called LOSTKEYS to exfiltrate documents from targeted systems. We've observed LOSTKEYS campaigns in early 2025 targeting current and former advisors to Western governments, military, journalists, and NGOs, often those connected to Ukraine. The primary goal appears to be intelligence collection.

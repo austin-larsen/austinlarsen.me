@@ -3,6 +3,7 @@ title: "It Is Time to Stop Using NTLMv1"
 date: 2026-01-15
 description: "GTIG and Mandiant are publicly releasing a comprehensive Net-NTLMv1 rainbow table dataset, lowering the bar for defenders to demonstrate that NTLMv1 credentials can be cracked in under 12 hours with less than $600 in hardware."
 tags: ["active-directory", "ntlm", "credentials", "tool-release", "threat-intelligence", "defensive"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7417595781920194560"
 ---
 
 It is time to stop using NTLMv1.

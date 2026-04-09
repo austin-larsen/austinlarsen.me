@@ -3,6 +3,7 @@ title: "BRICKSTORM: China-Nexus Actors Hiding in VMware Infrastructure for Over 
 date: 2025-09-24
 description: "GTIG published research on BRICKSTORM, a backdoor used by PRC-linked UNC5221 to maintain persistent access in VMware environments with an average dwell time of 393 days."
 tags: ["china", "apt", "brickstorm", "vmware", "espionage", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7376616883896295424"
 ---
 
 Our team at Google Threat Intelligence Group (GTIG) just published urgent research on an espionage campaign by China-nexus actors, including UNC5221 and closely related groups, leveraging a backdoor we call BRICKSTORM.

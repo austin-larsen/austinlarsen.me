@@ -3,6 +3,7 @@ title: "AuraInspector: Detecting Salesforce Aura Misconfigurations Attackers Are
 date: 2026-01-12
 description: "Mandiant released AuraInspector, an open-source tool for identifying access control misconfigurations in the Salesforce Aura framework, after GTIG observed active exploitation of GraphQL-based data export bypasses in the wild."
 tags: ["salesforce", "saas", "tool-release", "data-theft", "threat-intelligence", "defensive"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7416557892537020417"
 ---
 
 Mandiant is releasing AuraInspector, a new open-source tool designed to help defenders identify and audit access control misconfigurations within the Salesforce Aura framework. Google Threat Intelligence Group (GTIG) has observed exploitation of this misconfiguration in the wild, specifically tracking reconnaissance activity targeting Salesforce instances.

@@ -11,6 +11,7 @@ const blog = defineCollection({
     externalUrl: z.string().url().optional(),
     source: z.string().optional(), // e.g. "linkedin", "original"
     image: z.string().optional(),
+    linkedin: z.string().url().optional(),
   }),
 });
 

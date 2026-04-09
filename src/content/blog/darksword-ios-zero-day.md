@@ -3,6 +3,7 @@ title: "DarkSword: How a Six-Zero-Day iOS Exploit Chain Spread Across Multiple T
 date: 2026-03-18
 description: "GTIG uncovered DarkSword, a sophisticated iOS exploit chain chaining six zero-day vulnerabilities to fully compromise devices running iOS 18.4 through 18.7, leveraged by both commercial surveillance vendors and suspected state-sponsored actors in distinct campaigns."
 tags: ["ios", "zero-day", "surveillance", "mobile", "espionage", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7440039000888922113"
 ---
 
 New research from our team at Google Threat Intelligence Group (GTIG) uncovers DarkSword, a sophisticated iOS exploit chain.

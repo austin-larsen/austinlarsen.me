@@ -3,6 +3,7 @@ title: "UNC3886 Targets End-of-Life Juniper Routers with Six TINYSHELL Backdoor 
 date: 2025-03-12
 description: "Mandiant published details on UNC3886, a China-nexus espionage actor that deployed a custom malware ecosystem with six distinct TINYSHELL variants on end-of-life Juniper MX devices, using novel process injection and logging suppression techniques."
 tags: ["china", "apt", "unc3886", "juniper", "network-security", "malware", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7305612950038331392"
 ---
 
 Following a months-long investigation stemming back to mid-2024, Mandiant (part of Google Cloud) just published details on a campaign by the China-nexus espionage actor UNC3886, targeting Juniper routers. Our investigation found a custom malware ecosystem, featuring six distinct variants of the TINYSHELL backdoor, deployed on end-of-life Juniper MX devices.

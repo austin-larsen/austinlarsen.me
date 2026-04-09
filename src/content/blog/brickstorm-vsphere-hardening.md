@@ -3,6 +3,7 @@ title: "Hardening VMware vSphere Against BRICKSTORM: A Defender's Guide"
 date: 2026-04-02
 description: "Mandiant published a comprehensive defender's guide on securing VMware vSphere environments against BRICKSTORM, including a new hardening script and scanner tool that enforces security configurations directly at the Photon Linux layer."
 tags: ["vmware", "brickstorm", "china", "defensive", "hardening", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7445601340808024064"
 ---
 
 Mandiant (part of Google Cloud) just published a comprehensive defender's guide on securing VMware vSphere environments against the BRICKSTORM backdoor and associated malware activity.

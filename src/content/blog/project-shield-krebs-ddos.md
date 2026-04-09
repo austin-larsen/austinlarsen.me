@@ -3,6 +3,7 @@ title: "How Project Shield Stopped a 6.3 Tbps DDoS Attack Against KrebsOnSecurit
 date: 2025-06-03
 description: "When KrebsOnSecurity was hit with one of the largest DDoS attacks ever recorded, Google's Project Shield kept it online without interruption."
 tags: ["ddos", "google", "project-shield", "infrastructure"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7335341703572111364"
 ---
 
 When investigative journalist Brian Krebs was targeted by one of the largest DDoS attacks to date at a staggering 6.3 Tbps, his site, KrebsOnSecurity, remained online without interruption.

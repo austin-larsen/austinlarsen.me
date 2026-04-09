@@ -3,6 +3,7 @@ title: "UNC6395: Data Theft Targeting Salesforce via Salesloft Drift"
 date: 2025-09-03
 description: "Our team at GTIG published new research on UNC6395, behind a widespread data theft campaign targeting Salesforce customer instances via compromised Salesloft Drift OAuth tokens."
 tags: ["data-theft", "salesforce", "saas", "threat-intelligence", "credentials"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7366147321157308417"
 ---
 
 Our team at Google Threat Intelligence Group (GTIG) just published new research on UNC6395, an actor behind a widespread data theft campaign targeting Salesforce customer instances.

@@ -3,6 +3,7 @@ title: "Google Takes Legal Action Against Lighthouse, a Phishing-as-a-Service Op
 date: 2025-11-12
 description: "Google filed litigation under RICO, the Lanham Act, and the CFAA to dismantle Lighthouse, a PhaaS platform responsible for over 1 million victims and between 12.7 and 115 million stolen credit cards in the US alone."
 tags: ["phishing", "fraud", "legal-action", "criminal-infrastructure", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7394471203131912192"
 ---
 
 Google is taking legal action to dismantle Lighthouse, a massive Phishing-as-a-Service (PaaS) operation responsible for a global wave of smishing attacks.

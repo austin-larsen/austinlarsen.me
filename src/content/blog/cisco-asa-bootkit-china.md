@@ -3,6 +3,7 @@ title: "China-Nexus Actor Deploys Firmware Bootkit on Cisco ASA Devices"
 date: 2025-09-26
 description: "GTIG is tracking active exploitation of two Cisco zero-days by a suspected China-nexus actor using a firmware-level bootkit with advanced anti-forensic capabilities on ASA and Firepower devices."
 tags: ["china", "apt", "cisco", "zero-day", "network-security", "threat-intelligence"]
+linkedin: "https://www.linkedin.com/feed/update/urn:li:share:7377484534868742144"
 ---
 
 Google Threat Intelligence Group is tracking active exploitation of two Cisco zero-day vulnerabilities by a suspected China-nexus actor.
