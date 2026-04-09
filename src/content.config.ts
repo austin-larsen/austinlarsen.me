@@ -12,7 +12,6 @@ const blog = defineCollection({
     source: z.string().optional(), // e.g. "linkedin", "original"
     image: z.string().optional(),
     linkedin: z.string().url().optional(),
-    campaignUrl: z.string().url().optional(),
   }),
 });
 

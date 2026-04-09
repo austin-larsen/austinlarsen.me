@@ -5,7 +5,6 @@ draft: false
 tags: ["threat-intelligence", "social-engineering", "phishing", "mfa-bypass", "extortion", "bpo"]
 description: "GTIG is tracking UNC6783, a financially motivated threat cluster potentially tied to the 'Raccoon' persona, targeting BPOs and helpdesk staff via spoofed Okta login pages and fake software updates."
 linkedin: "https://www.linkedin.com/posts/austin-larsen_unc6783-activity-7447117799153360896-ToQY?utm_source=share&utm_medium=member_desktop&rcm=ACoAABOnlVgBZGwD0G-YrNRC5PP_5kReht3Mghc"
-campaignUrl: "https://www.virustotal.com/gui/collection/campaign--3e584d6b-0df7-5c93-8d8d-6c6fe9bff6af/summary"
 ---
 
 Our team at Google Threat Intelligence Group (GTIG) is tracking UNC6783, a financially motivated threat cluster potentially tied to the "Raccoon" persona, conducting targeted social engineering and phishing campaigns. We are aware of several dozen high-value corporate entities targeted across multiple sectors.
@@ -28,4 +27,5 @@ To harden defenses against this threat, Mandiant recommends the following action
 
 ## Resources
 
-- [UNC6783 Threat Actor Collection — IOCs and Details (GTI)](https://www.virustotal.com/gui/collection/threat-actor--8a64d5c7-4abd-5aa9-bf89-c67e076f9825)
+- [UNC6783 GTI Threat Actor Profile](https://www.virustotal.com/gui/collection/threat-actor--8a64d5c7-4abd-5aa9-bf89-c67e076f9825)
+- [UNC6783 GTI Campaign](https://www.virustotal.com/gui/collection/campaign--3e584d6b-0df7-5c93-8d8d-6c6fe9bff6af/summary)
