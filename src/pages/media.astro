@@ -1,0 +1,249 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allMedia = (await getCollection('media')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Group by outlet
+const outletMap = new Map<string, typeof allMedia>();
+for (const item of allMedia) {
+  const list = outletMap.get(item.data.outlet) ?? [];
+  list.push(item);
+  outletMap.set(item.data.outlet, list);
+}
+
+// Sort outlets by count descending, then alphabetically
+const outlets = [...outletMap.entries()].sort((a, b) => {
+  if (b[1].length !== a[1].length) return b[1].length - a[1].length;
+  return a[0].localeCompare(b[0]);
+});
+
+// Stats
+const totalMentions = allMedia.length;
+const uniqueOutlets = outlets.length;
+const typeBreakdown = allMedia.reduce<Record<string, number>>((acc, item) => {
+  acc[item.data.type] = (acc[item.data.type] || 0) + 1;
+  return acc;
+}, {});
+---
+
+<Base title="Media — Austin Larsen" description="Press coverage, interviews, and media mentions.">
+  <section class="media-page">
+    <div class="container">
+      <div class="media-header">
+        <p class="section-label">// press &amp; coverage</p>
+        <h1 class="section-title">Media</h1>
+
+        <div class="media-stats">
+          <span class="media-stat">{totalMentions} mentions</span>
+          <span class="media-stat-sep">&middot;</span>
+          <span class="media-stat">{uniqueOutlets} outlets</span>
+          {Object.entries(typeBreakdown).map(([type, count]) => (
+            <>
+              <span class="media-stat-sep">&middot;</span>
+              <span class="media-stat">{count} {type}</span>
+            </>
+          ))}
+        </div>
+      </div>
+
+      <div class="outlet-grid">
+        {outlets.map(([outletName, items]) => (
+          <details class="outlet-card">
+            <summary class="outlet-header">
+              <div class="outlet-header-left">
+                <h2 class="outlet-name">{outletName}</h2>
+                <span class="badge">{items.length}</span>
+              </div>
+              <span class="outlet-chevron" aria-hidden="true">+</span>
+            </summary>
+            <ul class="outlet-articles">
+              {items.map((item) => (
+                <li class="outlet-article">
+                  <a href={item.data.url} target="_blank" rel="noopener" class="outlet-article-link">
+                    <div class="outlet-article-main">
+                      <span class="outlet-article-title">{item.data.title}</span>
+                      {item.data.quote && (
+                        <span class="outlet-article-quote">{item.data.quote}</span>
+                      )}
+                    </div>
+                    <div class="outlet-article-meta">
+                      <span class="badge">{item.data.type}</span>
+                      <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
+                      <span class="outlet-article-arrow">&#8599;</span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .media-page {
+    padding-top: calc(var(--nav-height) + 48px);
+    padding-bottom: 48px;
+  }
+  .media-header {
+    margin-bottom: 40px;
+  }
+
+  /* Stats */
+  .media-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .media-stat-sep {
+    margin: 0 8px;
+  }
+
+  /* Outlet grid */
+  .outlet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* Outlet card */
+  .outlet-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .outlet-card[open] {
+    border-color: var(--border-glow);
+  }
+  .outlet-card[open] .outlet-chevron {
+    transform: rotate(45deg);
+  }
+
+  .outlet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.15s;
+  }
+  .outlet-header::-webkit-details-marker { display: none; }
+  .outlet-header::marker { content: ''; }
+  .outlet-header:hover {
+    background: var(--bg-card-hover);
+  }
+  .outlet-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .outlet-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .outlet-chevron {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  /* Articles list */
+  .outlet-articles {
+    list-style: none;
+    padding: 0 20px 16px;
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+  .outlet-article {
+    border-bottom: 1px solid var(--border);
+  }
+  .outlet-article:last-child {
+    border-bottom: none;
+  }
+  .outlet-article-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .outlet-article-link:hover {
+    color: inherit;
+  }
+  .outlet-article-link:hover .outlet-article-title {
+    color: var(--text-primary);
+  }
+  .outlet-article-link:hover .outlet-article-arrow {
+    color: var(--accent);
+  }
+  .outlet-article-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .outlet-article-title {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+  .outlet-article-quote {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .outlet-article-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .outlet-article-meta time {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .outlet-article-arrow {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .outlet-grid {
+      grid-template-columns: 1fr;
+    }
+    .outlet-article-link {
+      flex-direction: column;
+      gap: 8px;
+    }
+    .outlet-article-meta {
+      align-self: flex-start;
+    }
+  }
+</style>

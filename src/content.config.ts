@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     date: z.coerce.date(),
     description: z.string().optional(),
@@ -10,7 +10,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     externalUrl: z.string().url().optional(),
     source: z.string().optional(), // e.g. "linkedin", "original"
-    image: z.string().optional(),
+    image: image().optional(),
     linkedin: z.string().url().optional(),
   }),
 });
@@ -29,13 +29,13 @@ const research = defineCollection({
 
 const talks = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     conference: z.string(),
     date: z.coerce.date(),
     location: z.string().optional(),
     url: z.string().url().optional(),
-    image: z.string().optional(),
+    image: image().optional(),
     slidesUrl: z.string().url().optional(),
     videoUrl: z.string().url().optional(),
   }),
@@ -43,12 +43,12 @@ const talks = defineCollection({
 
 const media = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     outlet: z.string(),
     date: z.coerce.date(),
     url: z.string().url(),
-    image: z.string().optional(),
+    image: image().optional(),
     featured: z.boolean().default(false),
     type: z.enum(['quote', 'feature', 'award', 'interview', 'cited']).default('quote'),
     quote: z.string().optional(),

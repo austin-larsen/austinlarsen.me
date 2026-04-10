@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import headshot from '../assets/images/austin-headshot.jpg';
 ---
 
 <Base
@@ -10,10 +12,11 @@ import Base from '../layouts/Base.astro';
   <section class="about-hero">
     <div class="container about-inner">
       <div class="about-photo-wrap">
-        <img
-          src="/images/austin-headshot.jpg"
+        <Image
+          src={headshot}
           alt="Austin Larsen"
           class="about-photo"
+          width={520}
         />
       </div>
       <div class="about-text">

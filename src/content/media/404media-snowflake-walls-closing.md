@@ -4,7 +4,7 @@ outlet: "404 Media"
 date: 2024-07-01
 url: "https://www.404media.co/the-walls-are-closing-in-on-the-snowflake-hacker/"
 type: "feature"
-image: "/images/media/404media-snowflake-walls.jpg"
+image: "../../assets/images/media/404media-snowflake-walls.jpg"
 featured: true
 quote: "Austin's investigation into UNC5537 helped build the case that closed in on the Snowflake hacker."
 ---

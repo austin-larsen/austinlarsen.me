@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Terminal from '../components/Terminal.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const research = (await getCollection('research')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const allTalks = (await getCollection('talks')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -44,6 +45,13 @@ const recentBlog = blogPosts.slice(0, 4);
             <span class="hero-upcoming-register">Register →</span>
           </a>
         )}
+        <div class="hero-proof">
+          <div class="hero-outlets">
+            {['CyberScoop', 'Krebs on Security', 'The Record', 'TechCrunch', 'Fortune', 'Bloomberg', 'Reuters', 'BleepingComputer', 'The Hacker News'].map(name => (
+              <span class="hero-outlet-name">{name}</span>
+            ))}
+          </div>
+        </div>
       </div>
       <div class="hero-terminal">
         <Terminal />
@@ -114,7 +122,7 @@ const recentBlog = blogPosts.slice(0, 4);
             <a href={talk.data.url} target="_blank" rel="noopener" class="upcoming-card">
               {talk.data.image && (
                 <div class="upcoming-img">
-                  <img src={talk.data.image} alt={talk.data.conference} loading="lazy" />
+                  <Image src={talk.data.image} alt={talk.data.conference} width={360} loading="lazy" />
                 </div>
               )}
               <div class="upcoming-body">
@@ -135,7 +143,7 @@ const recentBlog = blogPosts.slice(0, 4);
           <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card">
             {talk.data.image && (
               <div class="talk-img-wrap">
-                <img src={talk.data.image} alt={talk.data.conference} loading="lazy" />
+                <Image src={talk.data.image} alt={talk.data.conference} width={400} loading="lazy" />
               </div>
             )}
             <div class="talk-info">
@@ -161,7 +169,7 @@ const recentBlog = blogPosts.slice(0, 4);
               <a href={item.data.url} target="_blank" rel="noopener" class="media-feature-card">
                 {item.data.image && (
                   <div class="media-feature-img">
-                    <img src={item.data.image} alt={item.data.title} loading="lazy" />
+                    <Image src={item.data.image} alt={item.data.title} width={520} loading="lazy" />
                     <div class="media-feature-overlay"></div>
                     {item.data.quote && (
                       <div class="media-feature-quote-overlay">
@@ -202,6 +210,9 @@ const recentBlog = blogPosts.slice(0, 4);
           ))}
         </ul>
       )}
+      <div class="section-footer">
+        <a href="/media" class="view-all-link">View all coverage &rarr;</a>
+      </div>
     </div>
   </section>
 
@@ -707,6 +718,39 @@ const recentBlog = blogPosts.slice(0, 4);
     white-space: nowrap;
   }
 
+  /* ── Social proof ── */
+  .hero-proof {
+    margin-top: 24px;
+  }
+  .hero-stats {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+  .hero-outlets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
+  }
+  .hero-outlet-name {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: opacity 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .hero-outlet-name:hover {
+    opacity: 1;
+    color: var(--text-secondary);
+  }
+
   /* ── View all links ── */
   .section-footer {
     margin-top: 24px;
@@ -730,6 +774,8 @@ const recentBlog = blogPosts.slice(0, 4);
     }
     .hero-bio { margin: 0 auto 28px; }
     .hero-cta { justify-content: center; }
+    .hero-proof { text-align: center; }
+    .hero-outlets { justify-content: center; }
     .hero-terminal { justify-content: center; }
     .hero-name { font-size: 2.2rem; }
   }

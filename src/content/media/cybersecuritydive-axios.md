@@ -1,6 +1,6 @@
 ---
 title: "Axios open-source library targeted in sophisticated supply chain attack"
-outlet: "CyberSecurity Dive"
+outlet: "Cybersecurity Dive"
 date: 2026-03-01
 url: "https://www.cybersecuritydive.com/news/axios-open-source-library-targeted-in-sophisticated-supply-chain-attack/816343/"
 type: "quote"
