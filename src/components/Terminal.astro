@@ -88,7 +88,7 @@
     gap: 0;
   }
   .terminal-input-row .t-prompt {
-    color: var(--green);
+    color: var(--terminal-cursor);
     font-family: var(--font-mono);
     font-size: 0.85rem;
     flex-shrink: 0;
@@ -101,7 +101,7 @@
     color: var(--text-primary);
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    caret-color: var(--green);
+    caret-color: var(--terminal-cursor);
     line-height: 1.7;
   }
   .terminal-input::placeholder {
@@ -116,7 +116,7 @@
     min-height: 1.7em;
   }
   .terminal-body :global(.t-prompt) {
-    color: var(--green);
+    color: var(--terminal-cursor);
   }
   .terminal-body :global(.t-command) {
     color: var(--text-primary);
@@ -128,14 +128,14 @@
     color: var(--accent);
   }
   .terminal-body :global(.t-label) {
-    color: var(--yellow);
+    color: var(--muted-label);
   }
   .terminal-body :global(.t-unc) {
-    color: var(--pink);
+    color: var(--highlight);
     font-weight: 500;
   }
   .terminal-body :global(.t-success) {
-    color: var(--green);
+    color: var(--terminal-cursor);
   }
   .terminal-body :global(.t-error) {
     color: #ff5f57;
@@ -144,7 +144,7 @@
     display: inline-block;
     width: 8px;
     height: 1.1em;
-    background: var(--green);
+    background: var(--terminal-cursor);
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
   }

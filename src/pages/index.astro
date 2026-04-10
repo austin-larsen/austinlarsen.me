@@ -26,8 +26,9 @@ const recentBlog = blogPosts.slice(0, 4);
         <p class="hero-title">Threat Intelligence</p>
 
         <p class="hero-bio">
-          Leading rapid response and investigations into significant cyber events.
-          Previously Mandiant incident response. Nation-state threats, zero-days, and data extortion campaigns.
+          Investigating the intrusions that make headlines.
+          Nation-state threats, zero-days, and data extortion.
+          Previously Mandiant.
         </p>
         <div class="hero-cta">
           <a href="/blog" class="btn btn-primary">Blog</a>
@@ -69,6 +70,9 @@ const recentBlog = blogPosts.slice(0, 4);
               )}
             </a>
           ))}
+        </div>
+        <div class="section-footer">
+          <a href="/blog" class="view-all-link">View all posts &rarr;</a>
         </div>
       </div>
     </section>
@@ -701,6 +705,21 @@ const recentBlog = blogPosts.slice(0, 4);
     font-size: 0.7rem;
     color: var(--text-muted);
     white-space: nowrap;
+  }
+
+  /* ── View all links ── */
+  .section-footer {
+    margin-top: 24px;
+    text-align: right;
+  }
+  .view-all-link {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .view-all-link:hover {
+    color: var(--accent);
   }
 
   /* ── Responsive ── */
