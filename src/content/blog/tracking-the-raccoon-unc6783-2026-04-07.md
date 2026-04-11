@@ -9,8 +9,6 @@ linkedin: "https://www.linkedin.com/posts/austin-larsen_unc6783-activity-7447117
 
 Our team at Google Threat Intelligence Group (GTIG) is tracking UNC6783, a financially motivated threat cluster potentially tied to the "Raccoon" persona, conducting targeted social engineering and phishing campaigns. We are aware of several dozen high-value corporate entities targeted across multiple sectors.
 
-<iframe src="https://giphy.com/embed/3Pdfyh4d5ZSAE" width="480" height="269" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
 The actor primarily focuses on compromising Business Process Outsourcers (BPOs) that work with these targeted companies. We have also seen them target the support and helpdesk staff of these organizations directly to gain trusted access and steal sensitive data for extortion operations.
 
 The campaign relies on social engineering via live chat to direct employees to malicious, spoofed Okta login pages. These domains frequently masquerade as the targeted organization using a domain pattern such as `<org>[.]zendesk-support<##>[.]com`. Their phishing kit is used to bypass standard multi-factor authentication (MFA) verification by stealing clipboard contents, which then allows the attackers to enroll their own devices for persistent access.
