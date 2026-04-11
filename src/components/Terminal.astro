@@ -315,7 +315,7 @@
       action: () => [
         '<span class="t-highlight">Available commands:<\/span>',
         '',
-        '  <span class="t-command">/threats<\/span>    — List tracked threat groups',
+        '  <span class="t-command">/intel<\/span>      — Fetch latest threat intelligence',
         '  <span class="t-command">/research<\/span>   — Jump to research section',
         '  <span class="t-command">/talks<\/span>      — Jump to talks section',
         '  <span class="t-command">/blog<\/span>       — Go to blog',
@@ -329,17 +329,47 @@
         '  <span class="t-error">/[REDACTED]<\/span>  — <span class="t-error">TLP:RED<\/span>',
       ],
     },
-    '/threats': {
-      description: 'List tracked threat groups',
-      action: () => [
-        '<span class="t-highlight">Tracked threat groups:<\/span>',
-        '',
-        '  <span class="t-unc">UNC5537<\/span>      Snowflake customer data theft & extortion',
-        '  <span class="t-unc">UNC4841<\/span>      Barracuda ESG zero-day exploitation',
-        '  <span class="t-unc">UNC4899<\/span>      DPRK supply chain compromise (JumpCloud)',
-        '  <span class="t-unc">UNC1069<\/span>      DPRK supply chain compromise (Axios NPM)',
-        '  <span class="t-unc">ShinyHunters<\/span> SaaS platform data theft campaigns',
-      ],
+    '/intel': {
+      description: 'Fetch latest threat intelligence',
+      action: () => {
+        const steps: [number, string][] = [
+          [350,  '<span class="t-label">&gt; Establishing encrypted channel...&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-success">[OK]<\/span><\/span>'],
+          [800,  '<span class="t-label">&gt; Authenticating feed signature...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-success">[OK]<\/span><\/span>'],
+          [1200, '<span class="t-label">&gt; Pulling latest intelligence...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-success">[OK]<\/span><\/span>'],
+          [1600, ''],
+        ];
+        steps.forEach(([delay, html]) => {
+          setTimeout(() => { addOutput(html); scrollToBottom(); }, delay);
+        });
+        setTimeout(() => {
+          fetch('/rss.xml')
+            .then(r => r.text())
+            .then(xml => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(xml, 'text/xml');
+              const items = Array.from(doc.querySelectorAll('item')).slice(0, 5);
+              addOutput('<span class="t-highlight">\/\/ latest threat intelligence<\/span>');
+              addOutput('');
+              items.forEach(item => {
+                const title = item.querySelector('title')?.textContent ?? '';
+                const link = item.querySelector('link')?.nextSibling?.textContent?.trim()
+                          ?? item.querySelector('link')?.textContent?.trim()
+                          ?? '#';
+                const pubDate = item.querySelector('pubDate')?.textContent ?? '';
+                const d = new Date(pubDate);
+                const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+                addOutput(`&nbsp;&nbsp;<span class="t-label">[${dateStr}]<\/span>&nbsp;&nbsp;<a href="${link}" style="color:var(--accent);text-decoration:none;" target="_blank">${title}<\/a>`);
+              });
+              addOutput('');
+              scrollToBottom();
+            })
+            .catch(() => {
+              addOutput('<span class="t-error">Feed unavailable. Check network connection.<\/span>');
+              scrollToBottom();
+            });
+        }, 1800);
+        return ['Querying threat intelligence feed...'];
+      },
     },
     '/signal': {
       description: 'Open Signal contact',
