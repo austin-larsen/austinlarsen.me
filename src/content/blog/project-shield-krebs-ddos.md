@@ -12,7 +12,7 @@ This was possible thanks to Project Shield, a free Google service that helps def
 
 The new blog post details how Project Shield, built on Google Cloud's infrastructure including Cloud Load Balancing and Cloud Armor, automatically filtered the 585 million packets-per-second attack instantly at the network edge.
 
-![6.3 Tbps DDoS attack traffic](/images/blog/krebs-ddos-chart.jpg)
+![6.3 Tbps DDoS attack traffic](../../assets/images/blog/krebs-ddos-chart.jpg)
 
 Project Shield is designed to help protect at-risk organizations like journalists, human rights defenders, and election monitoring sites. We are honored to help protect important voices like Brian's.
 

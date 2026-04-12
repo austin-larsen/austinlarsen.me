@@ -7,7 +7,7 @@ tags: ["meta"]
 
 I rebuilt my personal site. The old one served me well. A single Carrd.co page that survived more than a few DDoS attempts. But it was time for something that could grow.
 
-![Cloudflare dashboard showing a DDoS spike against the old site — 26M total requests, 8M mitigated](/images/blog/shinyhunters_ddos.png)
+![Cloudflare dashboard showing a DDoS spike against the old site — 26M total requests, 8M mitigated](../../assets/images/blog/shinyhunters_ddos.png)
 
 This site is built with [Astro](https://astro.build) and deploys automatically via [Cloudflare Pages](https://pages.cloudflare.com) every time I push to GitHub.
 
