@@ -16,7 +16,6 @@ import headshot from '../assets/images/austin-headshot.jpg';
           src={headshot}
           alt="Austin Larsen"
           class="about-photo"
-          width={520}
         />
       </div>
       <div class="about-text">
@@ -135,9 +134,7 @@ import headshot from '../assets/images/austin-headshot.jpg';
 
   .about-photo {
     width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    object-position: center 20%;
+    height: auto;
     border-radius: 12px;
     border: 1px solid var(--border);
     display: block;
