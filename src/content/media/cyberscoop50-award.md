@@ -1,10 +1,10 @@
 ---
 title: "CyberScoop50 Award"
 outlet: "CyberScoop"
-date: 2024-10-15
+date: 2025-08-11
 url: "https://cyberscoop.com/cyberscoop50/winners/"
 type: "award"
 image: "../../assets/images/media/cyberscoop50.jpg"
 featured: true
-quote: "Austin was named one of the top 50 most influential people in cybersecurity for 2024."
+quote: "Austin was named one of the top 50 most influential people in cybersecurity for 2025."
 ---
