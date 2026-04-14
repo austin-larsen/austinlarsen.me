@@ -23,7 +23,7 @@ const recentBlog = blogPosts.slice(0, 4);
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
-        <h1 class="hero-name">Austin Larsen</h1>
+        <h1 class="hero-name" data-text="Austin Larsen">Austin Larsen</h1>
         <p class="hero-title">Threat Intelligence</p>
 
         <p class="hero-bio">
@@ -63,11 +63,11 @@ const recentBlog = blogPosts.slice(0, 4);
   {recentBlog.length > 0 && (
     <section class="section" id="blog-preview">
       <div class="container">
-        <p class="section-label">// latest</p>
-        <h2 class="section-title">Blog</h2>
+        <p class="section-label reveal">// latest</p>
+        <h2 class="section-title reveal" style="--i:1">Blog</h2>
         <div class="grid-2">
-          {recentBlog.map((post) => (
-            <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card">
+          {recentBlog.map((post, i) => (
+            <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card reveal" style={`--i:${i}`}>
               <time class="blog-date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
               <h3 class="blog-card-title">{post.data.title}</h3>
               {post.data.description && <p class="blog-card-desc">{post.data.description}</p>}
@@ -89,11 +89,11 @@ const recentBlog = blogPosts.slice(0, 4);
   <!-- ══ RESEARCH ══ -->
   <section class="section" id="research">
     <div class="container">
-      <p class="section-label">// threat intelligence</p>
-      <h2 class="section-title">Research</h2>
+      <p class="section-label reveal">// threat intelligence</p>
+      <h2 class="section-title reveal" style="--i:1">Research</h2>
       <div class="research-list">
-        {research.map((item) => (
-          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card">
+        {research.map((item, i) => (
+          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card reveal" style={`--i:${Math.min(i, 4)}`}>
             <div class="research-meta">
               <span class="badge">{item.data.publisher}</span>
               <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
@@ -113,8 +113,8 @@ const recentBlog = blogPosts.slice(0, 4);
   <!-- ══ TALKS ══ -->
   <section class="section" id="talks">
     <div class="container">
-      <p class="section-label">// conferences</p>
-      <h2 class="section-title">Talks &amp; Presentations</h2>
+      <p class="section-label reveal">// conferences</p>
+      <h2 class="section-title reveal" style="--i:1">Talks &amp; Presentations</h2>
 
       {upcomingTalks.length > 0 && (
         <div class="upcoming-wrap">
@@ -139,8 +139,8 @@ const recentBlog = blogPosts.slice(0, 4);
       )}
 
       <div class="grid-3 talks-grid">
-        {talks.map((talk) => (
-          <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card">
+        {talks.map((talk, i) => (
+          <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card reveal" style={`--i:${Math.min(i, 5)}`}>
             {talk.data.image && (
               <div class="talk-img-wrap">
                 <Image src={talk.data.image} alt={talk.data.conference} width={400} loading="lazy" />
@@ -159,14 +159,14 @@ const recentBlog = blogPosts.slice(0, 4);
   <!-- ══ MEDIA ══ -->
   <section class="section" id="media">
     <div class="container">
-      <p class="section-label">// press &amp; coverage</p>
-      <h2 class="section-title">Media</h2>
+      <p class="section-label reveal">// press &amp; coverage</p>
+      <h2 class="section-title reveal" style="--i:1">Media</h2>
 
       {featuredMedia.length > 0 && (
         <div class="media-carousel-wrap">
           <div class="media-carousel">
-            {featuredMedia.map((item) => (
-              <a href={item.data.url} target="_blank" rel="noopener" class="media-feature-card">
+            {featuredMedia.map((item, i) => (
+              <a href={item.data.url} target="_blank" rel="noopener" class="media-feature-card reveal" style={`--i:${i}`}>
                 {item.data.image && (
                   <div class="media-feature-img">
                     <Image src={item.data.image} alt={item.data.title} width={520} loading="lazy" />
@@ -787,4 +787,83 @@ const recentBlog = blogPosts.slice(0, 4);
     .media-carousel { grid-template-columns: repeat(2, minmax(200px, 1fr)); }
     .media-list-link { grid-template-columns: 90px 1fr; gap: 10px; padding: 12px 14px; }
   }
+
+  /* ── Glitch effect on hero name ── */
+  .hero-name {
+    position: relative;
+  }
+  .hero-name::before,
+  .hero-name::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    -webkit-text-fill-color: var(--accent);
+    color: var(--accent);
+    background: transparent;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .hero-name::after {
+    -webkit-text-fill-color: #5af0d4;
+    color: #5af0d4;
+  }
+  @keyframes glitch-1 {
+    0%   { clip-path: inset(5% 0 88% 0);  transform: translate(-3px, 0); opacity: 1; }
+    20%  { clip-path: inset(42% 0 42% 0); transform: translate(3px, 0); }
+    40%  { clip-path: inset(72% 0 12% 0); transform: translate(-2px, 0); }
+    60%  { clip-path: inset(18% 0 68% 0); transform: translate(2px, 0); }
+    80%  { clip-path: inset(58% 0 28% 0); transform: translate(-3px, 0); }
+    100% { clip-path: inset(0% 0 100% 0); transform: translate(0); opacity: 0; }
+  }
+  @keyframes glitch-2 {
+    0%   { clip-path: inset(62% 0 22% 0); transform: translate(3px, 0); opacity: 1; }
+    20%  { clip-path: inset(8% 0 78% 0);  transform: translate(-3px, 0); }
+    40%  { clip-path: inset(85% 0 5% 0);  transform: translate(2px, 0); }
+    60%  { clip-path: inset(32% 0 52% 0); transform: translate(-2px, 0); }
+    80%  { clip-path: inset(2% 0 90% 0);  transform: translate(3px, 0); }
+    100% { clip-path: inset(0% 0 100% 0); transform: translate(0); opacity: 0; }
+  }
+  .hero-name:hover::before,
+  .hero-name.glitching::before {
+    animation: glitch-1 0.45s steps(1) forwards;
+  }
+  .hero-name:hover::after,
+  .hero-name.glitching::after {
+    animation: glitch-2 0.45s steps(1) forwards;
+  }
+
+  /* ── Scroll-triggered reveals ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    transition-delay: calc(var(--i, 0) * 75ms);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
+
+<script>
+  // ── Scroll-triggered reveals ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Hero name glitch on load ──
+  const heroName = document.querySelector('.hero-name');
+  if (heroName) {
+    setTimeout(() => {
+      heroName.classList.add('glitching');
+      setTimeout(() => heroName.classList.remove('glitching'), 500);
+    }, 700);
+  }
+</script>
