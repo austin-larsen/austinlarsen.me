@@ -858,12 +858,4 @@ const recentBlog = blogPosts.slice(0, 4);
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ── Hero name glitch on load ──
-  const heroName = document.querySelector('.hero-name');
-  if (heroName) {
-    setTimeout(() => {
-      heroName.classList.add('glitching');
-      setTimeout(() => heroName.classList.remove('glitching'), 500);
-    }, 700);
-  }
 </script>
