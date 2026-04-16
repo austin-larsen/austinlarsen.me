@@ -6,5 +6,9 @@ export default defineConfig({
   integrations: [sitemap()],
   markdown: {
     allowDangerousHTML: true,
+    shikiConfig: {
+      theme: 'tokyo-night',
+      wrap: true,
+    },
   },
 });

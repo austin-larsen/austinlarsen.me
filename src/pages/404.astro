@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404 — Signal Lost" description="The page you're looking for doesn't exist.">
+  <section class="notfound">
+    <div class="container notfound-inner">
+      <div class="notfound-term">
+        <div class="term-header">
+          <span class="term-dot" style="background:#ff5f57"></span>
+          <span class="term-dot" style="background:#febc2e"></span>
+          <span class="term-dot" style="background:#28c840"></span>
+          <span class="term-title">~/signal-lost</span>
+        </div>
+        <div class="term-body">
+          <p class="term-line"><span class="term-prompt">austin@intel:~$</span> <span class="term-cmd" id="cmd"></span><span class="term-cursor"></span></p>
+          <div class="term-output" id="output"></div>
+        </div>
+      </div>
+
+      <div class="notfound-meta" id="meta">
+        <p class="notfound-code">ERR_PAGE_NOT_FOUND</p>
+        <h1 class="notfound-title">Signal Lost.</h1>
+        <p class="notfound-sub">
+          The page you were looking for doesn't exist, was renamed, or never made it past the draft stage.
+        </p>
+        <div class="notfound-links">
+          <a href="/" class="btn btn-primary">Return home</a>
+          <a href="/blog" class="btn btn-ghost">Browse the blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound {
+    padding-top: calc(var(--nav-height) + 80px);
+    padding-bottom: 100px;
+    min-height: 70vh;
+  }
+  .notfound-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .notfound-term {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 48px;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+  }
+  .term-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border);
+  }
+  .term-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .term-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 8px;
+  }
+  .term-body {
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    min-height: 180px;
+  }
+  .term-line {
+    margin: 0;
+    color: var(--text-primary);
+    word-break: break-all;
+  }
+  .term-prompt {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .term-cmd {
+    color: var(--text-primary);
+  }
+  .term-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  .term-output {
+    color: var(--text-secondary);
+    margin-top: 10px;
+    min-height: 100px;
+  }
+  .term-output p {
+    margin: 0;
+  }
+  .term-err { color: #ff6b6b; }
+  .term-hint { color: var(--text-muted); }
+  .term-ok { color: #5af0a8; }
+
+  .notfound-meta {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .notfound-meta.show {
+    opacity: 1;
+  }
+  .notfound-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+  .notfound-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .notfound-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+  .notfound-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 600px) {
+    .notfound-title { font-size: 1.8rem; }
+    .term-body { font-size: 0.75rem; padding: 14px; }
+  }
+</style>
+
+<script>
+  const path = window.location.pathname || '/unknown';
+  const cmd = `curl -s https://austinlarsen.me${path}`;
+  const cmdEl = document.getElementById('cmd');
+  const outputEl = document.getElementById('output');
+  const metaEl = document.getElementById('meta');
+
+  const outputLines = [
+    { text: `> GET ${path}`, cls: 'term-hint', delay: 900 },
+    { text: `< HTTP/1.1 404 Not Found`, cls: 'term-err', delay: 400 },
+    { text: `< server: cloudflare`, cls: 'term-hint', delay: 200 },
+    { text: `< content-type: text/plain`, cls: 'term-hint', delay: 200 },
+    { text: ``, cls: '', delay: 300 },
+    { text: `Signal lost. The resource you requested was not found on this server.`, cls: 'term-err', delay: 500 },
+    { text: `Try /, /blog, /about, or /signal to reconnect.`, cls: 'term-ok', delay: 400 },
+  ];
+
+  let i = 0;
+  function typeCmd() {
+    if (!cmdEl) return;
+    if (i < cmd.length) {
+      cmdEl.textContent = cmd.slice(0, ++i);
+      setTimeout(typeCmd, 28);
+    } else {
+      setTimeout(printOutput, 300);
+    }
+  }
+
+  function printOutput() {
+    if (!outputEl) return;
+    let lineIdx = 0;
+    function next() {
+      if (lineIdx >= outputLines.length) {
+        metaEl?.classList.add('show');
+        return;
+      }
+      const line = outputLines[lineIdx++];
+      const p = document.createElement('p');
+      if (line.cls) p.className = line.cls;
+      p.textContent = line.text || '\u00A0';
+      outputEl.appendChild(p);
+      setTimeout(next, line.delay);
+    }
+    next();
+  }
+
+  typeCmd();
+</script>

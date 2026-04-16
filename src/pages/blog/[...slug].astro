@@ -19,9 +19,45 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
+
+// Related posts: share at least one tag, excluding current post, up to 3
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const related = allPosts
+  .filter(p => p.id !== post.id && p.data.tags.some(t => post.data.tags.includes(t)))
+  .map(p => ({
+    post: p,
+    overlap: p.data.tags.filter(t => post.data.tags.includes(t)).length,
+  }))
+  .sort((a, b) => b.overlap - a.overlap || b.post.data.date.getTime() - a.post.data.date.getTime())
+  .slice(0, 3)
+  .map(x => x.post);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.date.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Austin Larsen",
+    "url": "https://austinlarsen.me"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Austin Larsen",
+    "url": "https://austinlarsen.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(Astro.url.pathname, Astro.site).toString()
+  },
+  "keywords": post.data.tags.join(", ")
+};
 ---
 
 <Base title={`${post.data.title} — Austin Larsen`} description={post.data.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
   <article class="post">
     <div class="container post-container">
       <header class="post-header">
@@ -55,6 +91,21 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
             Originally posted on LinkedIn
           </a>
         </div>
+      )}
+
+      {related.length > 0 && (
+        <aside class="post-related">
+          <h2 class="post-related-title">// related posts</h2>
+          <div class="post-related-list">
+            {related.map(r => (
+              <a href={`/blog/${r.id.replace(/\.md$/, '')}`} class="post-related-card">
+                <time class="post-related-date">{r.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+                <h3 class="post-related-card-title">{r.data.title}</h3>
+                {r.data.description && <p class="post-related-desc">{r.data.description}</p>}
+              </a>
+            ))}
+          </div>
+        </aside>
       )}
     </div>
   </article>
@@ -193,5 +244,64 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
   }
   .post-linkedin-link:hover {
     color: var(--accent);
+  }
+
+  /* Related posts */
+  .post-related {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .post-related-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .post-related-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .post-related-card {
+    display: block;
+    padding: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .post-related-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px var(--accent-glow);
+    color: inherit;
+  }
+  .post-related-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .post-related-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .post-related-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
