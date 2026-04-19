@@ -5,13 +5,27 @@ import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map(post => ({
-    params: { slug: post.id.replace(/\.md$/, '') },
-    props: { post },
-  }));
+  return posts.map(post => {
+    // Precompute related posts once per page at build time so individual
+    // page rendering doesn't have to re-scan and re-sort the full collection.
+    const related = posts
+      .filter(p => p.id !== post.id && p.data.tags.some(t => post.data.tags.includes(t)))
+      .map(p => ({
+        post: p,
+        overlap: p.data.tags.filter(t => post.data.tags.includes(t)).length,
+      }))
+      .sort((a, b) => b.overlap - a.overlap || b.post.data.date.getTime() - a.post.data.date.getTime())
+      .slice(0, 3)
+      .map(x => x.post);
+
+    return {
+      params: { slug: post.id.replace(/\.md$/, '') },
+      props: { post, related },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
 
 const dateStr = post.data.date.toLocaleDateString('en-US', {
@@ -19,18 +33,6 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
-
-// Related posts: share at least one tag, excluding current post, up to 3
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const related = allPosts
-  .filter(p => p.id !== post.id && p.data.tags.some(t => post.data.tags.includes(t)))
-  .map(p => ({
-    post: p,
-    overlap: p.data.tags.filter(t => post.data.tags.includes(t)).length,
-  }))
-  .sort((a, b) => b.overlap - a.overlap || b.post.data.date.getTime() - a.post.data.date.getTime())
-  .slice(0, 3)
-  .map(x => x.post);
 
 const articleSchema = {
   "@context": "https://schema.org",
