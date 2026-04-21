@@ -18,3 +18,5 @@ Regardless of the threat actor involved, the exposure risk is real. If you are a
 - Transition to pulling secrets at runtime through your SDKs instead of storing them directly within Vercel.
 
 Vercel's advisory: [vercel.com/kb/bulletin/vercel-april-2026-security-incident](https://vercel.com/kb/bulletin/vercel-april-2026-security-incident)
+
+Additional analysis from our team available to GTI customers here: [virustotal.com](https://www.virustotal.com/gui/collection/report--26-10020659)
