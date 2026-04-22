@@ -144,27 +144,27 @@ import headshot from '../assets/images/austin-headshot.jpg';
   .about-photo {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 4px;
     border: 1px solid var(--border);
     display: block;
   }
 
   .about-name {
-    font-size: 2.8rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--text-primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    color: var(--text-primary);
   }
 
   .about-title {
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--accent);
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 400;
     margin-bottom: 4px;
   }
 
@@ -183,10 +183,10 @@ import headshot from '../assets/images/austin-headshot.jpg';
   .about-social-link {
     font-size: 0.8rem;
     font-family: var(--font-mono);
-    color: var(--text-muted);
+    color: var(--text-secondary);
     border: 1px solid var(--border);
     padding: 6px 14px;
-    border-radius: 6px;
+    border-radius: 2px;
     transition: color 0.2s, border-color 0.2s;
   }
 
@@ -210,8 +210,10 @@ import headshot from '../assets/images/austin-headshot.jpg';
   }
 
   .about-section-title {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
     margin-bottom: 4px;
     color: var(--text-primary);
   }
@@ -232,9 +234,9 @@ import headshot from '../assets/images/austin-headshot.jpg';
   }
 
   .about-card {
-    background: var(--bg-surface);
+    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 20px;
   }
 
@@ -344,17 +346,16 @@ import headshot from '../assets/images/austin-headshot.jpg';
   .about-contact-btn {
     display: inline-block;
     padding: 8px 18px;
-    background: var(--accent);
+    background: var(--text-primary);
     color: var(--bg-deep);
-    border-radius: 6px;
+    border-radius: 2px;
     font-size: 0.82rem;
     font-weight: 600;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: background 0.2s;
   }
 
   .about-contact-btn:hover {
-    background: var(--accent-dim);
-    box-shadow: 0 0 20px var(--accent-glow);
+    background: #000;
     color: var(--bg-deep);
   }
 

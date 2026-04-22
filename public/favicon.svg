@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#16161a"/>
+  <rect width="32" height="32" rx="6" fill="#f5f1ea"/>
   <!-- terminal prompt $ -->
-  <text x="4" y="22" font-family="monospace" font-size="16" font-weight="bold" fill="#a78bfa">$</text>
+  <text x="4" y="22" font-family="monospace" font-size="16" font-weight="bold" fill="#b8421f">$</text>
   <!-- blinking cursor block -->
-  <rect x="17" y="9" width="9" height="14" rx="1" fill="#7f5af0" opacity="0.9"/>
+  <rect x="17" y="9" width="9" height="14" rx="1" fill="#1a1815" opacity="0.9"/>
 </svg>

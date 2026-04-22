@@ -34,9 +34,9 @@
 
 <style>
   .terminal {
-    background: #16161a;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: 8px;
     overflow: hidden;
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -44,8 +44,8 @@
     max-width: 720px;
     width: 100%;
     box-shadow:
-      0 0 80px rgba(127, 90, 240, 0.06),
-      0 24px 48px rgba(0, 0, 0, 0.4);
+      0 20px 48px rgba(26, 24, 21, 0.18),
+      0 4px 12px rgba(26, 24, 21, 0.08);
   }
 
   .terminal-chrome {
@@ -53,9 +53,8 @@
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: #111119;
-    background: #1f1f23;
-    border-bottom: 1px solid var(--border);
+    background: var(--term-chrome);
+    border-bottom: 1px solid var(--term-border);
   }
   .terminal-dots {
     display: flex;
@@ -71,7 +70,7 @@
   .dot.green { background: #28c840; }
   .terminal-title {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--term-text-muted);
   }
 
   .terminal-body {
@@ -88,7 +87,7 @@
     gap: 0;
   }
   .terminal-input-row .t-prompt {
-    color: var(--terminal-cursor);
+    color: var(--term-accent);
     font-family: var(--font-mono);
     font-size: 0.85rem;
     flex-shrink: 0;
@@ -98,15 +97,15 @@
     background: none;
     border: none;
     outline: none;
-    color: var(--text-primary);
+    color: var(--term-text);
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    caret-color: var(--terminal-cursor);
+    caret-color: var(--term-cursor);
     line-height: 1.7;
   }
   .terminal-input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.5;
+    color: var(--term-text-muted);
+    opacity: 0.7;
   }
 
   /* Line types */
@@ -116,26 +115,26 @@
     min-height: 1.7em;
   }
   .terminal-body :global(.t-prompt) {
-    color: var(--terminal-cursor);
+    color: var(--term-accent);
   }
   .terminal-body :global(.t-command) {
-    color: var(--text-primary);
+    color: var(--term-text);
   }
   .terminal-body :global(.t-output) {
-    color: var(--text-secondary);
+    color: var(--term-text-sec);
   }
   .terminal-body :global(.t-highlight) {
-    color: var(--accent);
+    color: var(--term-accent);
   }
   .terminal-body :global(.t-label) {
-    color: var(--muted-label);
+    color: var(--term-text-muted);
   }
   .terminal-body :global(.t-unc) {
-    color: var(--highlight);
+    color: var(--term-accent);
     font-weight: 500;
   }
   .terminal-body :global(.t-success) {
-    color: var(--terminal-cursor);
+    color: var(--term-success);
   }
   .terminal-body :global(.t-error) {
     color: #ff5f57;
@@ -144,7 +143,7 @@
     display: inline-block;
     width: 8px;
     height: 1.1em;
-    background: var(--terminal-cursor);
+    background: var(--term-cursor);
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
   }
@@ -178,7 +177,7 @@
     background: repeating-linear-gradient(
       0deg,
       transparent 0px, transparent 2px,
-      rgba(127, 90, 240, 0.035) 2px, rgba(127, 90, 240, 0.035) 4px
+      rgba(184, 66, 31, 0.035) 2px, rgba(184, 66, 31, 0.035) 4px
     );
     animation: scanroll 0.08s linear infinite;
   }
@@ -198,7 +197,7 @@
   }
   :global(#secret-banner .sb-label) {
     font-size: 0.8rem;
-    color: #a78bfa;
+    color: #ff8454;
     letter-spacing: 0.18em;
     margin-bottom: 16px;
     opacity: 0.9;
@@ -211,8 +210,8 @@
     text-shadow:
       0 0 30px rgba(255, 34, 51, 0.95),
       0 0 60px rgba(255, 34, 51, 0.5),
-      5px 0 0 rgba(0, 200, 255, 0.55),
-      -5px 0 0 rgba(127, 90, 240, 0.35);
+      5px 0 0 rgba(255, 132, 84, 0.55),
+      -5px 0 0 rgba(184, 66, 31, 0.35);
     animation: banner-glitch 0.18s infinite;
   }
   @keyframes banner-glitch {
@@ -268,8 +267,8 @@
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
-    background: #1f1f23;
-    border: 1px solid var(--border);
+    background: var(--term-chrome);
+    border: 1px solid var(--term-border);
     border-bottom: none;
     border-radius: 8px 8px 0 0;
     display: flex;
@@ -280,11 +279,11 @@
     cursor: pointer;
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--term-text-muted);
     transition: background 0.15s;
   }
   :global(#terminal-dock:hover) {
-    background: #242629;
+    background: var(--term-bg);
   }
   :global(#terminal-dock .dock-dots) {
     display: flex;
@@ -409,14 +408,22 @@
     '/research': {
       description: 'Jump to research section',
       action: () => {
-        document.getElementById('research')?.scrollIntoView({ behavior: 'smooth' });
+        const el = document.getElementById('research');
+        if (el) {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+          window.scrollTo({ top: el.offsetTop - navH - 16, behavior: 'smooth' });
+        }
         return ['<span class="t-success">Scrolling to research...<\/span>'];
       },
     },
     '/talks': {
       description: 'Jump to talks section',
       action: () => {
-        document.getElementById('talks')?.scrollIntoView({ behavior: 'smooth' });
+        const el = document.getElementById('talks');
+        if (el) {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+          window.scrollTo({ top: el.offsetTop - navH - 16, behavior: 'smooth' });
+        }
         return ['<span class="t-success">Scrolling to talks...<\/span>'];
       },
     },
@@ -707,7 +714,7 @@
       while (drops.length < cols) drops.push(0);
       for (let i = 0; i < cols; i++) {
         const ch = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        ctx.fillStyle = '#a78bfa';
+        ctx.fillStyle = '#ff8454';
         ctx.font = `bold ${fontSize}px monospace`;
         ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
         if (drops[i] > 1) {

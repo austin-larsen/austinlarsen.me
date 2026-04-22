@@ -24,7 +24,6 @@ const recentBlog = blogPosts.slice(0, 4);
     <div class="container hero-inner">
       <div class="hero-text">
         <h1 class="hero-name" data-text="Austin Larsen">Austin Larsen</h1>
-        <p class="hero-title">Threat Intelligence</p>
 
         <p class="hero-bio">
           Investigating the intrusions that make headlines.
@@ -32,8 +31,8 @@ const recentBlog = blogPosts.slice(0, 4);
           Previously Mandiant.
         </p>
         <div class="hero-cta">
-          <a href="/blog" class="btn btn-primary">Blog</a>
-          <a href="#research" class="btn btn-ghost">Research</a>
+          <a href="#research" class="btn btn-primary">Research</a>
+          <a href="/blog" class="btn btn-ghost">Blog</a>
         </div>
         {upcomingTalks.length > 0 && (
           <a href={upcomingTalks[0].data.url} target="_blank" rel="noopener" class="hero-upcoming">
@@ -93,7 +92,7 @@ const recentBlog = blogPosts.slice(0, 4);
       <h2 class="section-title reveal" style="--i:1">Research</h2>
       <div class="research-list">
         {research.map((item, i) => (
-          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card reveal" style={`--i:${Math.min(i, 4)}`}>
+          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card reveal" style={`--i:${Math.min(i, 3)}`}>
             <div class="research-meta">
               <span class="badge">{item.data.publisher}</span>
               <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
@@ -140,7 +139,7 @@ const recentBlog = blogPosts.slice(0, 4);
 
       <div class="grid-3 talks-grid">
         {talks.map((talk, i) => (
-          <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card reveal" style={`--i:${Math.min(i, 5)}`}>
+          <a href={talk.data.url} target="_blank" rel="noopener" class="card talk-card reveal" style={`--i:${Math.min(i, 3)}`}>
             {talk.data.image && (
               <div class="talk-img-wrap">
                 <Image src={talk.data.image} alt={talk.data.conference} width={400} loading="lazy" />
@@ -216,6 +215,14 @@ const recentBlog = blogPosts.slice(0, 4);
 </Base>
 
 <style>
+  /* ── Section rhythm ── */
+  :global(#research),
+  :global(#media) {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
   /* ── Hero ── */
   .hero {
     padding-top: calc(var(--nav-height) + 60px);
@@ -229,21 +236,21 @@ const recentBlog = blogPosts.slice(0, 4);
     align-items: center;
   }
   .hero-name {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--text-primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 4px;
   }
   .hero-title {
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 2px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
   }
   .hero-org {
     font-size: 0.9rem;
@@ -267,9 +274,9 @@ const recentBlog = blogPosts.slice(0, 4);
     gap: 10px;
     margin-top: 20px;
     padding: 8px 14px;
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    border-radius: 8px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     color: var(--text-secondary);
@@ -278,7 +285,7 @@ const recentBlog = blogPosts.slice(0, 4);
     max-width: fit-content;
   }
   .hero-upcoming:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-dim);
     background: color-mix(in srgb, var(--accent) 14%, transparent);
     color: var(--text-secondary);
   }
@@ -313,27 +320,27 @@ const recentBlog = blogPosts.slice(0, 4);
     display: inline-flex;
     align-items: center;
     padding: 10px 24px;
-    border-radius: 8px;
+    border-radius: 2px;
     font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.2s;
   }
   .btn-primary {
-    background: var(--accent);
+    background: var(--text-primary);
     color: var(--bg-deep);
   }
   .btn-primary:hover {
-    background: var(--accent-dim);
+    background: #000;
     color: var(--bg-deep);
-    box-shadow: 0 0 24px var(--accent-glow);
   }
   .btn-ghost {
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
   }
   .btn-ghost:hover {
-    border-color: var(--text-muted);
+    border-color: var(--text-primary);
     color: var(--text-primary);
+    background: var(--bg-surface);
   }
 
   /* ── Blog cards ── */
@@ -345,8 +352,11 @@ const recentBlog = blogPosts.slice(0, 4);
     margin-bottom: 8px;
   }
   .blog-card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
     margin-bottom: 8px;
     color: var(--text-primary);
   }
@@ -371,18 +381,33 @@ const recentBlog = blogPosts.slice(0, 4);
   .research-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
+    border-top: 1px solid var(--border);
   }
   .research-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px 8px;
+    border-bottom: 1px solid var(--border);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    transition: background 0.2s;
+  }
+  .research-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border);
     color: inherit;
   }
-  .research-card:hover { color: inherit; }
   .research-meta {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
   .research-meta time {
     font-family: var(--font-mono);
@@ -390,14 +415,18 @@ const recentBlog = blogPosts.slice(0, 4);
     color: var(--text-muted);
   }
   .research-title {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--text-primary);
   }
   .research-tags {
     display: flex;
     gap: 8px;
-    margin-top: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
   }
   .tag {
     font-family: var(--font-mono);
@@ -417,7 +446,8 @@ const recentBlog = blogPosts.slice(0, 4);
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #fff;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
   }
   .talk-img-wrap img {
     width: 100%;
@@ -453,17 +483,16 @@ const recentBlog = blogPosts.slice(0, 4);
     display: flex;
     align-items: center;
     gap: 20px;
-    background: var(--bg-surface);
+    background: var(--bg-card);
     border: 1px solid var(--accent);
-    border-radius: 12px;
+    border-radius: 4px;
     overflow: hidden;
     color: inherit;
     text-decoration: none;
-    transition: box-shadow 0.2s, border-color 0.2s;
-    box-shadow: 0 0 16px var(--accent-glow);
+    transition: background 0.2s;
   }
   .upcoming-card:hover {
-    box-shadow: 0 0 28px var(--accent-glow);
+    background: var(--bg-card-hover);
     color: inherit;
   }
   .upcoming-img {
@@ -493,10 +522,12 @@ const recentBlog = blogPosts.slice(0, 4);
     letter-spacing: 0.08em;
   }
   .upcoming-title {
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
-    line-height: 1.4;
+    line-height: 1.3;
   }
   .upcoming-date {
     font-family: var(--font-mono);
@@ -531,18 +562,17 @@ const recentBlog = blogPosts.slice(0, 4);
   .media-feature-card {
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
+    border-radius: 4px;
     overflow: hidden;
-    background: var(--bg-surface);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     color: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
     text-decoration: none;
     flex-shrink: 0;
   }
   .media-feature-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
+    border-color: var(--border-glow);
     color: inherit;
   }
   .media-feature-img {
@@ -565,7 +595,7 @@ const recentBlog = blogPosts.slice(0, 4);
   .media-feature-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, color-mix(in srgb, var(--bg-deep) 60%, transparent) 0%, transparent 60%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--text-primary) 35%, transparent) 0%, transparent 60%);
     transition: opacity 0.3s;
   }
   .media-feature-card:hover .media-feature-overlay {
@@ -574,7 +604,7 @@ const recentBlog = blogPosts.slice(0, 4);
   .media-feature-quote-overlay {
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--bg-deep) 88%, transparent);
+    background: color-mix(in srgb, var(--bg-card) 94%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -588,11 +618,12 @@ const recentBlog = blogPosts.slice(0, 4);
     transform: translateY(0);
   }
   .media-feature-quote {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    text-align: center;
+    font-family: var(--font-display);
     font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    text-align: center;
   }
   .media-feature-info {
     padding: 16px;
@@ -614,9 +645,11 @@ const recentBlog = blogPosts.slice(0, 4);
     letter-spacing: 0.04em;
   }
   .media-feature-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
     color: var(--text-primary);
   }
   .media-feature-date {
@@ -636,8 +669,9 @@ const recentBlog = blogPosts.slice(0, 4);
     flex-direction: column;
     gap: 0;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 4px;
     overflow: hidden;
+    background: var(--bg-card);
   }
   .media-list-item + .media-list-item {
     border-top: 1px solid var(--border);
@@ -658,7 +692,7 @@ const recentBlog = blogPosts.slice(0, 4);
     padding-top: 2px; /* optical alignment with title baseline */
   }
   .media-list-link:hover {
-    background: var(--bg-surface);
+    background: var(--bg-card-hover);
     color: inherit;
   }
   .media-list-outlet {
@@ -734,18 +768,17 @@ const recentBlog = blogPosts.slice(0, 4);
   }
   .hero-outlet-name {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 600;
     color: var(--text-muted);
-    opacity: 0.5;
+    opacity: 1;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    transition: opacity 0.2s, color 0.2s;
+    transition: color 0.2s;
     white-space: nowrap;
   }
   .hero-outlet-name:hover {
-    opacity: 1;
-    color: var(--text-secondary);
+    color: var(--text-primary);
   }
 
   /* ── View all links ── */
@@ -774,7 +807,8 @@ const recentBlog = blogPosts.slice(0, 4);
     .hero-proof { text-align: center; }
     .hero-outlets { justify-content: center; }
     .hero-terminal { justify-content: center; }
-    .hero-name { font-size: 2.2rem; }
+    .hero-name { font-size: 3.25rem; }
+    .hero-title { font-size: 1.5rem; }
   }
   @media (max-width: 768px) {
     .talks-grid { grid-template-columns: repeat(2, 1fr); }
@@ -788,56 +822,12 @@ const recentBlog = blogPosts.slice(0, 4);
     .media-list-link { grid-template-columns: 90px 1fr; gap: 10px; padding: 12px 14px; }
   }
 
-  /* ── Glitch effect on hero name ── */
-  .hero-name {
-    position: relative;
-  }
-  .hero-name::before,
-  .hero-name::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    -webkit-text-fill-color: var(--accent);
-    color: var(--accent);
-    background: transparent;
-    pointer-events: none;
-    opacity: 0;
-  }
-  .hero-name::after {
-    -webkit-text-fill-color: #5af0d4;
-    color: #5af0d4;
-  }
-  @keyframes glitch-1 {
-    0%   { clip-path: inset(5% 0 88% 0);  transform: translate(-3px, 0); opacity: 1; }
-    20%  { clip-path: inset(42% 0 42% 0); transform: translate(3px, 0); }
-    40%  { clip-path: inset(72% 0 12% 0); transform: translate(-2px, 0); }
-    60%  { clip-path: inset(18% 0 68% 0); transform: translate(2px, 0); }
-    80%  { clip-path: inset(58% 0 28% 0); transform: translate(-3px, 0); }
-    100% { clip-path: inset(0% 0 100% 0); transform: translate(0); opacity: 0; }
-  }
-  @keyframes glitch-2 {
-    0%   { clip-path: inset(62% 0 22% 0); transform: translate(3px, 0); opacity: 1; }
-    20%  { clip-path: inset(8% 0 78% 0);  transform: translate(-3px, 0); }
-    40%  { clip-path: inset(85% 0 5% 0);  transform: translate(2px, 0); }
-    60%  { clip-path: inset(32% 0 52% 0); transform: translate(-2px, 0); }
-    80%  { clip-path: inset(2% 0 90% 0);  transform: translate(3px, 0); }
-    100% { clip-path: inset(0% 0 100% 0); transform: translate(0); opacity: 0; }
-  }
-  .hero-name:hover::before,
-  .hero-name.glitching::before {
-    animation: glitch-1 0.45s steps(1) forwards;
-  }
-  .hero-name:hover::after,
-  .hero-name.glitching::after {
-    animation: glitch-2 0.45s steps(1) forwards;
-  }
-
   /* ── Scroll-triggered reveals ── */
   .reveal {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.55s ease, transform 0.55s ease;
-    transition-delay: calc(var(--i, 0) * 75ms);
+    transition-delay: calc(var(--i, 0) * 40ms);
   }
   .reveal.revealed {
     opacity: 1;

@@ -45,13 +45,13 @@ import Base from '../layouts/Base.astro';
     text-align: center;
   }
   .notfound-term {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: 8px;
     overflow: hidden;
     margin: 0 auto 48px;
     text-align: left;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 48px rgba(26, 24, 21, 0.18);
     max-width: 600px;
   }
   .term-header {
@@ -59,8 +59,8 @@ import Base from '../layouts/Base.astro';
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
-    background: var(--bg-deep);
-    border-bottom: 1px solid var(--border);
+    background: var(--term-chrome);
+    border-bottom: 1px solid var(--term-border);
   }
   .term-dot {
     width: 11px;
@@ -71,7 +71,7 @@ import Base from '../layouts/Base.astro';
   .term-title {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--term-text-muted);
     margin-left: 8px;
   }
   .term-body {
@@ -83,21 +83,21 @@ import Base from '../layouts/Base.astro';
   }
   .term-line {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--term-text);
     word-break: break-all;
   }
   .term-prompt {
-    color: var(--accent);
+    color: var(--term-accent);
     margin-right: 6px;
   }
   .term-cmd {
-    color: var(--text-primary);
+    color: var(--term-text);
   }
   .term-cursor {
     display: inline-block;
     width: 8px;
     height: 1.1em;
-    background: var(--accent);
+    background: var(--term-cursor);
     vertical-align: text-bottom;
     margin-left: 2px;
     animation: blink 1s steps(1) infinite;
@@ -107,7 +107,7 @@ import Base from '../layouts/Base.astro';
     51%, 100% { opacity: 0; }
   }
   .term-output {
-    color: var(--text-secondary);
+    color: var(--term-text-sec);
     margin-top: 10px;
     min-height: 100px;
   }
@@ -115,8 +115,8 @@ import Base from '../layouts/Base.astro';
     margin: 0;
   }
   .term-err { color: #ff6b6b; }
-  .term-hint { color: var(--text-muted); }
-  .term-ok { color: #5af0a8; }
+  .term-hint { color: var(--term-text-muted); }
+  .term-ok { color: var(--term-success); }
 
   .notfound-meta {
     opacity: 0;
@@ -133,13 +133,13 @@ import Base from '../layouts/Base.astro';
     margin-bottom: 12px;
   }
   .notfound-title {
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
     margin-bottom: 14px;
-    background: linear-gradient(135deg, var(--text-primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
   }
   .notfound-sub {
     font-size: 1rem;
