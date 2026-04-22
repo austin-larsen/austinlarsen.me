@@ -4,4 +4,5 @@ date: 2026-01-30
 url: "https://cloud.google.com/blog/topics/threat-intelligence/expansion-shinyhunters-saas-data-theft"
 publisher: "GTIG"
 tags: ["data-theft", "saas", "shinyhunters"]
+description: "Tracking the expansion of ShinyHunters-branded vishing operations targeting SaaS platforms for data theft and downstream extortion."
 ---

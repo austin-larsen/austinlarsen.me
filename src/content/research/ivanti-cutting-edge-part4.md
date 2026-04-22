@@ -4,4 +4,5 @@ date: 2024-04-04
 url: "https://cloud.google.com/blog/topics/threat-intelligence/ivanti-post-exploitation-lateral-movement"
 publisher: "Mandiant"
 tags: ["ivanti", "lateral-movement", "china", "unc5325"]
+description: "Post-exploitation case studies from Ivanti Connect Secure intrusions showing how attackers pivoted from the VPN into full domain compromise."
 ---

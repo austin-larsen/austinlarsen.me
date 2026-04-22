@@ -4,4 +4,5 @@ date: 2025-08-26
 url: "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift"
 publisher: "GTIG"
 tags: ["data-theft", "salesforce", "saas"]
+description: "Attackers abused compromised Salesloft Drift OAuth tokens to pivot into hundreds of Salesforce instances and exfiltrate customer data at scale."
 ---

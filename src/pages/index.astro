@@ -92,12 +92,15 @@ const recentBlog = blogPosts.slice(0, 4);
       <h2 class="section-title reveal" style="--i:1">Research</h2>
       <div class="research-list">
         {research.map((item, i) => (
-          <a href={item.data.url} target="_blank" rel="noopener" class="card research-card reveal" style={`--i:${Math.min(i, 3)}`}>
+          <a href={item.data.url} target="_blank" rel="noopener" class:list={['card', 'research-card', 'reveal', { 'has-desc': !!item.data.description }]} style={`--i:${Math.min(i, 3)}`}>
             <div class="research-meta">
               <span class="badge">{item.data.publisher}</span>
               <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</time>
             </div>
             <h3 class="research-title">{item.data.title}</h3>
+            {item.data.description && (
+              <p class="research-desc">{item.data.description}</p>
+            )}
             {item.data.tags.length > 0 && (
               <div class="research-tags">
                 {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
@@ -421,6 +424,40 @@ const recentBlog = blogPosts.slice(0, 4);
     letter-spacing: -0.01em;
     line-height: 1.25;
     color: var(--text-primary);
+    transition: opacity 0.2s ease;
+  }
+  /* Hover-reveal description — mirrors .media-list-quote behavior */
+  .research-desc {
+    font-size: 0.9rem;
+    color: var(--accent);
+    line-height: 1.55;
+    font-style: italic;
+    font-family: var(--font-display);
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.25s ease;
+    padding-top: 0;
+  }
+  .research-card.has-desc:hover .research-title {
+    opacity: 0.35;
+  }
+  .research-card.has-desc:hover .research-desc {
+    max-height: 8rem;
+    opacity: 1;
+    padding-top: 6px;
+  }
+  @media (max-width: 640px) {
+    .research-desc {
+      max-height: 8rem;
+      opacity: 1;
+      padding-top: 6px;
+    }
+    .research-card.has-desc:hover .research-title {
+      opacity: 1;
+    }
   }
   .research-tags {
     display: flex;

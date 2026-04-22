@@ -4,4 +4,5 @@ date: 2026-03-31
 url: "https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package"
 publisher: "GTIG"
 tags: ["unc1069", "dprk", "north-korea", "supply-chain", "npm"]
+description: "DPRK-nexus actor UNC1069 compromised the widely used Axios npm package to stage payloads against downstream developers in a targeted supply chain attack."
 ---
