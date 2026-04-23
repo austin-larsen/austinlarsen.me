@@ -7,7 +7,8 @@ Built with [Astro](https://astro.build) and deployed on [Cloudflare Pages](https
 - **Framework**: Astro 5 (static site generation)
 - **Hosting**: Cloudflare Pages
 - **Content**: Markdown-based content collections (blog, research, talks, media)
-- **Fonts**: JetBrains Mono + Inter
+- **Fonts**: Instrument Serif (display) + IBM Plex Sans (body) + IBM Plex Mono (code/labels)
+- **Design**: Ivory & ink editorial palette with a preserved dark terminal as contrast
 
 ## Local development
 
@@ -15,6 +16,8 @@ Built with [Astro](https://astro.build) and deployed on [Cloudflare Pages](https
 npm install
 npm run dev
 ```
+
+Dev server runs at `http://localhost:4321`.
 
 ## Content
 
@@ -27,6 +30,8 @@ All site content lives in `src/content/`:
 | `talks/` | Conference talks and presentations |
 | `media/` | Press mentions and media coverage |
 
+Schemas are defined in `src/content.config.ts`.
+
 ## Pages
 
 | Path | Description |
@@ -37,12 +42,11 @@ All site content lives in `src/content/`:
 | `/blog/[slug]` | Individual blog post |
 | `/rss.xml` | RSS feed |
 | `/sitemap-index.xml` | Sitemap |
-
-Each entry is a Markdown file with a YAML frontmatter header. Add a new file to the relevant directory and it will appear on the site automatically.
+| `/404` | Custom "signal lost" error page |
 
 ## Deployment
 
 Push to `master` → Cloudflare Pages builds and deploys automatically.
 
-Build command: `npm run build`
+Build command: `npm run build`  
 Output directory: `dist`
