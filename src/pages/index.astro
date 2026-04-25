@@ -841,21 +841,21 @@ const recentBlog = blogPosts.slice(0, 4);
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     align-items: center;
-    justify-content: space-between;
-    gap: 20px 32px;
-    max-width: 860px;
+    justify-items: center;
+    gap: 0;
   }
   .press-strip-row li {
     display: flex;
     align-items: center;
-    flex: 0 1 auto;
+    justify-content: center;
   }
   .press-strip-row img {
-    height: 22px;
+    height: 20px;
     width: auto;
+    max-width: 100%;
     opacity: 0.5;
     filter: grayscale(1);
     transition: opacity 0.2s;
@@ -863,10 +863,10 @@ const recentBlog = blogPosts.slice(0, 4);
   .press-strip-row li:hover img {
     opacity: 0.85;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .press-strip { padding: 22px 0; }
-    .press-strip-row { justify-content: center; gap: 16px 24px; }
-    .press-strip-row img { height: 18px; }
+    .press-strip-row { grid-template-columns: repeat(3, 1fr); gap: 20px 0; }
+    .press-strip-row img { height: 16px; }
   }
 
   /* ── View all links ── */
