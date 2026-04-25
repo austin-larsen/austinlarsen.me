@@ -797,5 +797,21 @@
     setTimeout(cleanup, 20000);
   }
 
-  runStartup();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Skip animation — render final state immediately
+    const line = createLine();
+    const prompt = document.createElement('span');
+    prompt.className = 't-prompt';
+    prompt.textContent = '$ ';
+    line.appendChild(prompt);
+    const cmd = document.createElement('span');
+    cmd.className = 't-command';
+    cmd.textContent = 'whoami';
+    line.appendChild(cmd);
+    addOutput('Principal Threat Analyst @ Google Threat Intelligence Group');
+    addOutput('');
+    inputRow.style.visibility = 'visible';
+  } else {
+    runStartup();
+  }
 </script>

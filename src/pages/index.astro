@@ -51,6 +51,21 @@ const recentBlog = blogPosts.slice(0, 4);
     </div>
   </section>
 
+  <!-- ══ AS SEEN IN ══ -->
+  <div class="press-strip" aria-label="As seen in">
+    <div class="container">
+      <p class="press-strip-label">As seen in</p>
+      <ul class="press-strip-row">
+        <li>The New York Times</li>
+        <li>Reuters</li>
+        <li>Bloomberg</li>
+        <li>WIRED</li>
+        <li>Krebs on Security</li>
+        <li>CyberScoop</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- ══ RECENT BLOG ══ -->
   {recentBlog.length > 0 && (
     <section class="section" id="blog-preview">
@@ -59,15 +74,18 @@ const recentBlog = blogPosts.slice(0, 4);
         <h2 class="section-title reveal" style="--i:1">Blog</h2>
         <div class="grid-2">
           {recentBlog.map((post, i) => (
-            <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card reveal" style={`--i:${i}`}>
+            <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="card blog-card reveal" style={`--i:${Math.min(i, 3)}`}>
               <time class="blog-date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
               <h3 class="blog-card-title">{post.data.title}</h3>
               {post.data.description && <p class="blog-card-desc">{post.data.description}</p>}
-              {post.data.tags.length > 0 && (
-                <div class="blog-tags">
-                  {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
-                </div>
-              )}
+              <div class="card-footer">
+                {post.data.tags.length > 0 && (
+                  <div class="blog-tags">
+                    {post.data.tags.map((tag) => <span class="badge">{tag}</span>)}
+                  </div>
+                )}
+                <span class="read-arrow">→</span>
+              </div>
             </a>
           ))}
         </div>
@@ -94,11 +112,14 @@ const recentBlog = blogPosts.slice(0, 4);
             {item.data.description && (
               <p class="research-desc">{item.data.description}</p>
             )}
-            {item.data.tags.length > 0 && (
-              <div class="research-tags">
-                {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
-              </div>
-            )}
+            <div class="card-footer">
+              {item.data.tags.length > 0 && (
+                <div class="research-tags">
+                  {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+                </div>
+              )}
+              <span class="read-arrow">→</span>
+            </div>
           </a>
         ))}
       </div>
@@ -151,21 +172,6 @@ const recentBlog = blogPosts.slice(0, 4);
     </div>
   </section>
 
-  <!-- ══ AS SEEN IN ══ -->
-  <section class="press-strip" aria-label="As seen in">
-    <div class="container">
-      <p class="press-strip-heading">As seen in</p>
-      <ul class="press-strip-row">
-        <li><img src="/logos/wired.svg" alt="WIRED" loading="lazy" /></li>
-        <li><img src="/logos/bloomberg.svg" alt="Bloomberg" loading="lazy" /></li>
-        <li><img src="/logos/reuters.svg" alt="Reuters" loading="lazy" /></li>
-        <li><img src="/logos/techcrunch.svg" alt="TechCrunch" loading="lazy" /></li>
-        <li><img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" loading="lazy" /></li>
-        <li><img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" loading="lazy" /></li>
-      </ul>
-    </div>
-  </section>
-
   <!-- ══ MEDIA ══ -->
   <section class="section" id="media">
     <div class="container">
@@ -176,7 +182,7 @@ const recentBlog = blogPosts.slice(0, 4);
         <div class="media-carousel-wrap">
           <div class="media-carousel">
             {featuredMedia.map((item, i) => (
-              <a href={item.data.url} target="_blank" rel="noopener" class="media-feature-card reveal" style={`--i:${i}`}>
+              <a href={item.data.url} target="_blank" rel="noopener" class="media-feature-card reveal" style={`--i:${Math.min(i, 3)}`}>
                 {item.data.image && (
                   <div class="media-feature-img">
                     <Image src={item.data.image} alt={item.data.title} width={520} loading="lazy" />
@@ -387,6 +393,28 @@ const recentBlog = blogPosts.slice(0, 4);
     color: inherit;
   }
   .blog-card:hover { color: inherit; }
+
+  /* shared card-footer + arrow nudge */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .read-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+  .blog-card:hover .read-arrow,
+  .research-card:hover .read-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
 
   /* ── Research ── */
   .research-list {
@@ -796,50 +824,46 @@ const recentBlog = blogPosts.slice(0, 4);
 
   /* ── Press strip ── */
   .press-strip {
-    background: var(--bg-surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 36px 0;
+    padding: 20px 0;
+    background: var(--bg-deep);
   }
-  .press-strip-heading {
+  .press-strip-label {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
+    font-size: 0.68rem;
+    color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    text-align: center;
-    margin-bottom: 22px;
+    letter-spacing: 0.16em;
+    margin-bottom: 14px;
   }
   .press-strip-row {
     list-style: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px 36px;
-    max-width: 980px;
+    align-items: baseline;
+    gap: 6px 0;
   }
   .press-strip-row li {
-    display: flex;
-    align-items: center;
-    flex: 0 1 auto;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
-  .press-strip-row img {
-    height: 22px;
-    width: auto;
-    opacity: 0.5;
-    filter: grayscale(1);
-    transition: opacity 0.2s;
+  .press-strip-row li + li::before {
+    content: '·';
+    margin: 0 12px;
+    color: var(--text-muted);
+    font-weight: 400;
   }
-  .press-strip-row li:hover img {
-    opacity: 0.85;
-  }
-  @media (max-width: 768px) {
-    .press-strip { padding: 28px 0; }
-    .press-strip-row { justify-content: center; gap: 18px 28px; }
-    .press-strip-row img { height: 18px; }
+  @media (max-width: 600px) {
+    .press-strip-row { gap: 8px 0; }
+    .press-strip-row li { font-size: 0.75rem; }
+    .press-strip-row li + li::before { margin: 0 8px; }
   }
 
   /* ── View all links ── */
