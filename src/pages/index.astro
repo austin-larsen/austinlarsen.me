@@ -54,7 +54,7 @@ const recentBlog = blogPosts.slice(0, 4);
   <!-- ══ AS SEEN IN ══ -->
   <div class="press-strip" aria-label="As seen in">
     <div class="container">
-      <p class="press-strip-label">As seen in</p>
+      <p class="press-strip-label">// as seen in</p>
       <ul class="press-strip-row">
         <li><img src="/logos/wired.svg" alt="WIRED" loading="lazy" /></li>
         <li><img src="/logos/bloomberg.svg" alt="Bloomberg" loading="lazy" /></li>
@@ -826,16 +826,16 @@ const recentBlog = blogPosts.slice(0, 4);
   .press-strip {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 28px 0;
+    padding: 40px 0;
     background: var(--bg-deep);
   }
   .press-strip-label {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--text-muted);
+    font-size: 0.78rem;
+    color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 20px;
+    letter-spacing: 0.16em;
+    margin-bottom: 24px;
   }
   .press-strip-row {
     list-style: none;
@@ -853,20 +853,20 @@ const recentBlog = blogPosts.slice(0, 4);
     justify-content: center;
   }
   .press-strip-row img {
-    height: 20px;
+    height: 26px;
     width: auto;
     max-width: 100%;
-    opacity: 0.5;
+    opacity: 0.7;
     filter: grayscale(1);
     transition: opacity 0.2s;
   }
   .press-strip-row li:hover img {
-    opacity: 0.85;
+    opacity: 1;
   }
   @media (max-width: 640px) {
-    .press-strip { padding: 22px 0; }
+    .press-strip { padding: 28px 0; }
     .press-strip-row { grid-template-columns: repeat(3, 1fr); gap: 20px 0; }
-    .press-strip-row img { height: 16px; }
+    .press-strip-row img { height: 20px; }
   }
 
   /* ── View all links ── */
