@@ -826,8 +826,14 @@ const recentBlog = blogPosts.slice(0, 4);
   .press-strip {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 40px 0;
+    padding: 28px 0;
     background: var(--bg-deep);
+  }
+  .press-strip .container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
   }
   .press-strip-label {
     font-family: var(--font-mono);
@@ -835,27 +841,37 @@ const recentBlog = blogPosts.slice(0, 4);
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    margin-bottom: 24px;
+    margin: 0;
+    flex-shrink: 0;
+    position: relative;
+    padding-right: 32px;
+  }
+  .press-strip-label::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 16px;
+    height: 1px;
+    background: var(--border-glow);
   }
   .press-strip-row {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
     align-items: center;
-    justify-items: center;
-    gap: 0;
+    gap: 36px;
+    flex-wrap: wrap;
+    flex: 1;
   }
   .press-strip-row li {
     display: flex;
     align-items: center;
-    justify-content: center;
   }
   .press-strip-row img {
-    height: 26px;
+    height: 22px;
     width: auto;
-    max-width: 100%;
     opacity: 0.7;
     filter: grayscale(1);
     transition: opacity 0.2s;
@@ -864,9 +880,11 @@ const recentBlog = blogPosts.slice(0, 4);
     opacity: 1;
   }
   @media (max-width: 640px) {
-    .press-strip { padding: 28px 0; }
-    .press-strip-row { grid-template-columns: repeat(3, 1fr); gap: 20px 0; }
-    .press-strip-row img { height: 20px; }
+    .press-strip .container { gap: 16px; }
+    .press-strip-label { padding-right: 0; }
+    .press-strip-label::after { display: none; }
+    .press-strip-row { gap: 24px; }
+    .press-strip-row img { height: 18px; }
   }
 
   /* ── View all links ── */
