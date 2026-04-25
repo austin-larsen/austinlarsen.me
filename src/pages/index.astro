@@ -44,13 +44,6 @@ const recentBlog = blogPosts.slice(0, 4);
             <span class="hero-upcoming-register">Register →</span>
           </a>
         )}
-        <div class="hero-proof">
-          <div class="hero-outlets">
-            {['CyberScoop', 'Krebs on Security', 'The Record', 'TechCrunch', 'Fortune', 'Bloomberg', 'Reuters', 'Dark Reading', 'BleepingComputer', 'The Hacker News'].map(name => (
-              <span class="hero-outlet-name">{name}</span>
-            ))}
-          </div>
-        </div>
       </div>
       <div class="hero-terminal">
         <Terminal />
@@ -155,6 +148,21 @@ const recentBlog = blogPosts.slice(0, 4);
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- ══ AS SEEN IN ══ -->
+  <section class="press-strip" aria-label="As seen in">
+    <div class="container">
+      <p class="press-strip-heading">As seen in</p>
+      <ul class="press-strip-row">
+        <li><img src="/logos/wired.svg" alt="WIRED" loading="lazy" /></li>
+        <li><img src="/logos/bloomberg.svg" alt="Bloomberg" loading="lazy" /></li>
+        <li><img src="/logos/reuters.svg" alt="Reuters" loading="lazy" /></li>
+        <li><img src="/logos/techcrunch.svg" alt="TechCrunch" loading="lazy" /></li>
+        <li><img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" loading="lazy" /></li>
+        <li><img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" loading="lazy" /></li>
+      </ul>
     </div>
   </section>
 
@@ -786,36 +794,52 @@ const recentBlog = blogPosts.slice(0, 4);
     white-space: nowrap;
   }
 
-  /* ── Social proof ── */
-  .hero-proof {
-    margin-top: 24px;
+  /* ── Press strip ── */
+  .press-strip {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 0;
   }
-  .hero-stats {
+  .press-strip-heading {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    letter-spacing: 0.02em;
-    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    text-align: center;
+    margin-bottom: 22px;
   }
-  .hero-outlets {
+  .press-strip-row {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 16px;
     align-items: center;
+    justify-content: space-between;
+    gap: 24px 36px;
+    max-width: 980px;
   }
-  .hero-outlet-name {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    opacity: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    transition: color 0.2s;
-    white-space: nowrap;
+  .press-strip-row li {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
   }
-  .hero-outlet-name:hover {
-    color: var(--text-primary);
+  .press-strip-row img {
+    height: 22px;
+    width: auto;
+    opacity: 0.5;
+    filter: grayscale(1);
+    transition: opacity 0.2s;
+  }
+  .press-strip-row li:hover img {
+    opacity: 0.85;
+  }
+  @media (max-width: 768px) {
+    .press-strip { padding: 28px 0; }
+    .press-strip-row { justify-content: center; gap: 18px 28px; }
+    .press-strip-row img { height: 18px; }
   }
 
   /* ── View all links ── */
@@ -841,9 +865,7 @@ const recentBlog = blogPosts.slice(0, 4);
     }
     .hero-bio { margin: 0 auto 28px; }
     .hero-cta { justify-content: center; }
-    .hero-proof { text-align: center; }
-    .hero-outlets { justify-content: center; }
-    .hero-terminal { justify-content: center; }
+.hero-terminal { justify-content: center; }
     .hero-name { font-size: 3.25rem; }
     .hero-title { font-size: 1.5rem; }
   }
