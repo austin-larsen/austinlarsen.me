@@ -51,20 +51,29 @@ const recentBlog = blogPosts.slice(0, 4);
     </div>
   </section>
 
-  <!-- ══ AS SEEN IN ══ -->
-  <div class="press-strip" aria-label="As seen in">
-    <div class="container">
-      <p class="press-strip-label">// as seen in</p>
-      <ul class="press-strip-row">
-        <li><img src="/logos/wired.svg" alt="WIRED" loading="lazy" /></li>
-        <li><img src="/logos/bloomberg.svg" alt="Bloomberg" loading="lazy" /></li>
-        <li><img src="/logos/reuters.svg" alt="Reuters" loading="lazy" /></li>
-        <li><img src="/logos/techcrunch.svg" alt="TechCrunch" loading="lazy" /></li>
-        <li><img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" loading="lazy" /></li>
-        <li><img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" loading="lazy" /></li>
-      </ul>
+  <!-- ══ AS FEATURED IN ══ -->
+  <section class="press-strip" aria-label="As featured in">
+    <p class="press-strip-label">// as featured in</p>
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        {[0, 1].map(() => (
+          <div class="marquee-set" aria-hidden={true}>
+            <img src="/logos/bloomberg.svg" alt="Bloomberg" />
+            <img src="/logos/reuters.svg" alt="Reuters" />
+            <img src="/logos/fortune.svg" alt="Fortune" />
+            <img src="/logos/newsweek.svg" alt="Newsweek" />
+            <img src="/logos/techcrunch.svg" alt="TechCrunch" />
+            <img src="/logos/cyberscoop.svg" alt="CyberScoop" />
+            <img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" />
+            <img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" />
+            <img src="/logos/darkreading.svg" alt="Dark Reading" />
+            <img src="/logos/theregister.svg" alt="The Register" />
+            <img src="/logos/404media.svg" alt="404 Media" />
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- ══ RECENT BLOG ══ -->
   {recentBlog.length > 0 && (
@@ -822,70 +831,65 @@ const recentBlog = blogPosts.slice(0, 4);
     white-space: nowrap;
   }
 
-  /* ── Press strip ── */
+  /* ── Press marquee ── */
   .press-strip {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 28px 0;
+    padding: 32px 0;
     background: var(--bg-deep);
-  }
-  .press-strip .container {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
+    overflow: hidden;
   }
   .press-strip-label {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    margin: 0;
-    flex-shrink: 0;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  .marquee-wrap {
     position: relative;
-    padding-right: 32px;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
-  .press-strip-label::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 16px;
-    height: 1px;
-    background: var(--border-glow);
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
   }
-  .press-strip-row {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .marquee-set {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    flex: 1;
-    gap: 0;
+    gap: 56px;
+    padding-right: 56px;
+    flex-shrink: 0;
   }
-  .press-strip-row li {
-    display: flex;
-    align-items: center;
-  }
-  .press-strip-row img {
-    height: 22px;
+  .marquee-set img {
+    height: 24px;
     width: auto;
-    opacity: 0.7;
-    filter: grayscale(1);
+    opacity: 0.55;
     transition: opacity 0.2s;
+    flex-shrink: 0;
   }
-  .press-strip-row li:hover img {
+  .marquee-set img:hover {
     opacity: 1;
   }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .marquee-set:last-child { display: none; }
+    .marquee-set { flex-wrap: wrap; justify-content: center; gap: 24px 40px; padding: 0 20px; }
+  }
   @media (max-width: 640px) {
-    .press-strip .container { gap: 16px; }
-    .press-strip-label { padding-right: 0; }
-    .press-strip-label::after { display: none; }
-    .press-strip-row { gap: 24px; }
-    .press-strip-row img { height: 18px; }
+    .press-strip { padding: 24px 0; }
+    .marquee-set { gap: 36px; padding-right: 36px; }
+    .marquee-set img { height: 18px; }
   }
 
   /* ── View all links ── */
