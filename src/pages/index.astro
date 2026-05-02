@@ -858,7 +858,10 @@ const recentBlog = blogPosts.slice(0, 4);
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 35s linear infinite;
+    animation: marquee-scroll 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
   .marquee-set {
     display: flex;
@@ -870,7 +873,7 @@ const recentBlog = blogPosts.slice(0, 4);
   .marquee-set img {
     height: 24px;
     width: auto;
-    opacity: 0.55;
+    opacity: 0.7;
     transition: opacity 0.2s;
     flex-shrink: 0;
   }
