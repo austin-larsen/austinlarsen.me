@@ -55,22 +55,20 @@ const recentBlog = blogPosts.slice(0, 4);
   <section class="press-strip" aria-label="As featured in">
     <p class="press-strip-label">// as featured in</p>
     <div class="marquee-wrap">
-      <div class="marquee-track">
-        {[0, 1].map(() => (
-          <div class="marquee-set" aria-hidden={true}>
-            <a href="#media"><img src="/logos/bloomberg.svg" alt="Bloomberg" /></a>
-            <a href="#media"><img src="/logos/reuters.svg" alt="Reuters" /></a>
-            <a href="#media"><img src="/logos/fortune.svg" alt="Fortune" /></a>
-            <a href="#media"><img src="/logos/newsweek.svg" alt="Newsweek" /></a>
-            <a href="#media"><img src="/logos/techcrunch.svg" alt="TechCrunch" /></a>
-            <a href="#media"><img src="/logos/cyberscoop.svg" alt="CyberScoop" /></a>
-            <a href="#media"><img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" /></a>
-            <a href="#media"><img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" /></a>
-            <a href="#media"><img src="/logos/darkreading.svg" alt="Dark Reading" /></a>
-            <a href="#media"><img src="/logos/theregister.svg" alt="The Register" /></a>
-            <a href="#media"><img src="/logos/404media.svg" alt="404 Media" /></a>
-          </div>
-        ))}
+      <div class="marquee-track" id="marquee-track">
+        <div class="marquee-set">
+          <a href="#media"><img src="/logos/bloomberg.svg" alt="Bloomberg" /></a>
+          <a href="#media"><img src="/logos/reuters.svg" alt="Reuters" /></a>
+          <a href="#media"><img src="/logos/fortune.svg" alt="Fortune" /></a>
+          <a href="#media"><img src="/logos/newsweek.svg" alt="Newsweek" /></a>
+          <a href="#media"><img src="/logos/techcrunch.svg" alt="TechCrunch" /></a>
+          <a href="#media"><img src="/logos/cyberscoop.svg" alt="CyberScoop" /></a>
+          <a href="#media"><img src="/logos/krebsonsecurity.svg" alt="Krebs on Security" /></a>
+          <a href="#media"><img src="/logos/bleepingcomputer.svg" alt="BleepingComputer" /></a>
+          <a href="#media"><img src="/logos/darkreading.svg" alt="Dark Reading" /></a>
+          <a href="#media"><img src="/logos/theregister.svg" alt="The Register" /></a>
+          <a href="#media"><img src="/logos/404media.svg" alt="404 Media" /></a>
+        </div>
       </div>
     </div>
   </section>
@@ -864,7 +862,7 @@ const recentBlog = blogPosts.slice(0, 4);
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 30s linear infinite;
+    /* animation injected by JS after pixel measurement */
   }
   .marquee-track:hover {
     animation-play-state: paused;
@@ -874,6 +872,11 @@ const recentBlog = blogPosts.slice(0, 4);
     align-items: center;
     gap: 56px;
     padding-right: 56px;
+    flex-shrink: 0;
+  }
+  .marquee-set a {
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
   }
   .marquee-set img {
@@ -886,14 +889,11 @@ const recentBlog = blogPosts.slice(0, 4);
   .marquee-set img:hover {
     opacity: 1;
   }
-  @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .marquee-track { animation: none; }
-    .marquee-set:last-child { display: none; }
+    .marquee-track { animation: none !important; }
     .marquee-set { flex-wrap: wrap; justify-content: center; gap: 24px 40px; padding: 0 20px; }
+    /* hide the JS-cloned duplicate set */
+    .marquee-set + .marquee-set { display: none; }
   }
   @media (max-width: 640px) {
     .press-strip { padding: 24px 0; }
@@ -966,4 +966,38 @@ const recentBlog = blogPosts.slice(0, 4);
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+  // ── Marquee: pixel-exact seamless loop ──
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const track = document.getElementById('marquee-track');
+    if (!track) return;
+    const set = track.querySelector('.marquee-set');
+    if (!set) return;
+
+    // Clone the set so it plays immediately after the original
+    const clone = set.cloneNode(true);
+    track.appendChild(clone);
+
+    // Wait for SVG images (they load synchronously but be safe)
+    const imgs = Array.from(track.querySelectorAll('img'));
+    const loaded = imgs.map(img =>
+      img.complete ? Promise.resolve() :
+      new Promise(res => { img.onload = res; img.onerror = res; })
+    );
+
+    Promise.all(loaded).then(() => {
+      // offsetWidth of the original set = exact pixel distance for one loop
+      const loopWidth = set.offsetWidth;
+      if (!loopWidth) return;
+
+      // Inject a pixel-exact keyframes rule
+      const style = document.createElement('style');
+      style.textContent =
+        `@keyframes marquee-px { from { transform: translateX(0); } to { transform: translateX(-${loopWidth}px); } }`;
+      document.head.appendChild(style);
+
+      track.style.animation = 'marquee-px 30s linear infinite';
+    });
+  })();
 </script>
