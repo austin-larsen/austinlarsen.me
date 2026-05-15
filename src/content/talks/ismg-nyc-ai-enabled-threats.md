@@ -4,4 +4,5 @@ conference: "ISMG Roundtable"
 date: 2026-05-13
 location: "New York, NY"
 url: "https://ismg.events/roundtable-event/nyc-ai-enabled-threats/"
+image: "../../assets/images/talks/ismg-nyc-2026.jpg"
 ---
