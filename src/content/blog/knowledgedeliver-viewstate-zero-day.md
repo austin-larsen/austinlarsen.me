@@ -1,6 +1,6 @@
 ---
 title: "KnowledgeDeliver Zero-Day: When Hard-Coded Keys Break Every Deployment"
-date: 2026-05-15
+date: 2026-05-27
 description: "GTIG and Mandiant detail active exploitation of CVE-2026-5426, an unauthenticated RCE in the KnowledgeDeliver LMS. Identical hard-coded ASP.NET machineKey values let attackers forge ViewState payloads against any internet-facing instance, deploying the BLUEBEAM web shell and Cobalt Strike BEACON."
 tags: ["cve-2026-5426", "knowledgedeliver", "zero-day", "viewstate", "rce", "bluebeam", "cobalt-strike", "japan", "threat-intelligence"]
 linkedin: "https://www.linkedin.com/posts/austin-larsen_knowledgedeliver-activity-7465114446420586497-R5pF"
