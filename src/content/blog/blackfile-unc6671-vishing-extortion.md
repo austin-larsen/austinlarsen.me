@@ -1,6 +1,6 @@
 ---
 title: "Inside BlackFile: Vishing, AiTM, and the Cybercrime Brand Game"
-date: 2026-05-15
+date: 2026-05-22
 description: "GTIG's new research on UNC6671, operating under the BlackFile brand, exposes one of the most prolific and underreported vishing extortion crews of 2026. AiTM passkey lures, SSO compromise, and quiet log evasion tactics across Microsoft 365, Okta, Salesforce, and Zendesk."
 tags: ["unc6671", "blackfile", "vishing", "extortion", "shinyhunters", "aitm", "okta", "microsoft-365", "salesforce", "threat-intelligence"]
 image: "../../assets/images/blog/blackfile.jpg"
