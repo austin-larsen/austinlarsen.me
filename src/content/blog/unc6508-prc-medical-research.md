@@ -11,7 +11,15 @@ Our team at Google Threat Intelligence Group (GTIG) just published new research 
 
 The actor compromised externally facing REDCap servers using a custom malware payload named INFINITERED to silently harvest credentials. After remaining undetected for over a year, UNC6508 used these credentials to access internal networks and abused enterprise administrative tools for covert data exfiltration.
 
+![INFINITERED execution flow on compromised REDCap servers](../../assets/images/blog/unc6508-infinitered-diagram.png)
+
 The threat actor manipulated domain content compliance rules, creating a rule named "Patroit" to silently BCC forward sensitive emails to a threat actor controlled account. The targeted intelligence collection focused on geo-strategic policy, military strategy, advanced technology, and medical research.
+
+![Categories of intelligence targeted by UNC6508, spanning geo-strategic policy, military strategy, advanced technology, and medical research](../../assets/images/blog/unc6508-collection-categories.png)
+
+The group paired this collection with disciplined operational security to stay hidden across a multi-year campaign.
+
+![Operational security techniques used by UNC6508 to evade detection](../../assets/images/blog/unc6508-opsec-techniques.png)
 
 Given the scale and stealth of this activity, we urge defenders to review our full blog for detailed recommendations. Key first steps include:
 
