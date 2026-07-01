@@ -266,11 +266,16 @@ const articleSchema = {
   .post-linkedin-link:hover {
     color: var(--accent);
   }
+  .post-body :global(.post-pdf-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 24px;
+  }
   .post-body :global(.post-download-btn) {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 24px;
     padding: 10px 18px;
     border: 1px solid var(--text-primary);
     border-radius: 2px;
