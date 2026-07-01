@@ -3,7 +3,7 @@ title: "REDACT Responds: What BlackFile's Rebuttal Actually Confirms"
 date: 2026-06-27
 description: "BlackFile, now operating as REDACT, publicly responded to my SLEUTHCON talk on their vanishing act. Their rogue-affiliate explanation is plausible, but it leaves the abandoned mid-negotiation ransoms and the suspicious timing of a rival group's callout unexplained."
 tags: ["unc6671", "blackfile", "redact", "sleuthcon", "extortion", "vishing", "threat-intelligence"]
-linkedin: "https://www.linkedin.com/feed/update/urn:li:activity:7476021500374831105/"
+linkedin: "https://www.linkedin.com/posts/austin-larsen_sleuthcon-blackfile-redact-ugcPost-7478154618573611008-SL5v/"
 image: "../../assets/images/talks/sleuthcon-vanishing-act-live.jpg"
 ---
 
