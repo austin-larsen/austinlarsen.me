@@ -4,7 +4,8 @@ conference: "SleuthCon 2026"
 date: 2026-06-05
 location: "Arlington, VA"
 url: "https://www.sleuthcon.com/vanishing-act"
-image: "../../assets/images/talks/sleuthcon-vanishing-act.jpg"
+image: "../../assets/images/talks/sleuthcon-vanishing-act-live.jpg"
+slidesUrl: "https://austinlarsen.me/files/blackfile-sleuthcon-deck.pdf"
 ---
 
 In early 2026, the extortion brand "BlackFile" (UNC6671) quietly became one of the most impactful and under-reported threat actors of the year. Targeting dozens of organizations and making millions in the process, they used live AiTM vishing to bypass MFA, blinded SOCs through API manipulation, and leveraged extreme escalation tactics like corporate swatting.
