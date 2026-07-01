@@ -13,7 +13,7 @@ During the lightning talk, I covered how this data theft extortion group we trac
 
 I really appreciate all the follow-up conversations and feedback from attendees. Interestingly this week, the most unique feedback came from an unexpected source. BlackFile (now operating as REDACT) provided their own thoughts on my presentation on their Data Leak Site.
 
-![REDACT's data leak site response to the SLEUTHCON talk](../../assets/images/blog/redact-blackfile-rebuttal.jpg)
+![REDACT's data leak site response to the SLEUTHCON talk](../../assets/images/blog/redact-blackfile-rebuttal-full.jpg)
 
 They claim that the erratic behavior, the original data leak site, and the sudden shutdown I discussed were actually the work of a "rogue and exiled affiliate" trying to sabotage their brand and scam victims. They also explicitly denied observations regarding their move to new communication channels and insisted their rebrand to REDACT was simply to distance themselves from a tainted name.
 
@@ -21,4 +21,7 @@ Their explanation of a rogue affiliate is certainly plausible, but it leaves som
 
 <iframe src="/files/blackfile-sleuthcon-deck.pdf" title="SLEUTHCON 2026 slide deck: BlackFile's Vanishing Act"></iframe>
 
-- Slides: https://austinlarsen.me/files/blackfile-sleuthcon-deck.pdf
+<a href="/files/blackfile-sleuthcon-deck.pdf" download class="post-download-btn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Download the slide deck
+</a>
