@@ -1,0 +1,60 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/content/blog/**'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find changed blog posts
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only --diff-filter=ACM "${{ github.event.before }}" "${{ github.event.after }}" -- 'src/content/blog/*.md' || true)
+          echo "$CHANGED"
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Give Cloudflare Pages time to deploy
+        if: steps.changed.outputs.files != ''
+        run: sleep 90
+
+      - name: Ping IndexNow
+        if: steps.changed.outputs.files != ''
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          FILES: ${{ steps.changed.outputs.files }}
+        run: |
+          URLS="[\"https://austinlarsen.me/\",\"https://austinlarsen.me/blog/\""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            SLUG=$(basename "$f" .md)
+            URLS="$URLS,\"https://austinlarsen.me/blog/${SLUG}/\""
+          done <<< "$FILES"
+          URLS="$URLS]"
+
+          BODY=$(cat <<JSON
+          {
+            "host": "austinlarsen.me",
+            "key": "${INDEXNOW_KEY}",
+            "keyLocation": "https://austinlarsen.me/${INDEXNOW_KEY}.txt",
+            "urlList": $URLS
+          }
+          JSON
+          )
+
+          echo "$BODY"
+
+          curl -s -o /dev/null -w "IndexNow response: %{http_code}\n" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$BODY"
