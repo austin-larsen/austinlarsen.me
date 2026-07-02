@@ -6,6 +6,9 @@ on:
     paths:
       - 'src/content/blog/**'
 
+permissions:
+  contents: read
+
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -34,25 +37,22 @@ jobs:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           FILES: ${{ steps.changed.outputs.files }}
         run: |
-          URLS="[\"https://austinlarsen.me/\",\"https://austinlarsen.me/blog/\""
-          while IFS= read -r f; do
+          SLUGS=$(echo "$FILES" | while IFS= read -r f; do
             [ -z "$f" ] && continue
-            SLUG=$(basename "$f" .md)
-            URLS="$URLS,\"https://austinlarsen.me/blog/${SLUG}/\""
-          done <<< "$FILES"
-          URLS="$URLS]"
+            basename "$f" .md
+          done | jq -R . | jq -s .)
 
-          BODY=$(cat <<JSON
-          {
-            "host": "austinlarsen.me",
-            "key": "${INDEXNOW_KEY}",
-            "keyLocation": "https://austinlarsen.me/${INDEXNOW_KEY}.txt",
-            "urlList": $URLS
-          }
-          JSON
-          )
-
-          echo "$BODY"
+          BODY=$(jq -n \
+            --arg host "austinlarsen.me" \
+            --arg key "$INDEXNOW_KEY" \
+            --arg keyLocation "https://austinlarsen.me/${INDEXNOW_KEY}.txt" \
+            --argjson slugs "$SLUGS" \
+            '{
+              host: $host,
+              key: $key,
+              keyLocation: $keyLocation,
+              urlList: (["https://austinlarsen.me/", "https://austinlarsen.me/blog/"] + ($slugs | map("https://austinlarsen.me/blog/" + . + "/")))
+            }')
 
           curl -s -o /dev/null -w "IndexNow response: %{http_code}\n" \
             -X POST "https://api.indexnow.org/indexnow" \
