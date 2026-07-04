@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -34,12 +34,19 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
+let schemaImageUrl;
+if (post.data.image) {
+  const optimized = await getImage({ src: post.data.image, width: 1200 });
+  schemaImageUrl = new URL(optimized.src, Astro.site).toString();
+}
+
 const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  "@type": "NewsArticle",
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": post.data.date.toISOString(),
+  ...(schemaImageUrl && { "image": [schemaImageUrl] }),
   "author": {
     "@type": "Person",
     "name": "Austin Larsen",
