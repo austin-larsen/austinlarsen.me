@@ -21,5 +21,8 @@ To defend against these identity-centric campaigns, organizations should focus o
 - Integrate business-critical SaaS applications into a standard SSO platform for consistent policy enforcement.
 - Monitor identity provider audit logs for MFA registration events that immediately follow abandoned push challenges.
 
-- Blog: https://cloud.google.com/blog/topics/threat-intelligence/unc6671-targets-financial-services-and-enterprise-cloud-environments/
-- Reuters exclusive by Raphael Satter: https://www.reuters.com/world/hackers-targeted-us-private-equity-other-firms-including-blackstone-cme-data-2026-08-06/
+---
+
+Blog: https://cloud.google.com/blog/topics/threat-intelligence/unc6671-targets-financial-services-and-enterprise-cloud-environments/
+
+Reuters exclusive by Raphael Satter: https://www.reuters.com/world/hackers-targeted-us-private-equity-other-firms-including-blackstone-cme-data-2026-08-06/
