@@ -1,6 +1,6 @@
 ---
 title: "Two Alleged 'TeamPCP' Hackers Arrested in Australia"
-outlet: "KrebsOnSecurity"
+outlet: "Krebs on Security"
 date: 2026-08-27
 url: "https://krebsonsecurity.com/2026/08/two-alleged-teampcp-hackers-arrested-in-australia/"
 type: "quote"

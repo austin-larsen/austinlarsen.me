@@ -34,10 +34,28 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
-let schemaImageUrl;
-if (post.data.image) {
-  const optimized = await getImage({ src: post.data.image, width: 1200 });
-  schemaImageUrl = new URL(optimized.src, Astro.site).toString();
+// Share image for OG/Twitter cards and the NewsArticle schema:
+// frontmatter `image` first, otherwise the first image in the post body,
+// otherwise Base falls back to the site-wide default card.
+const assetImages = import.meta.glob('/src/assets/images/**/*.{jpg,jpeg,png,webp,gif,avif}', {
+  eager: true,
+  import: 'default',
+});
+
+function firstBodyImage() {
+  const match = post.body?.match(/!\[[^\]]*\]\(([^)\s]+)/);
+  if (!match) return undefined;
+  // Body paths are relative to src/content/blog/, e.g. ../../assets/images/blog/foo.jpg
+  const key = '/src/' + match[1].replace(/^(\.\.\/)+/, '');
+  return assetImages[key];
+}
+
+const shareSrc = post.data.image ?? firstBodyImage();
+let shareImageUrl;
+if (shareSrc) {
+  // JPEG rather than WebP: LinkedIn's crawler is still unreliable with WebP og:image.
+  const optimized = await getImage({ src: shareSrc, width: 1200, format: 'jpg' });
+  shareImageUrl = new URL(optimized.src, Astro.site).toString();
 }
 
 const articleSchema = {
@@ -46,7 +64,7 @@ const articleSchema = {
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": post.data.date.toISOString(),
-  ...(schemaImageUrl && { "image": [schemaImageUrl] }),
+  ...(shareImageUrl && { "image": [shareImageUrl] }),
   "author": {
     "@type": "Person",
     "name": "Austin Larsen",
@@ -65,7 +83,7 @@ const articleSchema = {
 };
 ---
 
-<Base title={`${post.data.title} — Austin Larsen`} description={post.data.description}>
+<Base title={`${post.data.title} — Austin Larsen`} description={post.data.description} ogImage={shareImageUrl}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
   <article class="post">
     <div class="container post-container">
