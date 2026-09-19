@@ -1,7 +1,7 @@
 ---
 title: "The Spice Must Not Flow: Disrupting TeamPCP's 'Mini Shai-Hulud' Campaign"
 conference: "LABScon 2026"
-date: 2026-09-16
+date: 2026-09-18
 location: "Scottsdale, AZ"
 url: "https://www.labscon.io/speakers/austin-larsen/#2026"
 ---
