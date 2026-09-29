@@ -4,6 +4,7 @@ conference: "LABScon 2026"
 date: 2026-09-18
 location: "Scottsdale, AZ"
 url: "https://www.labscon.io/speakers/austin-larsen/#2026"
+image: "../../assets/images/talks/labscon23.jpg"
 ---
 
 In May 2026, the financially motivated cybercrime group TeamPCP (UNC6780) launched a massive open-source software supply chain attack that continues to claim victims today. Dubbed "Mini Shai-Hulud," the campaign poisoned GitHub Actions caches across the ecosystem, exploiting vulnerable workflows to harvest high-privilege OIDC tokens directly from runner memory and publish trojanized packages.
